@@ -7,15 +7,19 @@ import { fetchAPI } from '../../lib/api';
 import { getStrapiMedia } from '../../lib/media';
 import BlockManager from '../../components/BlockManager';
 
-const Article = ({ article, categories }: any) => {
-	console.log(article.attributes.content);
-
-	const imageUrl = getStrapiMedia(article.attributes.image);
+const Article = ({
+	article,
+	categories,
+}: {
+	article?: any;
+	categories: any;
+}) => {
+	const imageUrl = getStrapiMedia(article?.attributes.image);
 
 	const seo = {
-		metaTitle: article.attributes.title,
-		metaDescription: article.attributes.description,
-		shareImage: article.attributes.image,
+		metaTitle: article?.attributes.title,
+		metaDescription: article?.attributes.description,
+		shareImage: article?.attributes.image,
 		article: true,
 	};
 
