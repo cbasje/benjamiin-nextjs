@@ -1,6 +1,15 @@
 import { createContext, useContext } from 'react';
 
-const GlobalContext = createContext({});
+const GlobalContext = createContext({
+	siteName: '',
+	favicon: undefined,
+	siteDescription: '',
+	defaultSeo: {
+		metaTitle: '',
+		metaDescription: '',
+		shareImage: undefined,
+	},
+});
 
 export function useGlobal() {
 	return useContext(GlobalContext);
