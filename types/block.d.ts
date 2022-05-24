@@ -12,3 +12,8 @@ interface MediaBlock extends Block {
 		data: Picture;
 	};
 }
+
+interface QuoteBlock extends Block {
+	title: string;
+	body: string;
+}

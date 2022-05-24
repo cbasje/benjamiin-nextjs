@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { useContext } from 'react';
 import { getStrapiMedia } from '../lib/media';
 import { useGlobal } from '../contexts/GlobalContext';
 

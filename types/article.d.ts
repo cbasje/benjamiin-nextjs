@@ -4,7 +4,7 @@ interface Article {
 		title: string;
 		description: string;
 		slug: string;
-		image: { data?: Picture };
+		cover: { data?: Picture };
 		category: {
 			data: Category;
 		};

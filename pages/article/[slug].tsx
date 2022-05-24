@@ -14,12 +14,12 @@ const Article = ({
 	article: Article;
 	categories: Category[];
 }) => {
-	const imageUrl = getStrapiMedia(article?.attributes.image);
+	const imageUrl = getStrapiMedia(article?.attributes.cover);
 
 	const seo: Seo = {
 		metaTitle: article.attributes.title,
 		metaDescription: article.attributes.description,
-		shareImage: article.attributes.image,
+		shareImage: article.attributes.cover,
 		article: true,
 	};
 
@@ -39,7 +39,7 @@ const Article = ({
 				<div className="uk-container uk-container-small">
 					<BlockManager blocks={article.attributes.blocks} />
 					<hr className="uk-divider-small" />
-					<div
+					{/* <div
 						className="uk-grid-small uk-flex-left"
 						data-uk-grid="true"
 					>
@@ -75,7 +75,7 @@ const Article = ({
 								</Moment>
 							</p>
 						</div>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</Layout>
@@ -102,19 +102,22 @@ export async function getStaticProps({ params }: any) {
 		populate: {
 			image: '*',
 			category: '*',
-			author: {
-				populate: {
-					picture: {
-						populate: '*',
-					},
-				},
-			},
-			content: {
+			cover: '*',
+			// author: {
+			// 	populate: {
+			// 		picture: {
+			// 			populate: '*',
+			// 		},
+			// 	},
+			// },
+			blocks: {
 				populate: '*',
 			},
 		},
 	});
 	const categoriesRes = await fetchAPI<Category[]>('/categories');
+
+	console.log(articlesRes.data[0]);
 
 	return {
 		props: { article: articlesRes.data[0], categories: categoriesRes.data },

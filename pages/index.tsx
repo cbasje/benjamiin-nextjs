@@ -18,7 +18,7 @@ const Home = ({
 			<Seo seo={homepage.attributes.seo} />
 			<div className="uk-section">
 				<div className="uk-container uk-container-large">
-					<h1>{homepage.attributes.hero.title}</h1>
+					<h1>{homepage.attributes.title}</h1>
 					<Articles articles={articles} />
 				</div>
 			</div>
@@ -54,9 +54,7 @@ export async function getStaticProps() {
 						metaTitle: 'metaTitle',
 						metaDescription: 'metaDescription',
 					},
-					hero: {
-						title: 'Homepage',
-					},
+					title: 'Homepage',
 				},
 			} as Homepage,
 		},
