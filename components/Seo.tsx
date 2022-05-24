@@ -3,10 +3,10 @@ import { useContext } from 'react';
 import { getStrapiMedia } from '../lib/media';
 import { useGlobal } from '../contexts/GlobalContext';
 
-const Seo = ({ seo }: { seo: any }) => {
+const Seo = ({ seo }: { seo?: Seo }) => {
 	const { defaultSeo, siteName } = useGlobal();
 
-	const seoWithDefaults = {
+	const seoWithDefaults: Seo = {
 		...defaultSeo,
 		...seo,
 	};

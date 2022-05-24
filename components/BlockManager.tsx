@@ -3,12 +3,12 @@ import Media from './blocks/Media';
 import RichText from './blocks/RichText';
 
 const getBlockComponent = (
-	{ id, __component, ...rest }: { id: number; __component: string },
+	block: RichTextBlock | MediaBlock,
 	index: number
 ): ReactNode => {
 	let Block;
 
-	switch (__component) {
+	switch (block.__component) {
 		case 'shared.rich-text':
 			Block = RichText;
 			break;
@@ -16,11 +16,13 @@ const getBlockComponent = (
 			Block = Media;
 	}
 
-	return Block ? <Block key={`i-${index}`} {...rest} /> : null;
+	return Block ? <Block key={`i-${index}`} {...block} /> : null;
 };
 
-const BlockManager = ({ blocks }: { blocks: any[] } = { blocks: [] }) => {
-	return <div>{blocks.map(getBlockComponent)}</div>;
+const BlockManager = (
+	{ blocks }: { blocks?: (RichTextBlock | MediaBlock)[] } = { blocks: [] }
+) => {
+	return <div>{blocks && blocks.map(getBlockComponent)}</div>;
 };
 
 export default BlockManager;

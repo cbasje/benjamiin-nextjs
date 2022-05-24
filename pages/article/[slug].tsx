@@ -11,20 +11,20 @@ const Article = ({
 	article,
 	categories,
 }: {
-	article?: any;
-	categories: any;
+	article: Article;
+	categories: Category[];
 }) => {
 	const imageUrl = getStrapiMedia(article?.attributes.image);
 
-	const seo = {
-		metaTitle: article?.attributes.title,
-		metaDescription: article?.attributes.description,
-		shareImage: article?.attributes.image,
+	const seo: Seo = {
+		metaTitle: article.attributes.title,
+		metaDescription: article.attributes.description,
+		shareImage: article.attributes.image,
 		article: true,
 	};
 
 	return (
-		<Layout categories={categories.data}>
+		<Layout categories={categories}>
 			<Seo seo={seo} />
 			<div
 				id="banner"
@@ -37,7 +37,7 @@ const Article = ({
 			</div>
 			<div className="uk-section">
 				<div className="uk-container uk-container-small">
-					<BlockManager blocks={article.attributes.content} />
+					<BlockManager blocks={article.attributes.blocks} />
 					<hr className="uk-divider-small" />
 					<div
 						className="uk-grid-small uk-flex-left"
@@ -53,7 +53,7 @@ const Article = ({
 									)}
 									alt={
 										article.attributes.author.data
-											.attributes.picture.data.attributes
+											.attributes.picture.data?.attributes
 											.alternativeText
 									}
 									style={{
@@ -71,7 +71,7 @@ const Article = ({
 							</p>
 							<p className="uk-text-meta uk-margin-remove-top">
 								<Moment format="MMM Do YYYY">
-									{article.attributes.published_at}
+									{article.attributes.publishedAt}
 								</Moment>
 							</p>
 						</div>
@@ -96,24 +96,28 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
-	const articlesRes = await fetchAPI('/articles', {
+	const articlesRes = await fetchAPI<Article[]>('/articles', {
 		filters: { slug: params.slug },
 		// populate: ['image', 'category', 'author.picture', 'content'],
 		populate: {
 			image: '*',
 			category: '*',
 			author: {
-				populate: ['picture'],
+				populate: {
+					picture: {
+						populate: '*',
+					},
+				},
 			},
 			content: {
 				populate: '*',
 			},
 		},
 	});
-	const categoriesRes = await fetchAPI('/categories');
+	const categoriesRes = await fetchAPI<Category[]>('/categories');
 
 	return {
-		props: { article: articlesRes.data[0], categories: categoriesRes },
+		props: { article: articlesRes.data[0], categories: categoriesRes.data },
 		revalidate: 1,
 	};
 }

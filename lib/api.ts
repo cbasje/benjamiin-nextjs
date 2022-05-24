@@ -6,7 +6,7 @@ export function getStrapiURL(path: string = ''): string {
 	}${path}`;
 }
 
-export async function fetchAPI(
+export async function fetchAPI<T = any>(
 	path: string,
 	urlParamsObject = {},
 	options = {}
@@ -30,9 +30,9 @@ export async function fetchAPI(
 
 	// Handle response
 	if (!response.ok) {
-		console.error(response.statusText);
+		console.error(response.statusText, response.url);
 		throw new Error(`An error occured please try again`);
 	}
 
-	return await response.json();
+	return (await response.json()) as { data: T };
 }
