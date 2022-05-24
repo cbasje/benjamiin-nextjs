@@ -9,10 +9,10 @@ const getBlockComponent = (
 	let Block;
 
 	switch (block.__component) {
-		case 'shared.rich-text':
+		case 'blocks.rich-text':
 			Block = RichText;
 			break;
-		case 'shared.media':
+		case 'blocks.media':
 			Block = Media;
 	}
 
