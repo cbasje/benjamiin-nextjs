@@ -4,6 +4,7 @@ interface Category {
 		name: string;
 		slug: string;
 		description?: string;
+		articles?: { data: Article[] };
 		createdAt: Date;
 		updatedAt: Date;
 	};

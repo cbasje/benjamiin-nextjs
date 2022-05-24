@@ -6,6 +6,7 @@ import Seo from '../../components/Seo';
 import { fetchAPI } from '../../lib/api';
 import { getStrapiMedia } from '../../lib/media';
 import BlockManager from '../../components/BlockManager';
+import { Params } from 'next/dist/server/router';
 
 const Article = ({
 	article,
@@ -86,7 +87,7 @@ export async function getStaticPaths() {
 	const articlesRes = await fetchAPI('/articles', { fields: ['slug'] });
 
 	return {
-		paths: articlesRes.data.map((article: any) => ({
+		paths: articlesRes.data.map((article: Article) => ({
 			params: {
 				slug: article.attributes.slug,
 			},
@@ -95,7 +96,7 @@ export async function getStaticPaths() {
 	};
 }
 
-export async function getStaticProps({ params }: any) {
+export async function getStaticProps({ params }: Params) {
 	const articlesRes = await fetchAPI<Article[]>('/articles', {
 		filters: { slug: params.slug },
 		// populate: ['image', 'category', 'author.picture', 'content'],

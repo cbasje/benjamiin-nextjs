@@ -7,8 +7,8 @@ const Layout = ({
 	seo,
 }: {
 	children: ReactNode;
-	categories: any[];
-	seo?: any;
+	categories: Category[];
+	seo?: Seo;
 }) => (
 	<>
 		<Nav categories={categories} />

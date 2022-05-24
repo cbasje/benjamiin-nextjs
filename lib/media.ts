@@ -1,7 +1,6 @@
 import { getStrapiURL } from './api';
 
-export function getStrapiMedia(media: any): string {
-	// console.log('getStrapiMedia', media, media.data);
+export function getStrapiMedia(media: { data?: Picture }): string {
 	if (!(media && media.data)) return '';
 
 	const { url } = media.data.attributes;

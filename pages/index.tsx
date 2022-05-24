@@ -43,16 +43,6 @@ export async function getStaticProps() {
 			articles: articlesRes.data,
 			categories: categoriesRes.data,
 			homepage: homepageRes.data,
-			// homepage: {
-			// 	id: 17,
-			// 	attributes: {
-			// 		seo: {
-			// 			metaTitle: 'metaTitle',
-			// 			metaDescription: 'metaDescription',
-			// 		},
-			// 		title: 'Homepage',
-			// 	},
-			// } as Homepage,
 		},
 		revalidate: 1,
 	};

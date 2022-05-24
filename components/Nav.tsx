@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-const Nav = ({ categories }: { categories: any[] }) => {
+const Nav = ({ categories }: { categories: Category[] }) => {
 	return (
 		<div>
 			<nav className="uk-navbar-container" data-uk-navbar>
