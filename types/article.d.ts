@@ -8,7 +8,7 @@ interface Article {
 		category: {
 			data: Category;
 		};
-		author: {
+		author?: {
 			data: Author;
 		};
 		blocks: (RichTextBlock | MediaBlock)[];

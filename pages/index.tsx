@@ -28,7 +28,7 @@ const Home = ({
 
 export async function getStaticProps() {
 	const [articlesRes, categoriesRes, homepageRes] = await Promise.all([
-		fetchAPI<Article[]>('/articles', { populate: ['image', 'category'] }),
+		fetchAPI<Article[]>('/articles', { populate: ['cover', 'category'] }),
 		fetchAPI<Category[]>('/categories', { populate: '*' }),
 		fetchAPI<Homepage>('/homepage', {
 			populate: {
