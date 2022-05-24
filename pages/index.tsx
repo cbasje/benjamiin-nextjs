@@ -27,36 +27,32 @@ const Home = ({
 };
 
 export async function getStaticProps() {
-	const [
-		articlesRes,
-		categoriesRes,
-		// homepageRes
-	] = await Promise.all([
+	const [articlesRes, categoriesRes, homepageRes] = await Promise.all([
 		fetchAPI<Article[]>('/articles', { populate: ['image', 'category'] }),
 		fetchAPI<Category[]>('/categories', { populate: '*' }),
-		// fetchAPI<Homepage>('/homepage', {
-		// 	populate: {
-		// 		hero: '*',
-		// 		seo: { populate: '*' },
-		// 	},
-		// }),
+		fetchAPI<Homepage>('/homepage', {
+			populate: {
+				title: '*',
+				seo: { populate: '*' },
+			},
+		}),
 	]);
 
 	return {
 		props: {
 			articles: articlesRes.data,
 			categories: categoriesRes.data,
-			// homepage: homepageRes.data,
-			homepage: {
-				id: 17,
-				attributes: {
-					seo: {
-						metaTitle: 'metaTitle',
-						metaDescription: 'metaDescription',
-					},
-					title: 'Homepage',
-				},
-			} as Homepage,
+			homepage: homepageRes.data,
+			// homepage: {
+			// 	id: 17,
+			// 	attributes: {
+			// 		seo: {
+			// 			metaTitle: 'metaTitle',
+			// 			metaDescription: 'metaDescription',
+			// 		},
+			// 		title: 'Homepage',
+			// 	},
+			// } as Homepage,
 		},
 		revalidate: 1,
 	};
