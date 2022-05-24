@@ -5,6 +5,7 @@ import Seo from '../../components/Seo';
 
 import { fetchAPI } from '../../lib/api';
 import { getStrapiMedia } from '../../lib/media';
+import NextImage from 'next/image';
 import BlockManager from '../../components/BlockManager';
 import { Params } from 'next/dist/server/router';
 
@@ -15,8 +16,6 @@ const Article = ({
 	article: Article;
 	categories: Category[];
 }) => {
-	const imageUrl = getStrapiMedia(article?.attributes.cover);
-
 	const seo: Seo = {
 		metaTitle: article.attributes.title,
 		metaDescription: article.attributes.description,
@@ -27,15 +26,40 @@ const Article = ({
 	return (
 		<Layout categories={categories}>
 			<Seo seo={seo} />
-			<div
+			<div style={{ width: '100vw', height: 300, position: 'relative' }}>
+				<NextImage
+					layout="fill"
+					width={345}
+					height={200}
+					objectFit="cover"
+					src={getStrapiMedia(article.attributes.cover)}
+					alt={
+						article.attributes.cover.data?.attributes
+							.alternativeText || ''
+					}
+				/>
+				<div
+					style={{
+						width: '100%',
+						height: '100%',
+						position: 'absolute',
+						display: 'grid',
+						placeContent: 'center',
+						backdropFilter: 'invert(100%)',
+					}}
+				>
+					<h1>{article.attributes.title}</h1>
+				</div>
+			</div>
+			{/* <div
 				id="banner"
 				className="uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light uk-padding uk-margin"
 				data-src={imageUrl}
 				data-srcset={imageUrl}
 				data-uk-img
 			>
-				<h1>{article.attributes.title}</h1>
-			</div>
+			<h1>{article.attributes.title}</h1>
+			</div> */}
 			<div className="uk-section">
 				<div className="uk-container uk-container-small">
 					<BlockManager blocks={article.attributes.blocks} />
@@ -102,22 +126,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: Params) {
 	const articlesRes = await fetchAPI<Article[]>('/articles', {
 		filters: { slug: params.slug },
-		populate: ['image', 'category', 'author.picture', 'blocks'],
-		// populate: {
-		// 	image: '*',
-		// 	category: '*',
-		// 	cover: '*',
-		// 	author: {
-		// 		populate: {
-		// 			picture: {
-		// 				populate: '*',
-		// 			},
-		// 		},
-		// 	},
-		// 	blocks: {
-		// 		populate: '*',
-		// 	},
-		// },
+		populate: '*',
 	});
 	const categoriesRes = await fetchAPI<Category[]>('/categories');
 
