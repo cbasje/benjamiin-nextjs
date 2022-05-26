@@ -20,11 +20,9 @@ const Category = ({
 	return (
 		<Layout categories={categories}>
 			<Seo seo={seo} />
-			<div className="uk-section">
-				<div className="uk-container uk-container-large">
-					<h1>{category.attributes.name}</h1>
-					<Articles articles={category.attributes.articles?.data} />
-				</div>
+			<div>
+				<h1>{category.attributes.name}</h1>
+				<Articles articles={category.attributes.articles?.data} />
 			</div>
 		</Layout>
 	);

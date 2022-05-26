@@ -5,10 +5,10 @@ import Seo from '../../components/Seo';
 
 import { fetchAPI } from '../../lib/api';
 import { getStrapiMedia } from '../../lib/media';
-import NextImage from 'next/image';
+import Image from '../../components/Image';
 import BlockManager from '../../components/BlockManager';
 import { Params } from 'next/dist/server/router';
-import { Banner } from '../../components/styled';
+import { Banner } from '../../stitches.config';
 import { motion } from 'framer-motion';
 
 const Article = ({
@@ -25,27 +25,19 @@ const Article = ({
 		article: true,
 	};
 
-	const { alternativeText, width, height } =
-		article.attributes.cover.data?.attributes ?? {};
-
 	return (
 		<Layout categories={categories}>
 			<Seo seo={seo} />
 			<Banner>
 				<motion.div
-					layoutId={article.attributes.cover.data?.attributes.name}
+					layoutId={`cover-${article.attributes.slug}`}
 					style={{
 						width: '100%',
 						height: '100%',
 						position: 'relative',
 					}}
 				>
-					<NextImage
-						layout="fill"
-						objectFit="cover"
-						src={getStrapiMedia(article.attributes.cover)}
-						alt={alternativeText || ''}
-					/>
+					<Image image={article.attributes.cover} layout="fill" />
 				</motion.div>
 
 				<div
@@ -59,61 +51,41 @@ const Article = ({
 						backdropFilter: 'invert(100%)',
 					}}
 				>
-					<h1>{article.attributes.title}</h1>
+					<motion.h1 layoutId={`title-${article.attributes.slug}`}>
+						{article.attributes.title}
+					</motion.h1>
 				</div>
 			</Banner>
-			{/* <div
-				id="banner"
-				className="uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light uk-padding uk-margin"
-				data-src={imageUrl}
-				data-srcset={imageUrl}
-				data-uk-img
-			>
-			<h1>{article.attributes.title}</h1>
-			</div> */}
-			<div className="uk-section">
-				<div className="uk-container uk-container-small">
-					<BlockManager blocks={article.attributes.blocks} />
-					<hr className="uk-divider-small" />
-					<div
-						className="uk-grid-small uk-flex-left"
-						data-uk-grid="true"
-					>
-						<div>
-							{article.attributes.author?.data.attributes
-								.picture && (
-								<img
-									src={getStrapiMedia(
-										article.attributes.author?.data
-											.attributes.picture
-									)}
-									alt={
-										article.attributes.author?.data
-											.attributes.picture.data?.attributes
-											.alternativeText
-									}
-									style={{
-										position: 'static',
-										borderRadius: '20%',
-										height: 60,
-									}}
-								/>
+			<div>
+				<BlockManager blocks={article.attributes.blocks} />
+				<hr />
+				<div>
+					{article.attributes.author?.data.attributes.picture && (
+						<img
+							src={getStrapiMedia(
+								article.attributes.author?.data.attributes
+									.picture
 							)}
-						</div>
-						<div className="uk-width-expand">
-							<p className="uk-margin-remove-bottom">
-								By{' '}
-								{
-									article.attributes.author?.data.attributes
-										.name
-								}
-							</p>
-							<p className="uk-text-meta uk-margin-remove-top">
-								<Moment format="MMM Do YYYY">
-									{article.attributes.publishedAt}
-								</Moment>
-							</p>
-						</div>
+							alt={
+								article.attributes.author?.data.attributes
+									.picture.data?.attributes.alternativeText
+							}
+							style={{
+								position: 'static',
+								borderRadius: '20%',
+								height: 60,
+							}}
+						/>
+					)}
+					<div>
+						<p>
+							By {article.attributes.author?.data.attributes.name}
+						</p>
+						<p>
+							<Moment format="MMM Do YYYY">
+								{article.attributes.publishedAt}
+							</Moment>
+						</p>
 					</div>
 				</div>
 			</div>

@@ -1,29 +1,15 @@
-import Document, { Head, Html, Main, NextScript } from 'next/document';
+import React from 'react';
+import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
+import { getCssText } from '../stitches.config';
 
-class MyDocument extends Document {
+export default class Document extends NextDocument {
 	render() {
 		return (
-			<Html>
+			<Html lang="en">
 				<Head>
-					<link
-						rel="stylesheet"
-						href="https://fonts.googleapis.com/css?family=Staatliches"
-					/>
-					<link
-						rel="stylesheet"
-						href="https://cdn.jsdelivr.net/npm/uikit@3.10.1/dist/css/uikit.min.css"
-					/>
-					<script
-						async
-						src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.min.js"
-					/>
-					<script
-						async
-						src="https://cdn.jsdelivr.net/npm/uikit@3.10.1/dist/js/uikit-icons.min.js"
-					/>
-					<script
-						async
-						src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.js"
+					<style
+						id="stitches"
+						dangerouslySetInnerHTML={{ __html: getCssText() }}
 					/>
 				</Head>
 				<body>
@@ -34,5 +20,3 @@ class MyDocument extends Document {
 		);
 	}
 }
-
-export default MyDocument;
