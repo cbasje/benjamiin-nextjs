@@ -6,10 +6,10 @@ interface Article {
 		slug: string;
 		cover: { data?: Picture };
 		category: {
-			data: Category;
+			data?: Category;
 		};
-		author?: {
-			data: Author;
+		author: {
+			data?: Author;
 		};
 		blocks: (RichTextBlock | MediaBlock)[];
 		createdAt: Date;

@@ -56,7 +56,7 @@ export const Container = styled('div', {
 export const Box = styled('div');
 
 export const Banner = styled('div', {
-	width: '100vw',
+	width: '100%',
 	height: 300,
 	position: 'relative',
 });

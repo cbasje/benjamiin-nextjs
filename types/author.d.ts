@@ -3,7 +3,12 @@ interface Author {
 	attributes: {
 		name: string;
 		email: string;
-		picture: { data?: Picture };
+		picture: {
+			data?: Picture;
+		};
+		articles: {
+			data?: Article[];
+		};
 		createdAt: Date;
 		updatedAt: Date;
 	};

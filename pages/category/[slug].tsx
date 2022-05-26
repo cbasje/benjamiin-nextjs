@@ -25,7 +25,7 @@ const Category = ({
 			<Seo seo={seo} />
 			<Container>
 				<h1>{category.attributes.name}</h1>
-				<Articles articles={category.attributes.articles?.data} />
+				<Articles articles={category.attributes.articles?.data || []} />
 			</Container>
 		</Box>
 	);

@@ -24,7 +24,7 @@ const Card = ({ article }: { article: Article }) => {
 					<motion.h1 layoutId={`title-${article.attributes.slug}`}>
 						{article.attributes.title}
 					</motion.h1>
-					<p>{article.attributes.category.data.attributes.name}</p>
+					<p>{article.attributes.category.data?.attributes.name}</p>
 				</div>
 			</a>
 		</Link>

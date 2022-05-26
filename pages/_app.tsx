@@ -5,11 +5,12 @@ import Head from 'next/head';
 import { fetchAPI } from '../lib/api';
 import { getStrapiMedia } from '../lib/media';
 
+import { Global } from '../types/global';
 import { GlobalProvider } from '../contexts/GlobalContext';
 import { globalStyles } from '../stitches.config';
 
 function MyApp({ Component, pageProps }: AppProps) {
-	const { global } = pageProps;
+	const { global }: { global: Global } = pageProps;
 
 	globalStyles();
 
@@ -33,7 +34,7 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
 	const appProps = await App.getInitialProps(ctx);
 
 	// Fetch global site settings from Strapi
-	const globalRes = await fetchAPI('/global', {
+	const globalRes = await fetchAPI<Global>('/global', {
 		populate: {
 			favicon: '*',
 			defaultSeo: {

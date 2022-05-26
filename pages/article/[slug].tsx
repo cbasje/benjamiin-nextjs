@@ -63,40 +63,43 @@ const Article = ({
 				<div>
 					<BlockManager blocks={article.attributes.blocks} />
 					<hr />
-					<div>
-						{article.attributes.author?.data.attributes.picture && (
-							<img
-								src={getStrapiMedia(
-									article.attributes.author?.data.attributes
-										.picture
-								)}
-								alt={
-									article.attributes.author?.data.attributes
-										.picture.data?.attributes
-										.alternativeText
-								}
-								style={{
-									position: 'static',
-									borderRadius: '20%',
-									height: 60,
-								}}
-							/>
-						)}
+					{article.attributes.author && (
 						<div>
-							<p>
-								By{' '}
-								{
-									article.attributes.author?.data.attributes
-										.name
-								}
-							</p>
-							<p>
-								<Moment format="MMM Do YYYY">
-									{article.attributes.publishedAt}
-								</Moment>
-							</p>
+							{article.attributes.author.data?.attributes
+								.picture && (
+								<img
+									src={getStrapiMedia(
+										article.attributes.author.data
+											?.attributes.picture
+									)}
+									alt={
+										article.attributes.author.data
+											?.attributes.picture.data
+											?.attributes.alternativeText
+									}
+									style={{
+										position: 'static',
+										borderRadius: '20%',
+										height: 60,
+									}}
+								/>
+							)}
+							<div>
+								<p>
+									By{' '}
+									{
+										article.attributes.author.data
+											?.attributes.name
+									}
+								</p>
+								<p>
+									<Moment format="MMM Do YYYY">
+										{article.attributes.publishedAt}
+									</Moment>
+								</p>
+							</div>
 						</div>
-					</div>
+					)}
 				</div>
 			</Container>
 		</Box>

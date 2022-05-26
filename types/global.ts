@@ -1,6 +1,13 @@
 export interface Global {
+	id: number;
+	attributes: GlobalAttributes;
+}
+
+export interface GlobalAttributes {
 	siteName: string;
 	siteDescription: string;
-	favicon?: Picture;
+	favicon: {
+		data?: Picture;
+	};
 	defaultSeo: Seo;
 }
