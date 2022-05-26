@@ -10,6 +10,7 @@ const GlobalContext = createContext<GlobalAttributes>({
 		metaDescription: '',
 		shareImage: { data: undefined },
 		article: false,
+		locale: 'en',
 	},
 });
 
