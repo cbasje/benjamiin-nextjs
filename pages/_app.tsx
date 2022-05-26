@@ -1,10 +1,11 @@
-import '../styles/globals.css';
+import App from 'next/app';
 import type { AppContext, AppProps } from 'next/app';
 import Head from 'next/head';
-import { getStrapiMedia } from '../lib/media';
-import { GlobalProvider } from '../contexts/GlobalContext';
+
 import { fetchAPI } from '../lib/api';
-import App from 'next/app';
+import { getStrapiMedia } from '../lib/media';
+
+import { GlobalProvider } from '../contexts/GlobalContext';
 import { globalStyles } from '../stitches.config';
 
 function MyApp({ Component, pageProps }: AppProps) {
