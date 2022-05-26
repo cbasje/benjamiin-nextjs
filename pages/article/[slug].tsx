@@ -8,6 +8,8 @@ import { getStrapiMedia } from '../../lib/media';
 import NextImage from 'next/image';
 import BlockManager from '../../components/BlockManager';
 import { Params } from 'next/dist/server/router';
+import { Banner } from '../../components/styled';
+import { motion } from 'framer-motion';
 
 const Article = ({
 	article,
@@ -23,26 +25,35 @@ const Article = ({
 		article: true,
 	};
 
+	const { alternativeText, width, height } =
+		article.attributes.cover.data?.attributes ?? {};
+
 	return (
 		<Layout categories={categories}>
 			<Seo seo={seo} />
-			<div style={{ width: '100vw', height: 300, position: 'relative' }}>
-				<NextImage
-					layout="fill"
-					width={345}
-					height={200}
-					objectFit="cover"
-					src={getStrapiMedia(article.attributes.cover)}
-					alt={
-						article.attributes.cover.data?.attributes
-							.alternativeText || ''
-					}
-				/>
+			<Banner>
+				<motion.div
+					layoutId={article.attributes.cover.data?.attributes.name}
+					style={{
+						width: '100%',
+						height: '100%',
+						position: 'relative',
+					}}
+				>
+					<NextImage
+						layout="fill"
+						objectFit="cover"
+						src={getStrapiMedia(article.attributes.cover)}
+						alt={alternativeText || ''}
+					/>
+				</motion.div>
+
 				<div
 					style={{
 						width: '100%',
 						height: '100%',
 						position: 'absolute',
+						top: 0,
 						display: 'grid',
 						placeContent: 'center',
 						backdropFilter: 'invert(100%)',
@@ -50,7 +61,7 @@ const Article = ({
 				>
 					<h1>{article.attributes.title}</h1>
 				</div>
-			</div>
+			</Banner>
 			{/* <div
 				id="banner"
 				className="uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light uk-padding uk-margin"
@@ -126,7 +137,20 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: Params) {
 	const articlesRes = await fetchAPI<Article[]>('/articles', {
 		filters: { slug: params.slug },
-		populate: '*',
+		populate: {
+			author: {
+				populate: '*',
+			},
+			blocks: {
+				populate: '*',
+			},
+			cover: {
+				populate: '*',
+			},
+			category: {
+				populate: '*',
+			},
+		},
 	});
 	const categoriesRes = await fetchAPI<Category[]>('/categories');
 

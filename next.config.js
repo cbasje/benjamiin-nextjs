@@ -2,6 +2,7 @@
 module.exports = {
 	reactStrictMode: true,
 	images: {
-		domains: ['localhost', 'benjamiin-backend.herokuapp.com'],
+		domains: ['res.cloudinary.com'],
+		deviceSizes: [320, 420, 768, 1024, 1200],
 	},
 };
