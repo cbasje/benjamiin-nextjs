@@ -1,15 +1,15 @@
 import Moment from 'react-moment';
-
-import Layout from '../../components/Layout';
-import Seo from '../../components/Seo';
+import { motion } from 'framer-motion';
 
 import { fetchAPI } from '../../lib/api';
 import { getStrapiMedia } from '../../lib/media';
-import Image from '../../components/Image';
-import BlockManager from '../../components/BlockManager';
 import { Params } from 'next/dist/server/router';
-import { Banner } from '../../stitches.config';
-import { motion } from 'framer-motion';
+
+import { Banner, Box, Container } from '../../stitches.config';
+import BlockManager from '../../components/BlockManager';
+import Seo from '../../components/Seo';
+import Nav from '../../components/Nav';
+import Image from '../../components/Image';
 
 const Article = ({
 	article,
@@ -26,70 +26,80 @@ const Article = ({
 	};
 
 	return (
-		<Layout categories={categories}>
+		<Box>
+			<Nav categories={categories} />
 			<Seo seo={seo} />
-			<Banner>
-				<motion.div
-					layoutId={`cover-${article.attributes.slug}`}
-					style={{
-						width: '100%',
-						height: '100%',
-						position: 'relative',
-					}}
-				>
-					<Image image={article.attributes.cover} layout="fill" />
-				</motion.div>
+			<Container>
+				<Banner>
+					<motion.div
+						layoutId={`cover-${article.attributes.slug}`}
+						style={{
+							width: '100%',
+							height: '100%',
+							position: 'relative',
+						}}
+					>
+						<Image image={article.attributes.cover} layout="fill" />
+					</motion.div>
 
-				<div
-					style={{
-						width: '100%',
-						height: '100%',
-						position: 'absolute',
-						top: 0,
-						display: 'grid',
-						placeContent: 'center',
-						backdropFilter: 'invert(100%)',
-					}}
-				>
-					<motion.h1 layoutId={`title-${article.attributes.slug}`}>
-						{article.attributes.title}
-					</motion.h1>
-				</div>
-			</Banner>
-			<div>
-				<BlockManager blocks={article.attributes.blocks} />
-				<hr />
+					<div
+						style={{
+							width: '100%',
+							height: '100%',
+							position: 'absolute',
+							top: 0,
+							display: 'grid',
+							placeContent: 'center',
+							backdropFilter: 'invert(100%)',
+						}}
+					>
+						<motion.h1
+							layoutId={`title-${article.attributes.slug}`}
+						>
+							{article.attributes.title}
+						</motion.h1>
+					</div>
+				</Banner>
 				<div>
-					{article.attributes.author?.data.attributes.picture && (
-						<img
-							src={getStrapiMedia(
-								article.attributes.author?.data.attributes
-									.picture
-							)}
-							alt={
-								article.attributes.author?.data.attributes
-									.picture.data?.attributes.alternativeText
-							}
-							style={{
-								position: 'static',
-								borderRadius: '20%',
-								height: 60,
-							}}
-						/>
-					)}
+					<BlockManager blocks={article.attributes.blocks} />
+					<hr />
 					<div>
-						<p>
-							By {article.attributes.author?.data.attributes.name}
-						</p>
-						<p>
-							<Moment format="MMM Do YYYY">
-								{article.attributes.publishedAt}
-							</Moment>
-						</p>
+						{article.attributes.author?.data.attributes.picture && (
+							<img
+								src={getStrapiMedia(
+									article.attributes.author?.data.attributes
+										.picture
+								)}
+								alt={
+									article.attributes.author?.data.attributes
+										.picture.data?.attributes
+										.alternativeText
+								}
+								style={{
+									position: 'static',
+									borderRadius: '20%',
+									height: 60,
+								}}
+							/>
+						)}
+						<div>
+							<p>
+								By{' '}
+								{
+									article.attributes.author?.data.attributes
+										.name
+								}
+							</p>
+							<p>
+								<Moment format="MMM Do YYYY">
+									{article.attributes.publishedAt}
+								</Moment>
+							</p>
+						</div>
 					</div>
 				</div>
-			</div>
-		</Layout>
+			</Container>
+		</Box>
 	);
 };
 

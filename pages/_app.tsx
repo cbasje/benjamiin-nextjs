@@ -5,9 +5,12 @@ import { getStrapiMedia } from '../lib/media';
 import { GlobalProvider } from '../contexts/GlobalContext';
 import { fetchAPI } from '../lib/api';
 import App from 'next/app';
+import { globalStyles } from '../stitches.config';
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const { global } = pageProps;
+
+	globalStyles();
 
 	return (
 		<>

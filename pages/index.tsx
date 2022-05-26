@@ -1,8 +1,10 @@
 import React from 'react';
-import Articles from '../components/Articles';
-import Layout from '../components/Layout';
-import Seo from '../components/Seo';
 import { fetchAPI } from '../lib/api';
+
+import Articles from '../components/Articles';
+import Nav from '../components/Nav';
+import Seo from '../components/Seo';
+import { Box, Container } from '../stitches.config';
 
 const Home = ({
 	articles,
@@ -14,13 +16,16 @@ const Home = ({
 	homepage: Homepage;
 }) => {
 	return (
-		<Layout categories={categories}>
-			<Seo seo={homepage.attributes.seo} />
-			<div>
-				<h1>{homepage.attributes.title}</h1>
-				<Articles articles={articles} />
-			</div>
-		</Layout>
+		<Box>
+			<Nav categories={categories} />
+			<Container>
+				<Seo seo={homepage.attributes.seo} />
+				<div>
+					<h1>{homepage.attributes.title}</h1>
+					<Articles articles={articles} />
+				</div>
+			</Container>
+		</Box>
 	);
 };
 

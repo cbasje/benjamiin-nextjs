@@ -1,9 +1,11 @@
 import { Params } from 'next/dist/server/router';
-import Articles from '../../components/Articles';
-import Layout from '../../components/Layout';
-import Seo from '../../components/Seo';
 
 import { fetchAPI } from '../../lib/api';
+
+import Articles from '../../components/Articles';
+import Seo from '../../components/Seo';
+import Nav from '../../components/Nav';
+import { Box, Container } from '../../stitches.config';
 
 const Category = ({
 	category,
@@ -18,13 +20,14 @@ const Category = ({
 	};
 
 	return (
-		<Layout categories={categories}>
+		<Box>
+			<Nav categories={categories} />
 			<Seo seo={seo} />
-			<div>
+			<Container>
 				<h1>{category.attributes.name}</h1>
 				<Articles articles={category.attributes.articles?.data} />
-			</div>
-		</Layout>
+			</Container>
+		</Box>
 	);
 };
 

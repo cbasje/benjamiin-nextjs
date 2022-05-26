@@ -1,7 +1,7 @@
 import { createStitches } from '@stitches/react';
 import type * as Stitches from '@stitches/react';
 
-export const { styled, getCssText, createTheme } = createStitches({
+export const { globalCss, styled, getCssText, createTheme } = createStitches({
 	theme: {
 		colors: {
 			gray400: 'gainsboro',
@@ -15,8 +15,8 @@ export const { styled, getCssText, createTheme } = createStitches({
 			primaryDark: '$purple500',
 		},
 		space: {
-			1: '10px',
-			2: '20px',
+			1: '1rem',
+			2: '2rem',
 		},
 		fontSizes: {},
 	},
@@ -33,7 +33,27 @@ export const { styled, getCssText, createTheme } = createStitches({
 	},
 });
 
-const Box = styled('div');
+export const globalStyles = globalCss({
+	'html, body': {
+		padding: 0,
+		margin: 0,
+		fontFamily:
+			'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif',
+	},
+	a: {
+		color: 'inherit',
+		textDecoration: 'none',
+	},
+	'*': {
+		boxSizing: 'border-box',
+	},
+});
+
+export const Container = styled('div', {
+	padding: '0 $2',
+});
+
+export const Box = styled('div');
 
 export const Banner = styled('div', {
 	width: '100vw',
