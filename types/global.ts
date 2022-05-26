@@ -10,4 +10,5 @@ export interface GlobalAttributes {
 		data?: Picture;
 	};
 	defaultSeo: Seo;
+	locale: string;
 }

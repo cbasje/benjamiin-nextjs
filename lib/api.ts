@@ -19,7 +19,8 @@ export async function fetchAPI<T = any>(
 		...options,
 	};
 
-	const queryString = qs.stringify(urlParamsObject);
+	// TODO: Maybe faster way of doing things?
+	const queryString = qs.stringify({ ...urlParamsObject, locale: 'all' });
 	const requestUrl = `${getStrapiURL(
 		`/api${path}${queryString ? `?${queryString}` : ''}`
 	)}`;

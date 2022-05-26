@@ -3,4 +3,5 @@ interface Seo {
 	metaDescription?: string;
 	shareImage?: { data?: Picture };
 	article?: boolean;
+	locale?: string;
 }

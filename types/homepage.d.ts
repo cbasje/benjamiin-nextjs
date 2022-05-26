@@ -4,5 +4,6 @@ interface Homepage {
 		title: string;
 		description?: string;
 		seo?: Seo;
+		locale: string;
 	};
 }

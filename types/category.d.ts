@@ -7,5 +7,6 @@ interface Category {
 		articles?: { data: Article[] };
 		createdAt: Date;
 		updatedAt: Date;
+		locale: string;
 	};
 }

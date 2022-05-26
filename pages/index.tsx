@@ -5,6 +5,7 @@ import Articles from '../components/Articles';
 import Nav from '../components/Nav';
 import Seo from '../components/Seo';
 import { Box, Container } from '../stitches.config';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Home = ({
 	articles,
@@ -15,14 +16,24 @@ const Home = ({
 	categories: Category[];
 	homepage: Homepage;
 }) => {
+	const { lang } = useLanguage();
+
 	return (
 		<Box>
-			<Nav categories={categories} />
+			<Nav
+				categories={categories.filter(
+					(c) => c.attributes.locale === lang
+				)}
+			/>
 			<Container>
 				<Seo seo={homepage.attributes.seo} />
 				<div>
 					<h1>{homepage.attributes.title}</h1>
-					<Articles articles={articles} />
+					<Articles
+						articles={articles.filter(
+							(a) => a.attributes.locale === lang
+						)}
+					/>
 				</div>
 			</Container>
 		</Box>
