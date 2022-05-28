@@ -12,9 +12,18 @@ import { LanguageProvider } from '../contexts/LanguageContext';
 import { globalStyles } from '../stitches.config';
 
 function MyApp({ Component, pageProps }: AppProps) {
-	const { global, lang }: { global: Global; lang: string } = pageProps;
+	const { global }: { global: Global } = pageProps;
 
 	globalStyles();
+
+	// Get the locale of the user
+	const lang = universalLanguageDetect({
+		supportedLanguages: ['nl', 'en'],
+		fallbackLanguage: 'en',
+		errorHandler: (error) => {
+			console.error('Language error: ', error);
+		},
+	});
 
 	return (
 		<>
@@ -37,15 +46,6 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
 	// Calls page's `getInitialProps` and fills `appProps.pageProps`
 	const appProps = await App.getInitialProps(ctx);
 
-	// Get the local of the user
-	const lang = universalLanguageDetect({
-		supportedLanguages: ['nl', 'en'],
-		fallbackLanguage: 'en',
-		errorHandler: (error) => {
-			console.error(error);
-		},
-	});
-
 	// Fetch global site settings from Strapi
 	const globalRes = await fetchAPI<Global>('/global', {
 		populate: {
@@ -56,7 +56,7 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
 		},
 	});
 
-	return { ...appProps, pageProps: { global: globalRes.data, lang } };
+	return { ...appProps, pageProps: { global: globalRes.data } };
 };
 
 export default MyApp;
