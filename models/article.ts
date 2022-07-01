@@ -2,6 +2,7 @@ import { Author } from './author';
 import { MediaBlock, RichTextBlock } from './block';
 import { Category } from './category';
 import { Picture } from './picture';
+import { Seo } from './seo';
 
 export interface Article {
 	id: number;
@@ -20,6 +21,7 @@ export interface Article {
 		createdAt: Date;
 		updatedAt: Date;
 		publishedAt: Date;
+		seo?: Seo;
 		locale: string;
 	};
 }

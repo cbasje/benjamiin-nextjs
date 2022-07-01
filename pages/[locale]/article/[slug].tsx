@@ -4,20 +4,21 @@ import type { ParsedUrlQuery } from 'querystring';
 import Moment from 'react-moment';
 import { motion } from 'framer-motion';
 
-import { fetchAPI } from '@lib/api';
-import { getStrapiMedia } from '@lib/media';
+import { fetchAPI } from '@/lib/api';
+import { getStrapiMedia } from '@/lib/media';
 
 import { Article as ArticleType } from '@/models/article';
 import { Category as CategoryType } from '@/models/category';
 import { Homepage as HomepageType } from '@/models/homepage';
 import { Contact as ContactType } from '@/models/contact';
 import { Seo as SeoType } from '@/models/seo';
+import { Locale } from '@/models/locale';
 
 import { Banner, Container } from '@/stitches.config';
-import BlockManager from '@components/BlockManager';
-import Seo from '@components/Seo';
-import Image from '@components/Image';
-import Layout from '@components/Layout';
+import BlockManager from '@/components/BlockManager';
+import Seo from '@/components/Seo';
+import Image from '@/components/Image';
+import Layout from '@/components/Layout';
 
 interface ArticleProps {
 	article: ArticleType;
@@ -133,7 +134,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<
 	ArticleProps,
 	ParsedUrlQuery
-> = async ({ params: { locale, slug } }) => {
+> = async ({ params }) => {
+	const { locale, slug } = params as { locale: Locale; slug: string };
+
 	const [articlesRes, categoriesRes, homepageRes, contactRes] =
 		await Promise.all([
 			fetchAPI<ArticleType[]>('/articles', {

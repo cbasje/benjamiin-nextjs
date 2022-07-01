@@ -1,16 +1,17 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
-import { fetchAPI } from '@lib/api';
+import { fetchAPI } from '@/lib/api';
 
 import { Article as ArticleType } from '@/models/article';
 import { Category as CategoryType } from '@/models/category';
 import { Homepage as HomepageType } from '@/models/homepage';
 import { Contact as ContactType } from '@/models/contact';
+import { Locale } from '@/models/locale';
 
-import Articles from '@components/Articles';
-import Seo from '@components/Seo';
+import Articles from '@/components/Articles';
+import Seo from '@/components/Seo';
 import { Container } from '@/stitches.config';
-import Layout from '@components/Layout';
+import Layout from '@/components/Layout';
 
 interface HomeProps {
 	articles: ArticleType[];
@@ -40,14 +41,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	};
 };
 
-export const getStaticProps: GetStaticProps<HomeProps> = async ({
-	params: { locale },
-}) => {
-	const fetch = async (locale: string): Promise<string> => {
-		const acceptedLocales = ['en', 'nl'];
+export const getStaticProps: GetStaticProps<HomeProps> = async ({ params }) => {
+	const { locale } = params as { locale: Locale };
 
-		const index = acceptedLocales.indexOf(locale);
-		return acceptedLocales[index === -1 ? 0 : index];
+	const fetch = async (locale: string): Promise<string> => {
+		const index = Object.values(Locale).indexOf(locale);
+		return Object.values(Locale)[index === -1 ? 0 : index];
 	};
 	const convertedLocale = await fetch(locale);
 

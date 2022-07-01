@@ -2,12 +2,12 @@ import App from 'next/app';
 import type { AppContext, AppProps } from 'next/app';
 import Head from 'next/head';
 
-import { fetchAPI } from '@lib/api';
-import { getStrapiMedia } from '@lib/media';
+import { fetchAPI } from '@/lib/api';
+import { getStrapiMedia } from '@/lib/media';
 
 import { Global as GlobalType } from '@/models/global';
 
-import { GlobalProvider } from '@contexts/GlobalContext';
+import { GlobalProvider } from '@/contexts/GlobalContext';
 import { globalStyles } from '@/stitches.config';
 
 interface MyAppProps {

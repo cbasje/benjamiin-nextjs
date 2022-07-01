@@ -3,11 +3,12 @@ import type { GetStaticPaths, GetStaticProps } from 'next';
 import { Contact as ContactType } from '@/models/contact';
 import { Homepage as HomepageType } from '@/models/homepage';
 import { Category as CategoryType } from '@/models/category';
+import { Locale } from '@/models/locale';
 
-import Seo from '@components/Seo';
+import Seo from '@/components/Seo';
 import { Container } from '@/stitches.config';
-import { fetchAPI } from '@lib/api';
-import Layout from '@components/Layout';
+import { fetchAPI } from '@/lib/api';
+import Layout from '@/components/Layout';
 
 interface ContactProps {
 	contact: ContactType;
@@ -37,8 +38,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<ContactProps> = async ({
-	params: { locale },
+	params,
 }) => {
+	const { locale } = params as { locale: Locale };
+
 	const [contactRes, categoriesRes, homepageRes] = await Promise.all([
 		fetchAPI<ContactType>('/contact', {
 			populate: {

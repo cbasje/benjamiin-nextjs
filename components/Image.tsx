@@ -3,7 +3,7 @@ import Error from 'next/error';
 
 import { Picture as PictureType } from '@/models/picture';
 
-import { getStrapiMedia } from '@lib/media';
+import { getStrapiMedia } from '@/lib/media';
 
 const Image = ({
 	image,

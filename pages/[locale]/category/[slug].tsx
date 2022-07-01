@@ -1,17 +1,18 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
 
-import { fetchAPI } from '@lib/api';
+import { fetchAPI } from '@/lib/api';
 
 import { Category as CategoryType } from '@/models/category';
 import { Seo as SeoType } from '@/models/seo';
 import { Homepage as HomepageType } from '@/models/homepage';
 import { Contact as ContactType } from '@/models/contact';
+import { Locale } from '@/models/locale';
 
-import Articles from '@components/Articles';
-import Seo from '@components/Seo';
+import Articles from '@/components/Articles';
+import Seo from '@/components/Seo';
 import { Container } from '@/stitches.config';
-import Layout from '@components/Layout';
+import Layout from '@/components/Layout';
 
 interface CategoryProps {
 	category: CategoryType;
@@ -62,7 +63,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<
 	CategoryProps,
 	ParsedUrlQuery
-> = async ({ params: { locale, slug } }) => {
+> = async ({ params }) => {
+	const { locale, slug } = params as { locale: Locale; slug: string };
+
 	const [matchingCategoriesRes, allCategoriesRes, homepageRes, contactRes] =
 		await Promise.all([
 			fetchAPI<CategoryType[]>('/categories', {
