@@ -5,7 +5,6 @@ import Moment from 'react-moment';
 import { motion } from 'framer-motion';
 
 import { fetchAPI } from '@/lib/api';
-import { getStrapiMedia } from '@/lib/media';
 
 import { Project as ProjectType } from '@/models/project';
 import { Category as CategoryType } from '@/models/category';
