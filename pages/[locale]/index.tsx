@@ -3,21 +3,25 @@ import type { GetStaticPaths, GetStaticProps } from 'next';
 
 import { fetchAPI } from '../../lib/api';
 
+import { Article as ArticleType } from '../../types/article';
+import { Category as CategoryType } from '../../types/category';
+import { Homepage as HomepageType } from '../../types/homepage';
+
 import Articles from '../../components/Articles';
 import Nav from '../../components/Nav';
 import Seo from '../../components/Seo';
 import { Box, Container } from '../../stitches.config';
 
 interface HomeProps {
-	articles: Article[];
-	categories: Category[];
-	homepage: Homepage;
+	articles: ArticleType[];
+	categories: CategoryType[];
+	homepage: HomepageType;
 }
 
 const Home = ({ articles, categories, homepage }: HomeProps) => {
 	return (
 		<Box>
-			<Nav categories={categories} />
+			{/* <Nav categories={categories} /> */}
 			<Container>
 				<Seo seo={homepage.attributes.seo} />
 				<div>
@@ -30,7 +34,6 @@ const Home = ({ articles, categories, homepage }: HomeProps) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	// We don't want to specify all possible countries as we get those from the headers
 	return {
 		paths: [],
 		fallback: 'blocking',
@@ -49,15 +52,15 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({
 	const convertedLocale = await fetch(locale);
 
 	const [articlesRes, categoriesRes, homepageRes] = await Promise.all([
-		fetchAPI<Article[]>('/articles', {
+		fetchAPI<ArticleType[]>('/articles', {
 			populate: ['cover', 'category'],
 			locale: convertedLocale,
 		}),
-		fetchAPI<Category[]>('/categories', {
+		fetchAPI<CategoryType[]>('/categories', {
 			populate: '*',
 			locale: convertedLocale,
 		}),
-		fetchAPI<Homepage>('/homepage', {
+		fetchAPI<HomepageType>('/homepage', {
 			populate: {
 				title: '*',
 				seo: { populate: '*' },

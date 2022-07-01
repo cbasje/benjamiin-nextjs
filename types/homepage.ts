@@ -1,4 +1,6 @@
-interface Homepage {
+import { Seo } from './seo';
+
+export interface Homepage {
 	id: number;
 	attributes: {
 		title: string;

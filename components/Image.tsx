@@ -1,13 +1,16 @@
-import { getStrapiMedia } from '../lib/media';
 import NextImage from 'next/image';
 import Error from 'next/error';
+
+import { Picture as PictureType } from '../types/picture';
+
+import { getStrapiMedia } from '../lib/media';
 
 const Image = ({
 	image,
 	layout,
 }: {
-	image?: { data?: Picture | undefined };
-	layout?: 'fixed' | 'fill' | 'intrinsic' | 'responsive' | 'raw';
+	image?: { data?: PictureType | undefined };
+	layout?: 'fixed' | 'fill' | 'intrinsic' | 'responsive';
 }) => {
 	if (!(image && image.data)) return <Error statusCode={404} />;
 

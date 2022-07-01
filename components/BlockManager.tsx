@@ -1,9 +1,15 @@
 import { ReactNode } from 'react';
+
+import {
+	RichTextBlock as RichTextBlockType,
+	MediaBlock as MediaBlockType,
+} from '../types/block';
+
 import Media from './blocks/Media';
 import RichText from './blocks/RichText';
 
 const getBlockComponent = (
-	block: RichTextBlock | MediaBlock,
+	block: RichTextBlockType | MediaBlockType,
 	index: number
 ): ReactNode => {
 	let Block;
@@ -20,7 +26,9 @@ const getBlockComponent = (
 };
 
 const BlockManager = (
-	{ blocks }: { blocks?: (RichTextBlock | MediaBlock)[] } = { blocks: [] }
+	{ blocks }: { blocks?: (RichTextBlockType | MediaBlockType)[] } = {
+		blocks: [],
+	}
 ) => {
 	return <div>{blocks && blocks.map(getBlockComponent)}</div>;
 };

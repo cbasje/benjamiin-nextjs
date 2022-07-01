@@ -3,14 +3,17 @@ import type { ParsedUrlQuery } from 'querystring';
 
 import { fetchAPI } from '../../../lib/api';
 
+import { Category as CategoryType } from '../../../types/category';
+import { Seo as SeoType } from '../../../types/seo';
+
 import Articles from '../../../components/Articles';
 import Seo from '../../../components/Seo';
 import Nav from '../../../components/Nav';
 import { Box, Container } from '../../../stitches.config';
 
 interface CategoryProps {
-	category: Category;
-	categories: Category[];
+	category: CategoryType;
+	categories: CategoryType[];
 }
 
 const Category = ({ category, categories }: CategoryProps) => {
@@ -21,7 +24,7 @@ const Category = ({ category, categories }: CategoryProps) => {
 
 	return (
 		<Box>
-			<Nav categories={categories} />
+			{/* <Nav categories={categories} /> */}
 			<Seo seo={seo} />
 			<Container>
 				<h1>{category.attributes.name}</h1>
@@ -32,13 +35,13 @@ const Category = ({ category, categories }: CategoryProps) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const categoriesRes = await fetchAPI<Category[]>('/categories', {
+	const categoriesRes = await fetchAPI<CategoryType[]>('/categories', {
 		fields: ['slug', 'locale'],
 		locale: 'all',
 	});
 
 	return {
-		paths: categoriesRes.data.map((category: Category) => ({
+		paths: categoriesRes.data.map((category: CategoryType) => ({
 			params: {
 				slug: category.attributes.slug,
 				locale: category.attributes.locale,
@@ -52,7 +55,7 @@ export const getStaticProps: GetStaticProps<
 	CategoryProps,
 	ParsedUrlQuery
 > = async ({ params: { locale, slug } }) => {
-	const matchingCategories = await fetchAPI<Category[]>('/categories', {
+	const matchingCategories = await fetchAPI<CategoryType[]>('/categories', {
 		filters: { slug },
 		populate: {
 			articles: {
@@ -61,7 +64,7 @@ export const getStaticProps: GetStaticProps<
 		},
 		locale,
 	});
-	const allCategories = await fetchAPI<Category[]>('/categories', {
+	const allCategories = await fetchAPI<CategoryType[]>('/categories', {
 		fields: ['name', 'slug', 'locale'],
 		locale,
 	});

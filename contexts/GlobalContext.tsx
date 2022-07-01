@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
-import { Global, GlobalAttributes } from '../types/global';
+import { GlobalAttributes as GlobalAttributesType } from '../types/global';
 
-const GlobalContext = createContext<GlobalAttributes>({
+const GlobalContext = createContext<GlobalAttributesType>({
 	siteName: '',
 	favicon: { data: undefined },
 	siteDescription: '',
@@ -22,7 +22,7 @@ export function GlobalProvider({
 	global,
 	children,
 }: {
-	global: GlobalAttributes;
+	global: GlobalAttributesType;
 	children: React.ReactNode;
 }) {
 	return (

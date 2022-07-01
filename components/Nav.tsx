@@ -1,12 +1,22 @@
 import Link from 'next/link';
 
-const Nav = ({ categories }: { categories: Category[] }) => {
+import { Category as CategoryType } from '../types/category';
+import { Contact as ContactType } from '../types/contact';
+import { Homepage as HomepageType } from '../types/homepage';
+
+interface NavProps {
+	homepage: HomepageType;
+	categories: CategoryType[];
+	contact: ContactType;
+}
+
+const Nav = ({ homepage, categories, contact }: NavProps) => {
 	return (
 		<nav>
 			<ul>
 				<li>
 					<Link href="/">
-						<a>Strapi Blog</a>
+						<a>{homepage.attributes.title}</a>
 					</Link>
 				</li>
 			</ul>
@@ -26,6 +36,20 @@ const Nav = ({ categories }: { categories: Category[] }) => {
 						</Link>
 					</li>
 				))}
+			</ul>
+			<ul>
+				<li>
+					<Link
+						href={{
+							pathname: '/[locale]/contact',
+							query: {
+								locale: contact.attributes.locale,
+							},
+						}}
+					>
+						<a>{contact.attributes.title}</a>
+					</Link>
+				</li>
 			</ul>
 		</nav>
 	);

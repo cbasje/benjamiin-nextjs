@@ -5,12 +5,13 @@ import Head from 'next/head';
 import { fetchAPI } from '../lib/api';
 import { getStrapiMedia } from '../lib/media';
 
-import { Global } from '../types/global';
+import { Global as GlobalType } from '../types/global';
+
 import { GlobalProvider } from '../contexts/GlobalContext';
 import { globalStyles } from '../stitches.config';
 
 function MyApp({ Component, pageProps }: AppProps) {
-	const { global }: { global: Global } = pageProps;
+	const { global }: { global: GlobalType } = pageProps;
 
 	globalStyles();
 

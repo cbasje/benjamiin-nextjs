@@ -1,4 +1,6 @@
-interface Category {
+import { Article } from './article';
+
+export interface Category {
 	id: number;
 	attributes: {
 		name: string;

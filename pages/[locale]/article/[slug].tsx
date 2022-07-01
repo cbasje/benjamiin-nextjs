@@ -7,6 +7,10 @@ import { motion } from 'framer-motion';
 import { fetchAPI } from '../../../lib/api';
 import { getStrapiMedia } from '../../../lib/media';
 
+import { Article as ArticleType } from '../../../types/article';
+import { Category as CategoryType } from '../../../types/category';
+import { Seo as SeoType } from '../../../types/seo';
+
 import { Banner, Box, Container } from '../../../stitches.config';
 import BlockManager from '../../../components/BlockManager';
 import Seo from '../../../components/Seo';
@@ -14,12 +18,12 @@ import Nav from '../../../components/Nav';
 import Image from '../../../components/Image';
 
 interface ArticleProps {
-	article: Article;
-	categories: Category[];
+	article: ArticleType;
+	categories: CategoryType[];
 }
 
 const Article = ({ article, categories }: ArticleProps) => {
-	const seo: Seo = {
+	const seo: SeoType = {
 		metaTitle: article.attributes.title,
 		metaDescription: article.attributes.description,
 		shareImage: article.attributes.cover,
@@ -28,7 +32,7 @@ const Article = ({ article, categories }: ArticleProps) => {
 
 	return (
 		<Box>
-			<Nav categories={categories} />
+			{/* <Nav categories={categories} /> */}
 			<Seo seo={seo} />
 			<Container>
 				<Banner>
@@ -107,13 +111,13 @@ const Article = ({ article, categories }: ArticleProps) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const articlesRes = await fetchAPI<Article[]>('/articles', {
+	const articlesRes = await fetchAPI<ArticleType[]>('/articles', {
 		fields: ['slug', 'locale'],
 		locale: 'all',
 	});
 
 	return {
-		paths: articlesRes.data.map((article: Article) => ({
+		paths: articlesRes.data.map((article: ArticleType) => ({
 			params: {
 				slug: article.attributes.slug,
 				locale: article.attributes.locale,
@@ -127,7 +131,7 @@ export const getStaticProps: GetStaticProps<
 	ArticleProps,
 	ParsedUrlQuery
 > = async ({ params: { locale, slug } }) => {
-	const articlesRes = await fetchAPI<Article[]>('/articles', {
+	const articlesRes = await fetchAPI<ArticleType[]>('/articles', {
 		filters: { slug },
 		populate: {
 			author: {
@@ -145,7 +149,7 @@ export const getStaticProps: GetStaticProps<
 		},
 		locale,
 	});
-	const categoriesRes = await fetchAPI<Category[]>('/categories', {
+	const categoriesRes = await fetchAPI<CategoryType[]>('/categories', {
 		fields: ['name', 'slug', 'locale'],
 		locale,
 	});

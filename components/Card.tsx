@@ -2,8 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import Image from './Image';
 import { motion } from 'framer-motion';
+import { Article as ArticleType } from '../types/article';
 
-const Card = ({ article }: { article: Article }) => {
+const Card = ({ article }: { article: ArticleType }) => {
 	return (
 		<Link
 			href={{

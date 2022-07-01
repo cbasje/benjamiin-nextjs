@@ -1,4 +1,9 @@
-interface Article {
+import { Author } from './author';
+import { MediaBlock, RichTextBlock } from './block';
+import { Category } from './category';
+import { Picture } from './picture';
+
+export interface Article {
 	id: number;
 	attributes: {
 		title: string;

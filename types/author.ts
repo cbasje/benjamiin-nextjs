@@ -1,4 +1,7 @@
-interface Author {
+import { Article } from './article';
+import { Picture } from './picture';
+
+export interface Author {
 	id: number;
 	attributes: {
 		name: string;
