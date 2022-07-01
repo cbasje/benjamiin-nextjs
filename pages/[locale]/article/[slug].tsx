@@ -13,13 +13,12 @@ import Seo from '../../../components/Seo';
 import Nav from '../../../components/Nav';
 import Image from '../../../components/Image';
 
-const Article = ({
-	article,
-	categories,
-}: {
+interface ArticleProps {
 	article: Article;
 	categories: Category[];
-}) => {
+}
+
+const Article = ({ article, categories }: ArticleProps) => {
 	const seo: Seo = {
 		metaTitle: article.attributes.title,
 		metaDescription: article.attributes.description,
@@ -124,9 +123,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	};
 };
 
-export const getStaticProps: GetStaticProps<unknown, ParsedUrlQuery> = async ({
-	params: { locale, slug },
-}) => {
+export const getStaticProps: GetStaticProps<
+	ArticleProps,
+	ParsedUrlQuery
+> = async ({ params: { locale, slug } }) => {
 	const articlesRes = await fetchAPI<Article[]>('/articles', {
 		filters: { slug },
 		populate: {

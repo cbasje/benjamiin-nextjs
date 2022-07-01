@@ -1,6 +1,5 @@
 import React from 'react';
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import type { ParsedUrlQuery } from 'querystring';
 
 import { fetchAPI } from '../../lib/api';
 
@@ -9,15 +8,13 @@ import Nav from '../../components/Nav';
 import Seo from '../../components/Seo';
 import { Box, Container } from '../../stitches.config';
 
-const Home = ({
-	articles,
-	categories,
-	homepage,
-}: {
+interface HomeProps {
 	articles: Article[];
 	categories: Category[];
 	homepage: Homepage;
-}) => {
+}
+
+const Home = ({ articles, categories, homepage }: HomeProps) => {
 	return (
 		<Box>
 			<Nav categories={categories} />
@@ -40,7 +37,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	};
 };
 
-export const getStaticProps: GetStaticProps<unknown> = async ({
+export const getStaticProps: GetStaticProps<HomeProps> = async ({
 	params: { locale },
 }) => {
 	const fetch = async (locale: string): Promise<string> => {

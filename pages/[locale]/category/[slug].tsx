@@ -8,13 +8,12 @@ import Seo from '../../../components/Seo';
 import Nav from '../../../components/Nav';
 import { Box, Container } from '../../../stitches.config';
 
-const Category = ({
-	category,
-	categories,
-}: {
+interface CategoryProps {
 	category: Category;
 	categories: Category[];
-}) => {
+}
+
+const Category = ({ category, categories }: CategoryProps) => {
 	const seo = {
 		metaTitle: category.attributes.name,
 		metaDescription: `All ${category.attributes.name} articles`,
@@ -49,9 +48,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	};
 };
 
-export const getStaticProps: GetStaticProps<unknown, ParsedUrlQuery> = async ({
-	params: { locale, slug },
-}) => {
+export const getStaticProps: GetStaticProps<
+	CategoryProps,
+	ParsedUrlQuery
+> = async ({ params: { locale, slug } }) => {
 	const matchingCategories = await fetchAPI<Category[]>('/categories', {
 		filters: { slug },
 		populate: {
