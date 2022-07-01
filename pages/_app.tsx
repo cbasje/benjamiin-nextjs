@@ -21,12 +21,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	return (
 		<>
-			<Head>
-				<link
-					rel="shortcut icon"
-					href={getStrapiMedia(global.attributes.favicon)}
-				/>
-			</Head>
 			<GlobalProvider global={global.attributes}>
 				<Component {...pageProps} />
 			</GlobalProvider>
@@ -41,7 +35,6 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
 	// Fetch global site settings from Strapi
 	const globalRes = await fetchAPI<Global>('/global', {
 		populate: {
-			favicon: '*',
 			defaultSeo: {
 				populate: '*',
 			},

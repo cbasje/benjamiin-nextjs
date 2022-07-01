@@ -3,7 +3,6 @@ import { GlobalAttributes as GlobalAttributesType } from '@/models/global';
 
 const GlobalContext = createContext<GlobalAttributesType>({
 	siteName: '',
-	favicon: { data: undefined },
 	siteDescription: '',
 	defaultSeo: {
 		metaTitle: '',

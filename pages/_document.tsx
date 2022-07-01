@@ -10,6 +10,7 @@ export default class Document extends NextDocument {
 						id="stitches"
 						dangerouslySetInnerHTML={{ __html: getCssText() }}
 					/>
+					<link rel="shortcut icon" href="/favicon.ico" />
 				</Head>
 				<body>
 					<Main />
