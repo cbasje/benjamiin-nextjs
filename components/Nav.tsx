@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import { Category as CategoryType } from '../types/category';
-import { Contact as ContactType } from '../types/contact';
-import { Homepage as HomepageType } from '../types/homepage';
+import { Category as CategoryType } from '@/models/category';
+import { Contact as ContactType } from '@/models/contact';
+import { Homepage as HomepageType } from '@/models/homepage';
 
 export interface NavProps {
 	homepage: HomepageType;

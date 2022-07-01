@@ -1,13 +1,13 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
-import { Contact as ContactType } from '../../types/contact';
-import { Homepage as HomepageType } from '../../types/homepage';
-import { Category as CategoryType } from '../../types/category';
+import { Contact as ContactType } from '@/models/contact';
+import { Homepage as HomepageType } from '@/models/homepage';
+import { Category as CategoryType } from '@/models/category';
 
-import Seo from '../../components/Seo';
-import { Container } from '../../stitches.config';
-import { fetchAPI } from '../../lib/api';
-import Layout from '../../components/Layout';
+import Seo from '@components/Seo';
+import { Container } from '@/stitches.config';
+import { fetchAPI } from '@lib/api';
+import Layout from '@components/Layout';
 
 interface ContactProps {
 	contact: ContactType;

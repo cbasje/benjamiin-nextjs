@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { GlobalAttributes as GlobalAttributesType } from '../types/global';
+import { GlobalAttributes as GlobalAttributesType } from '@/models/global';
 
 const GlobalContext = createContext<GlobalAttributesType>({
 	siteName: '',

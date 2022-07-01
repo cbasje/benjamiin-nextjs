@@ -1,5 +1,5 @@
-import { Picture as PictureType } from '../../types/picture';
-import Image from '../Image';
+import { Picture as PictureType } from '@/models/picture';
+import Image from '@components/Image';
 
 const Media = ({ file }: { file?: { data: PictureType } }) => {
 	return <Image image={file} />;

@@ -1,6 +1,6 @@
 import Error from 'next/error';
 
-import { Article as ArticleType } from '../types/article';
+import { Article as ArticleType } from '@/models/article';
 
 import Card from './Card';
 

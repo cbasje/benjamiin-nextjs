@@ -4,20 +4,20 @@ import type { ParsedUrlQuery } from 'querystring';
 import Moment from 'react-moment';
 import { motion } from 'framer-motion';
 
-import { fetchAPI } from '../../../lib/api';
-import { getStrapiMedia } from '../../../lib/media';
+import { fetchAPI } from '@lib/api';
+import { getStrapiMedia } from '@lib/media';
 
-import { Article as ArticleType } from '../../../types/article';
-import { Category as CategoryType } from '../../../types/category';
-import { Homepage as HomepageType } from '../../../types/homepage';
-import { Contact as ContactType } from '../../../types/contact';
-import { Seo as SeoType } from '../../../types/seo';
+import { Article as ArticleType } from '@/models/article';
+import { Category as CategoryType } from '@/models/category';
+import { Homepage as HomepageType } from '@/models/homepage';
+import { Contact as ContactType } from '@/models/contact';
+import { Seo as SeoType } from '@/models/seo';
 
-import { Banner, Container } from '../../../stitches.config';
-import BlockManager from '../../../components/BlockManager';
-import Seo from '../../../components/Seo';
-import Image from '../../../components/Image';
-import Layout from '../../../components/Layout';
+import { Banner, Container } from '@/stitches.config';
+import BlockManager from '@components/BlockManager';
+import Seo from '@components/Seo';
+import Image from '@components/Image';
+import Layout from '@components/Layout';
 
 interface ArticleProps {
 	article: ArticleType;

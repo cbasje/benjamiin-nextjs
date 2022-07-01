@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import {
 	RichTextBlock as RichTextBlockType,
 	MediaBlock as MediaBlockType,
-} from '../types/block';
+} from '@/models/block';
 
 import Media from './blocks/Media';
 import RichText from './blocks/RichText';

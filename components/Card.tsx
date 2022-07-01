@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from './Image';
 import { motion } from 'framer-motion';
-import { Article as ArticleType } from '../types/article';
+import { Article as ArticleType } from '@/models/article';
 
 const Card = ({ article }: { article: ArticleType }) => {
 	return (

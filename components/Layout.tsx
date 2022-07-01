@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { Box } from '../stitches.config';
+import { Box } from '@/stitches.config';
 import Nav, { NavProps } from './Nav';
 
 export interface LayoutProps extends NavProps {

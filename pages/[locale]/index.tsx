@@ -1,16 +1,16 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
-import { fetchAPI } from '../../lib/api';
+import { fetchAPI } from '@lib/api';
 
-import { Article as ArticleType } from '../../types/article';
-import { Category as CategoryType } from '../../types/category';
-import { Homepage as HomepageType } from '../../types/homepage';
-import { Contact as ContactType } from '../../types/contact';
+import { Article as ArticleType } from '@/models/article';
+import { Category as CategoryType } from '@/models/category';
+import { Homepage as HomepageType } from '@/models/homepage';
+import { Contact as ContactType } from '@/models/contact';
 
-import Articles from '../../components/Articles';
-import Seo from '../../components/Seo';
-import { Container } from '../../stitches.config';
-import Layout from '../../components/Layout';
+import Articles from '@components/Articles';
+import Seo from '@components/Seo';
+import { Container } from '@/stitches.config';
+import Layout from '@components/Layout';
 
 interface HomeProps {
 	articles: ArticleType[];

@@ -1,9 +1,9 @@
 import Head from 'next/head';
 
-import { Seo as SeoType } from '../types/seo';
+import { Seo as SeoType } from '@/models/seo';
 
-import { getStrapiMedia } from '../lib/media';
-import { useGlobal } from '../contexts/GlobalContext';
+import { getStrapiMedia } from '@lib/media';
+import { useGlobal } from '@contexts/GlobalContext';
 
 const Seo = ({ seo }: { seo?: SeoType }) => {
 	const { defaultSeo, siteName } = useGlobal();
