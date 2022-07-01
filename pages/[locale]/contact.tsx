@@ -1,23 +1,23 @@
-import React from 'react';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
-import { Category as CategoryType } from '../../types/category';
 import { Contact as ContactType } from '../../types/contact';
+import { Homepage as HomepageType } from '../../types/homepage';
+import { Category as CategoryType } from '../../types/category';
 
-import Nav from '../../components/Nav';
 import Seo from '../../components/Seo';
-import { Box, Container } from '../../stitches.config';
+import { Container } from '../../stitches.config';
 import { fetchAPI } from '../../lib/api';
+import Layout from '../../components/Layout';
 
 interface ContactProps {
-	categories: CategoryType[];
 	contact: ContactType;
+	homepage: HomepageType;
+	categories: CategoryType[];
 }
 
-const Contact = ({ categories, contact }: ContactProps) => {
+const Contact = ({ contact, homepage, categories }: ContactProps) => {
 	return (
-		<Box>
-			{/* <Nav categories={categories} /> */}
+		<Layout homepage={homepage} categories={categories} contact={contact}>
 			<Container>
 				<Seo seo={contact.attributes.seo} />
 				<div>
@@ -25,18 +25,21 @@ const Contact = ({ categories, contact }: ContactProps) => {
 					<p>{contact.attributes.description}</p>
 				</div>
 			</Container>
-		</Box>
+		</Layout>
 	);
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+	return {
+		paths: [],
+		fallback: 'blocking',
+	};
 };
 
 export const getStaticProps: GetStaticProps<ContactProps> = async ({
 	params: { locale },
 }) => {
-	const [categoriesRes, contactRes] = await Promise.all([
-		fetchAPI<CategoryType[]>('/categories', {
-			populate: '*',
-			locale,
-		}),
+	const [contactRes, categoriesRes, homepageRes] = await Promise.all([
 		fetchAPI<ContactType>('/contact', {
 			populate: {
 				title: '*',
@@ -45,12 +48,21 @@ export const getStaticProps: GetStaticProps<ContactProps> = async ({
 			},
 			locale,
 		}),
+		fetchAPI<CategoryType[]>('/categories', {
+			fields: ['name', 'slug', 'locale'],
+			locale,
+		}),
+		fetchAPI<HomepageType>('/homepage', {
+			fields: ['title'],
+			locale,
+		}),
 	]);
 
 	return {
 		props: {
-			categories: categoriesRes.data,
 			contact: contactRes.data,
+			categories: categoriesRes.data,
+			homepage: homepageRes.data,
 		},
 		revalidate: true,
 	};

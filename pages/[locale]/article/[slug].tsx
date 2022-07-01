@@ -9,20 +9,24 @@ import { getStrapiMedia } from '../../../lib/media';
 
 import { Article as ArticleType } from '../../../types/article';
 import { Category as CategoryType } from '../../../types/category';
+import { Homepage as HomepageType } from '../../../types/homepage';
+import { Contact as ContactType } from '../../../types/contact';
 import { Seo as SeoType } from '../../../types/seo';
 
-import { Banner, Box, Container } from '../../../stitches.config';
+import { Banner, Container } from '../../../stitches.config';
 import BlockManager from '../../../components/BlockManager';
 import Seo from '../../../components/Seo';
-import Nav from '../../../components/Nav';
 import Image from '../../../components/Image';
+import Layout from '../../../components/Layout';
 
 interface ArticleProps {
 	article: ArticleType;
 	categories: CategoryType[];
+	homepage: HomepageType;
+	contact: ContactType;
 }
 
-const Article = ({ article, categories }: ArticleProps) => {
+const Article = ({ article, homepage, categories, contact }: ArticleProps) => {
 	const seo: SeoType = {
 		metaTitle: article.attributes.title,
 		metaDescription: article.attributes.description,
@@ -31,8 +35,7 @@ const Article = ({ article, categories }: ArticleProps) => {
 	};
 
 	return (
-		<Box>
-			{/* <Nav categories={categories} /> */}
+		<Layout homepage={homepage} categories={categories} contact={contact}>
 			<Seo seo={seo} />
 			<Container>
 				<Banner>
@@ -106,7 +109,7 @@ const Article = ({ article, categories }: ArticleProps) => {
 					)}
 				</div>
 			</Container>
-		</Box>
+		</Layout>
 	);
 };
 
@@ -131,31 +134,47 @@ export const getStaticProps: GetStaticProps<
 	ArticleProps,
 	ParsedUrlQuery
 > = async ({ params: { locale, slug } }) => {
-	const articlesRes = await fetchAPI<ArticleType[]>('/articles', {
-		filters: { slug },
-		populate: {
-			author: {
-				populate: '*',
-			},
-			blocks: {
-				populate: '*',
-			},
-			cover: {
-				populate: '*',
-			},
-			category: {
-				populate: '*',
-			},
-		},
-		locale,
-	});
-	const categoriesRes = await fetchAPI<CategoryType[]>('/categories', {
-		fields: ['name', 'slug', 'locale'],
-		locale,
-	});
+	const [articlesRes, categoriesRes, homepageRes, contactRes] =
+		await Promise.all([
+			fetchAPI<ArticleType[]>('/articles', {
+				filters: { slug },
+				populate: {
+					author: {
+						populate: '*',
+					},
+					blocks: {
+						populate: '*',
+					},
+					cover: {
+						populate: '*',
+					},
+					category: {
+						populate: '*',
+					},
+				},
+				locale,
+			}),
+			fetchAPI<CategoryType[]>('/categories', {
+				fields: ['name', 'slug', 'locale'],
+				locale,
+			}),
+			fetchAPI<HomepageType>('/homepage', {
+				fields: ['title'],
+				locale,
+			}),
+			fetchAPI<ContactType>('/contact', {
+				fields: ['title', 'locale'],
+				locale,
+			}),
+		]);
 
 	return {
-		props: { article: articlesRes.data[0], categories: categoriesRes.data },
+		props: {
+			article: articlesRes.data[0],
+			categories: categoriesRes.data,
+			homepage: homepageRes.data,
+			contact: contactRes.data,
+		},
 		revalidate: true,
 	};
 };

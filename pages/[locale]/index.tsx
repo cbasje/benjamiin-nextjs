@@ -1,4 +1,3 @@
-import React from 'react';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
 import { fetchAPI } from '../../lib/api';
@@ -6,22 +5,23 @@ import { fetchAPI } from '../../lib/api';
 import { Article as ArticleType } from '../../types/article';
 import { Category as CategoryType } from '../../types/category';
 import { Homepage as HomepageType } from '../../types/homepage';
+import { Contact as ContactType } from '../../types/contact';
 
 import Articles from '../../components/Articles';
-import Nav from '../../components/Nav';
 import Seo from '../../components/Seo';
-import { Box, Container } from '../../stitches.config';
+import { Container } from '../../stitches.config';
+import Layout from '../../components/Layout';
 
 interface HomeProps {
 	articles: ArticleType[];
 	categories: CategoryType[];
 	homepage: HomepageType;
+	contact: ContactType;
 }
 
-const Home = ({ articles, categories, homepage }: HomeProps) => {
+const Home = ({ articles, categories, homepage, contact }: HomeProps) => {
 	return (
-		<Box>
-			{/* <Nav categories={categories} /> */}
+		<Layout homepage={homepage} categories={categories} contact={contact}>
 			<Container>
 				<Seo seo={homepage.attributes.seo} />
 				<div>
@@ -29,7 +29,7 @@ const Home = ({ articles, categories, homepage }: HomeProps) => {
 					<Articles articles={articles} />
 				</div>
 			</Container>
-		</Box>
+		</Layout>
 	);
 };
 
@@ -51,29 +51,35 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({
 	};
 	const convertedLocale = await fetch(locale);
 
-	const [articlesRes, categoriesRes, homepageRes] = await Promise.all([
-		fetchAPI<ArticleType[]>('/articles', {
-			populate: ['cover', 'category'],
-			locale: convertedLocale,
-		}),
-		fetchAPI<CategoryType[]>('/categories', {
-			populate: '*',
-			locale: convertedLocale,
-		}),
-		fetchAPI<HomepageType>('/homepage', {
-			populate: {
-				title: '*',
-				seo: { populate: '*' },
-			},
-			locale: convertedLocale,
-		}),
-	]);
+	const [articlesRes, categoriesRes, homepageRes, contactRes] =
+		await Promise.all([
+			fetchAPI<ArticleType[]>('/articles', {
+				populate: ['cover', 'category'],
+				locale: convertedLocale,
+			}),
+			fetchAPI<CategoryType[]>('/categories', {
+				fields: ['name', 'slug', 'locale'],
+				locale: convertedLocale,
+			}),
+			fetchAPI<HomepageType>('/homepage', {
+				populate: {
+					title: '*',
+					seo: { populate: '*' },
+				},
+				locale: convertedLocale,
+			}),
+			fetchAPI<ContactType>('/contact', {
+				fields: ['title', 'locale'],
+				locale: convertedLocale,
+			}),
+		]);
 
 	return {
 		props: {
 			articles: articlesRes.data,
 			categories: categoriesRes.data,
 			homepage: homepageRes.data,
+			contact: contactRes.data,
 		},
 		revalidate: true,
 	};

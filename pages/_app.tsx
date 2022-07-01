@@ -6,12 +6,17 @@ import { fetchAPI } from '../lib/api';
 import { getStrapiMedia } from '../lib/media';
 
 import { Global as GlobalType } from '../types/global';
+import { Category as CategoryType } from '../types/category';
 
 import { GlobalProvider } from '../contexts/GlobalContext';
 import { globalStyles } from '../stitches.config';
 
+interface MyAppProps {
+	global: GlobalType;
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
-	const { global }: { global: GlobalType } = pageProps;
+	const { global }: MyAppProps = pageProps;
 
 	globalStyles();
 

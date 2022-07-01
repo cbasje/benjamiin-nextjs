@@ -4,7 +4,7 @@ import { Category as CategoryType } from '../types/category';
 import { Contact as ContactType } from '../types/contact';
 import { Homepage as HomepageType } from '../types/homepage';
 
-interface NavProps {
+export interface NavProps {
 	homepage: HomepageType;
 	categories: CategoryType[];
 	contact: ContactType;

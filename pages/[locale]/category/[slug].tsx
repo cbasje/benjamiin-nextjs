@@ -5,32 +5,40 @@ import { fetchAPI } from '../../../lib/api';
 
 import { Category as CategoryType } from '../../../types/category';
 import { Seo as SeoType } from '../../../types/seo';
+import { Homepage as HomepageType } from '../../../types/homepage';
+import { Contact as ContactType } from '../../../types/contact';
 
 import Articles from '../../../components/Articles';
 import Seo from '../../../components/Seo';
-import Nav from '../../../components/Nav';
-import { Box, Container } from '../../../stitches.config';
+import { Container } from '../../../stitches.config';
+import Layout from '../../../components/Layout';
 
 interface CategoryProps {
 	category: CategoryType;
 	categories: CategoryType[];
+	homepage: HomepageType;
+	contact: ContactType;
 }
 
-const Category = ({ category, categories }: CategoryProps) => {
-	const seo = {
+const Category = ({
+	category,
+	categories,
+	homepage,
+	contact,
+}: CategoryProps) => {
+	const seo: SeoType = {
 		metaTitle: category.attributes.name,
 		metaDescription: `All ${category.attributes.name} articles`,
 	};
 
 	return (
-		<Box>
-			{/* <Nav categories={categories} /> */}
+		<Layout homepage={homepage} categories={categories} contact={contact}>
 			<Seo seo={seo} />
 			<Container>
 				<h1>{category.attributes.name}</h1>
 				<Articles articles={category.attributes.articles?.data || []} />
 			</Container>
-		</Box>
+		</Layout>
 	);
 };
 
@@ -55,24 +63,37 @@ export const getStaticProps: GetStaticProps<
 	CategoryProps,
 	ParsedUrlQuery
 > = async ({ params: { locale, slug } }) => {
-	const matchingCategories = await fetchAPI<CategoryType[]>('/categories', {
-		filters: { slug },
-		populate: {
-			articles: {
-				populate: '*',
-			},
-		},
-		locale,
-	});
-	const allCategories = await fetchAPI<CategoryType[]>('/categories', {
-		fields: ['name', 'slug', 'locale'],
-		locale,
-	});
+	const [matchingCategoriesRes, allCategoriesRes, homepageRes, contactRes] =
+		await Promise.all([
+			fetchAPI<CategoryType[]>('/categories', {
+				filters: { slug },
+				populate: {
+					articles: {
+						populate: '*',
+					},
+				},
+				locale,
+			}),
+			fetchAPI<CategoryType[]>('/categories', {
+				fields: ['name', 'slug', 'locale'],
+				locale,
+			}),
+			fetchAPI<HomepageType>('/homepage', {
+				fields: ['title'],
+				locale,
+			}),
+			fetchAPI<ContactType>('/contact', {
+				fields: ['title', 'locale'],
+				locale,
+			}),
+		]);
 
 	return {
 		props: {
-			category: matchingCategories.data[0],
-			categories: allCategories.data,
+			category: matchingCategoriesRes.data[0],
+			categories: allCategoriesRes.data,
+			homepage: homepageRes.data,
+			contact: contactRes.data,
 		},
 		revalidate: true,
 	};
