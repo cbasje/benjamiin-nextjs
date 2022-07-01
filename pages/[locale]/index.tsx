@@ -2,32 +2,32 @@ import type { GetStaticPaths, GetStaticProps } from 'next';
 
 import { fetchAPI } from '@/lib/api';
 
-import { Article as ArticleType } from '@/models/article';
+import { Project as ProjectType } from '@/models/project';
 import { Category as CategoryType } from '@/models/category';
 import { Homepage as HomepageType } from '@/models/homepage';
 import { Contact as ContactType } from '@/models/contact';
 import { Locale } from '@/models/locale';
 
-import Articles from '@/components/Articles';
+import ProjectGrid from '@/components/ProjectGrid';
 import Seo from '@/components/Seo';
 import { Container } from '@/stitches.config';
 import Layout from '@/components/Layout';
 
 interface HomeProps {
-	articles: ArticleType[];
+	projects: ProjectType[];
 	categories: CategoryType[];
 	homepage: HomepageType;
 	contact: ContactType;
 }
 
-const Home = ({ articles, categories, homepage, contact }: HomeProps) => {
+const Home = ({ projects, categories, homepage, contact }: HomeProps) => {
 	return (
 		<Layout homepage={homepage} categories={categories} contact={contact}>
 			<Container>
 				<Seo seo={homepage.attributes.seo} />
 				<div>
 					<h1>{homepage.attributes.title}</h1>
-					<Articles articles={articles} />
+					<ProjectGrid projects={projects} />
 				</div>
 			</Container>
 		</Layout>
@@ -45,19 +45,19 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({ params }) => {
 	const { locale } = params as { locale: Locale };
 
 	const fetch = async (locale: string): Promise<string> => {
-		const index = Object.values(Locale).indexOf(locale);
+		const index = Object.values(Locale).indexOf(locale as Locale);
 		return Object.values(Locale)[index === -1 ? 0 : index];
 	};
 	const convertedLocale = await fetch(locale);
 
-	const [articlesRes, categoriesRes, homepageRes, contactRes] =
+	const [projectsRes, categoriesRes, homepageRes, contactRes] =
 		await Promise.all([
-			fetchAPI<ArticleType[]>('/articles', {
+			fetchAPI<ProjectType[]>('/projects', {
 				populate: ['cover', 'category'],
 				locale: convertedLocale,
 			}),
 			fetchAPI<CategoryType[]>('/categories', {
-				fields: ['name', 'slug', 'locale'],
+				fields: ['title', 'slug', 'locale'],
 				locale: convertedLocale,
 			}),
 			fetchAPI<HomepageType>('/homepage', {
@@ -75,7 +75,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({ params }) => {
 
 	return {
 		props: {
-			articles: articlesRes.data,
+			projects: projectsRes.data,
 			categories: categoriesRes.data,
 			homepage: homepageRes.data,
 			contact: contactRes.data,

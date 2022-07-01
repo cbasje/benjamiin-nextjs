@@ -9,7 +9,7 @@ import { Homepage as HomepageType } from '@/models/homepage';
 import { Contact as ContactType } from '@/models/contact';
 import { Locale } from '@/models/locale';
 
-import Articles from '@/components/Articles';
+import ProjectGrid from '@/components/ProjectGrid';
 import Seo from '@/components/Seo';
 import { Container } from '@/stitches.config';
 import Layout from '@/components/Layout';
@@ -28,16 +28,18 @@ const Category = ({
 	contact,
 }: CategoryProps) => {
 	const seo: SeoType = {
-		metaTitle: category.attributes.name,
-		metaDescription: `All ${category.attributes.name} articles`,
+		metaTitle: category.attributes.title,
+		metaDescription: `All ${category.attributes.title} projects`,
 	};
 
 	return (
 		<Layout homepage={homepage} categories={categories} contact={contact}>
 			<Seo seo={seo} />
 			<Container>
-				<h1>{category.attributes.name}</h1>
-				<Articles articles={category.attributes.articles?.data || []} />
+				<h1>{category.attributes.title}</h1>
+				<ProjectGrid
+					projects={category.attributes.projects?.data || []}
+				/>
 			</Container>
 		</Layout>
 	);
@@ -71,14 +73,14 @@ export const getStaticProps: GetStaticProps<
 			fetchAPI<CategoryType[]>('/categories', {
 				filters: { slug },
 				populate: {
-					articles: {
+					projects: {
 						populate: '*',
 					},
 				},
 				locale,
 			}),
 			fetchAPI<CategoryType[]>('/categories', {
-				fields: ['name', 'slug', 'locale'],
+				fields: ['title', 'slug', 'locale'],
 				locale,
 			}),
 			fetchAPI<HomepageType>('/homepage', {

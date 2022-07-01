@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { fetchAPI } from '@/lib/api';
 import { getStrapiMedia } from '@/lib/media';
 
-import { Article as ArticleType } from '@/models/article';
+import { Project as ProjectType } from '@/models/project';
 import { Category as CategoryType } from '@/models/category';
 import { Homepage as HomepageType } from '@/models/homepage';
 import { Contact as ContactType } from '@/models/contact';
@@ -20,19 +20,19 @@ import Seo from '@/components/Seo';
 import Image from '@/components/Image';
 import Layout from '@/components/Layout';
 
-interface ArticleProps {
-	article: ArticleType;
+interface ProjectProps {
+	project: ProjectType;
 	categories: CategoryType[];
 	homepage: HomepageType;
 	contact: ContactType;
 }
 
-const Article = ({ article, homepage, categories, contact }: ArticleProps) => {
+const Project = ({ project, homepage, categories, contact }: ProjectProps) => {
 	const seo: SeoType = {
-		metaTitle: article.attributes.title,
-		metaDescription: article.attributes.description,
-		shareImage: article.attributes.cover,
-		article: true,
+		metaTitle: project.attributes.title,
+		metaDescription: project.attributes.description,
+		shareImage: project.attributes.cover,
+		isArticle: true,
 	};
 
 	return (
@@ -41,14 +41,14 @@ const Article = ({ article, homepage, categories, contact }: ArticleProps) => {
 			<Container>
 				<Banner>
 					<motion.div
-						layoutId={`cover-${article.attributes.slug}`}
+						layoutId={`cover-${project.attributes.slug}`}
 						style={{
 							width: '100%',
 							height: '100%',
 							position: 'relative',
 						}}
 					>
-						<Image image={article.attributes.cover} layout="fill" />
+						<Image image={project.attributes.cover} layout="fill" />
 					</motion.div>
 
 					<div
@@ -62,52 +62,14 @@ const Article = ({ article, homepage, categories, contact }: ArticleProps) => {
 						}}
 					>
 						<motion.h1
-							layoutId={`title-${article.attributes.slug}`}
+							layoutId={`title-${project.attributes.slug}`}
 						>
-							{article.attributes.title}
+							{project.attributes.title}
 						</motion.h1>
 					</div>
 				</Banner>
 				<div>
-					<BlockManager blocks={article.attributes.blocks} />
-					<hr />
-					{article.attributes.author && (
-						<div>
-							{article.attributes.author.data?.attributes
-								.picture && (
-								<img
-									src={getStrapiMedia(
-										article.attributes.author.data
-											?.attributes.picture
-									)}
-									alt={
-										article.attributes.author.data
-											?.attributes.picture.data
-											?.attributes.alternativeText
-									}
-									style={{
-										position: 'static',
-										borderRadius: '20%',
-										height: 60,
-									}}
-								/>
-							)}
-							<div>
-								<p>
-									By{' '}
-									{
-										article.attributes.author.data
-											?.attributes.name
-									}
-								</p>
-								<p>
-									<Moment format="MMM Do YYYY">
-										{article.attributes.publishedAt}
-									</Moment>
-								</p>
-							</div>
-						</div>
-					)}
+					<BlockManager blocks={project.attributes.blocks} />
 				</div>
 			</Container>
 		</Layout>
@@ -115,16 +77,16 @@ const Article = ({ article, homepage, categories, contact }: ArticleProps) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const articlesRes = await fetchAPI<ArticleType[]>('/articles', {
+	const projectsRes = await fetchAPI<ProjectType[]>('/projects', {
 		fields: ['slug', 'locale'],
 		locale: 'all',
 	});
 
 	return {
-		paths: articlesRes.data.map((article: ArticleType) => ({
+		paths: projectsRes.data.map((project: ProjectType) => ({
 			params: {
-				slug: article.attributes.slug,
-				locale: article.attributes.locale,
+				slug: project.attributes.slug,
+				locale: project.attributes.locale,
 			},
 		})),
 		fallback: 'blocking',
@@ -132,14 +94,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-	ArticleProps,
+	ProjectProps,
 	ParsedUrlQuery
 > = async ({ params }) => {
 	const { locale, slug } = params as { locale: Locale; slug: string };
 
-	const [articlesRes, categoriesRes, homepageRes, contactRes] =
+	const [projectsRes, categoriesRes, homepageRes, contactRes] =
 		await Promise.all([
-			fetchAPI<ArticleType[]>('/articles', {
+			fetchAPI<ProjectType[]>('/projects', {
 				filters: { slug },
 				populate: {
 					author: {
@@ -158,7 +120,7 @@ export const getStaticProps: GetStaticProps<
 				locale,
 			}),
 			fetchAPI<CategoryType[]>('/categories', {
-				fields: ['name', 'slug', 'locale'],
+				fields: ['title', 'slug', 'locale'],
 				locale,
 			}),
 			fetchAPI<HomepageType>('/homepage', {
@@ -173,7 +135,7 @@ export const getStaticProps: GetStaticProps<
 
 	return {
 		props: {
-			article: articlesRes.data[0],
+			project: projectsRes.data[0],
 			categories: categoriesRes.data,
 			homepage: homepageRes.data,
 			contact: contactRes.data,
@@ -182,4 +144,4 @@ export const getStaticProps: GetStaticProps<
 	};
 };
 
-export default Article;
+export default Project;

@@ -4,6 +4,6 @@ export interface Seo {
 	metaTitle: string;
 	metaDescription?: string;
 	shareImage?: { data?: Picture };
-	article?: boolean;
+	isArticle?: boolean;
 	locale?: string;
 }

@@ -9,7 +9,7 @@ const GlobalContext = createContext<GlobalAttributesType>({
 		metaTitle: '',
 		metaDescription: '',
 		shareImage: { data: undefined },
-		article: false,
+		isArticle: false,
 		locale: 'en',
 	},
 });

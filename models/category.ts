@@ -1,12 +1,12 @@
-import { Article } from './article';
+import { Project } from './project';
 
 export interface Category {
 	id: number;
 	attributes: {
-		name: string;
+		title: string;
 		slug: string;
 		description?: string;
-		articles?: { data: Article[] };
+		projects?: { data: Project[] };
 		createdAt: Date;
 		updatedAt: Date;
 		locale: string;

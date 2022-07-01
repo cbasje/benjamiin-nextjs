@@ -1,22 +1,22 @@
 import Link from 'next/link';
 import Image from './Image';
 import { motion } from 'framer-motion';
-import { Article as ArticleType } from '@/models/article';
+import { Project as ProjectType } from '@/models/project';
 
-const Card = ({ article }: { article: ArticleType }) => {
+const Card = ({ project }: { project: ProjectType }) => {
 	return (
 		<Link
 			href={{
-				pathname: '/[locale]/article/[slug]',
+				pathname: '/[locale]/project/[slug]',
 				query: {
-					locale: article.attributes.locale,
-					slug: article.attributes.slug,
+					locale: project.attributes.locale,
+					slug: project.attributes.slug,
 				},
 			}}
 		>
 			<a>
 				<motion.div
-					layoutId={`cover-${article.attributes.slug}`}
+					layoutId={`cover-${project.attributes.slug}`}
 					style={{
 						width: '100%',
 						height: '100%',
@@ -24,15 +24,15 @@ const Card = ({ article }: { article: ArticleType }) => {
 					}}
 				>
 					<Image
-						image={article.attributes.cover}
+						image={project.attributes.cover}
 						layout="responsive"
 					/>
 				</motion.div>
 				<div>
-					<motion.h1 layoutId={`title-${article.attributes.slug}`}>
-						{article.attributes.title}
+					<motion.h1 layoutId={`title-${project.attributes.slug}`}>
+						{project.attributes.title}
 					</motion.h1>
-					<p>{article.attributes.category.data?.attributes.name}</p>
+					<p>{project.attributes.category.data?.attributes.title}</p>
 				</div>
 			</a>
 		</Link>

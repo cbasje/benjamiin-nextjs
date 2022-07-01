@@ -52,7 +52,7 @@ export const getStaticProps: GetStaticProps<ContactProps> = async ({
 			locale,
 		}),
 		fetchAPI<CategoryType[]>('/categories', {
-			fields: ['name', 'slug', 'locale'],
+			fields: ['title', 'slug', 'locale'],
 			locale,
 		}),
 		fetchAPI<HomepageType>('/homepage', {

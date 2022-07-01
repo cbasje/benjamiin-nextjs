@@ -1,10 +1,9 @@
-import { Author } from './author';
 import { MediaBlock, RichTextBlock } from './block';
 import { Category } from './category';
 import { Picture } from './picture';
 import { Seo } from './seo';
 
-export interface Article {
+export interface Project {
 	id: number;
 	attributes: {
 		title: string;
@@ -13,9 +12,6 @@ export interface Article {
 		cover: { data?: Picture };
 		category: {
 			data?: Category;
-		};
-		author: {
-			data?: Author;
 		};
 		blocks: (RichTextBlock | MediaBlock)[];
 		createdAt: Date;

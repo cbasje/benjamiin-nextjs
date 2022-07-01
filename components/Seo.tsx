@@ -51,7 +51,7 @@ const Seo = ({ seo }: { seo?: SeoType }) => {
 					<meta name="image" content={fullSeo.shareImage} />
 				</>
 			)}
-			{fullSeo.article && <meta property="og:type" content="article" />}
+			{fullSeo.isArticle && <meta property="og:type" content="article" />}
 			<meta name="twitter:card" content="summary_large_image" />
 		</Head>
 	);

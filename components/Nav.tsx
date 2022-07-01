@@ -32,7 +32,7 @@ const Nav = ({ homepage, categories, contact }: NavProps) => {
 								},
 							}}
 						>
-							<a>{category.attributes.name}</a>
+							<a>{category.attributes.title}</a>
 						</Link>
 					</li>
 				))}
