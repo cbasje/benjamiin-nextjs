@@ -1,29 +1,18 @@
 import App from 'next/app';
 import type { AppContext, AppProps } from 'next/app';
 import Head from 'next/head';
-import { universalLanguageDetect } from '@unly/universal-language-detector';
 
 import { fetchAPI } from '../lib/api';
 import { getStrapiMedia } from '../lib/media';
 
 import { Global } from '../types/global';
 import { GlobalProvider } from '../contexts/GlobalContext';
-import { LanguageProvider } from '../contexts/LanguageContext';
 import { globalStyles } from '../stitches.config';
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const { global }: { global: Global } = pageProps;
 
 	globalStyles();
-
-	// Get the locale of the user
-	const lang = universalLanguageDetect({
-		supportedLanguages: ['nl', 'en'],
-		fallbackLanguage: 'en',
-		errorHandler: (error) => {
-			console.error('Language error: ', error);
-		},
-	});
 
 	return (
 		<>
@@ -34,9 +23,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				/>
 			</Head>
 			<GlobalProvider global={global.attributes}>
-				<LanguageProvider lang={lang}>
-					<Component {...pageProps} />
-				</LanguageProvider>
+				<Component {...pageProps} />
 			</GlobalProvider>
 		</>
 	);

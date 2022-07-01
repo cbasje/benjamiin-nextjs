@@ -1,15 +1,17 @@
+import type { GetStaticPaths, GetStaticProps } from 'next';
+import type { ParsedUrlQuery } from 'querystring';
+
 import Moment from 'react-moment';
 import { motion } from 'framer-motion';
 
-import { fetchAPI } from '../../lib/api';
-import { getStrapiMedia } from '../../lib/media';
-import { Params } from 'next/dist/server/router';
+import { fetchAPI } from '../../../lib/api';
+import { getStrapiMedia } from '../../../lib/media';
 
-import { Banner, Box, Container } from '../../stitches.config';
-import BlockManager from '../../components/BlockManager';
-import Seo from '../../components/Seo';
-import Nav from '../../components/Nav';
-import Image from '../../components/Image';
+import { Banner, Box, Container } from '../../../stitches.config';
+import BlockManager from '../../../components/BlockManager';
+import Seo from '../../../components/Seo';
+import Nav from '../../../components/Nav';
+import Image from '../../../components/Image';
 
 const Article = ({
 	article,
@@ -50,7 +52,6 @@ const Article = ({
 							top: 0,
 							display: 'grid',
 							placeContent: 'center',
-							backdropFilter: 'invert(100%)',
 						}}
 					>
 						<motion.h1
@@ -106,22 +107,28 @@ const Article = ({
 	);
 };
 
-export async function getStaticPaths() {
-	const articlesRes = await fetchAPI('/articles', { fields: ['slug'] });
+export const getStaticPaths: GetStaticPaths = async () => {
+	const articlesRes = await fetchAPI<Article[]>('/articles', {
+		fields: ['slug', 'locale'],
+		locale: 'all',
+	});
 
 	return {
 		paths: articlesRes.data.map((article: Article) => ({
 			params: {
 				slug: article.attributes.slug,
+				locale: article.attributes.locale,
 			},
 		})),
-		fallback: false,
+		fallback: 'blocking',
 	};
-}
+};
 
-export async function getStaticProps({ params }: Params) {
+export const getStaticProps: GetStaticProps<unknown, ParsedUrlQuery> = async ({
+	params: { locale, slug },
+}) => {
 	const articlesRes = await fetchAPI<Article[]>('/articles', {
-		filters: { slug: params.slug },
+		filters: { slug },
 		populate: {
 			author: {
 				populate: '*',
@@ -136,13 +143,17 @@ export async function getStaticProps({ params }: Params) {
 				populate: '*',
 			},
 		},
+		locale,
 	});
-	const categoriesRes = await fetchAPI<Category[]>('/categories');
+	const categoriesRes = await fetchAPI<Category[]>('/categories', {
+		fields: ['name', 'slug', 'locale'],
+		locale,
+	});
 
 	return {
 		props: { article: articlesRes.data[0], categories: categoriesRes.data },
-		revalidate: 1,
+		revalidate: true,
 	};
-}
+};
 
 export default Article;

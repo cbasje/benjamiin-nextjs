@@ -13,7 +13,15 @@ const Nav = ({ categories }: { categories: Category[] }) => {
 			<ul>
 				{categories.map((category) => (
 					<li key={category.id}>
-						<Link href={`/category/${category.attributes.slug}`}>
+						<Link
+							href={{
+								pathname: '/[locale]/category/[slug]',
+								query: {
+									locale: category.attributes.locale,
+									slug: category.attributes.slug,
+								},
+							}}
+						>
 							<a>{category.attributes.name}</a>
 						</Link>
 					</li>

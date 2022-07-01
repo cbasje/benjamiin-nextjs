@@ -5,7 +5,15 @@ import { motion } from 'framer-motion';
 
 const Card = ({ article }: { article: Article }) => {
 	return (
-		<Link href={`/article/${article.attributes.slug}`}>
+		<Link
+			href={{
+				pathname: '/[locale]/article/[slug]',
+				query: {
+					locale: article.attributes.locale,
+					slug: article.attributes.slug,
+				},
+			}}
+		>
 			<a>
 				<motion.div
 					layoutId={`cover-${article.attributes.slug}`}
