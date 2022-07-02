@@ -18,8 +18,8 @@ const Card = ({ project }: { project: ProjectType }) => {
 				<motion.div
 					layoutId={`cover-${project.attributes.slug}`}
 					style={{
-						width: '100%',
-						height: '100%',
+						width: '17vmax',
+						// height: '100%',
 						position: 'relative',
 					}}
 				>
