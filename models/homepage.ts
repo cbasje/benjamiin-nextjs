@@ -1,3 +1,4 @@
+import { Locale } from './locale';
 import { Seo } from './seo';
 
 export interface Homepage {
@@ -6,6 +7,6 @@ export interface Homepage {
 		title: string;
 		description?: string;
 		seo?: Seo;
-		locale: string;
+		locale: Locale;
 	};
 }

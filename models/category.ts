@@ -1,3 +1,4 @@
+import { Locale } from './locale';
 import { Project } from './project';
 
 export interface Category {
@@ -9,6 +10,6 @@ export interface Category {
 		projects?: { data: Project[] };
 		createdAt: Date;
 		updatedAt: Date;
-		locale: string;
+		locale: Locale;
 	};
 }

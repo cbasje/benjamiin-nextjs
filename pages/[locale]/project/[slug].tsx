@@ -1,15 +1,11 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
 
-import Moment from 'react-moment';
 import { motion } from 'framer-motion';
 
 import { fetchAPI } from '@/lib/api';
 
 import { Project as ProjectType } from '@/models/project';
-import { Category as CategoryType } from '@/models/category';
-import { Homepage as HomepageType } from '@/models/homepage';
-import { Contact as ContactType } from '@/models/contact';
 import { Seo as SeoType } from '@/models/seo';
 import { Locale } from '@/models/locale';
 
@@ -17,16 +13,12 @@ import { Banner, Container } from '@/stitches.config';
 import BlockManager from '@/components/BlockManager';
 import Seo from '@/components/Seo';
 import Image from '@/components/Image';
-import Layout from '@/components/Layout';
 
 interface ProjectProps {
 	project: ProjectType;
-	categories: CategoryType[];
-	homepage: HomepageType;
-	contact: ContactType;
 }
 
-const Project = ({ project, homepage, categories, contact }: ProjectProps) => {
+const Project = ({ project }: ProjectProps) => {
 	const seo: SeoType = {
 		metaTitle: project.attributes.title,
 		metaDescription: project.attributes.description,
@@ -35,7 +27,7 @@ const Project = ({ project, homepage, categories, contact }: ProjectProps) => {
 	};
 
 	return (
-		<Layout homepage={homepage} categories={categories} contact={contact}>
+		<>
 			<Seo seo={seo} />
 			<Container>
 				<Banner>
@@ -71,7 +63,7 @@ const Project = ({ project, homepage, categories, contact }: ProjectProps) => {
 					<BlockManager blocks={project.attributes.blocks} />
 				</div>
 			</Container>
-		</Layout>
+		</>
 	);
 };
 
@@ -98,46 +90,30 @@ export const getStaticProps: GetStaticProps<
 > = async ({ params }) => {
 	const { locale, slug } = params as { locale: Locale; slug: string };
 
-	const [projectsRes, categoriesRes, homepageRes, contactRes] =
-		await Promise.all([
-			fetchAPI<ProjectType[]>('/projects', {
-				filters: { slug },
-				populate: {
-					author: {
-						populate: '*',
-					},
-					blocks: {
-						populate: '*',
-					},
-					cover: {
-						populate: '*',
-					},
-					category: {
-						populate: '*',
-					},
+	const [projectsRes] = await Promise.all([
+		fetchAPI<ProjectType[]>('/projects', {
+			filters: { slug },
+			populate: {
+				author: {
+					populate: '*',
 				},
-				locale,
-			}),
-			fetchAPI<CategoryType[]>('/categories', {
-				fields: ['title', 'slug', 'locale'],
-				locale,
-			}),
-			fetchAPI<HomepageType>('/homepage', {
-				fields: ['title'],
-				locale,
-			}),
-			fetchAPI<ContactType>('/contact', {
-				fields: ['title', 'locale'],
-				locale,
-			}),
-		]);
+				blocks: {
+					populate: '*',
+				},
+				cover: {
+					populate: '*',
+				},
+				category: {
+					populate: '*',
+				},
+			},
+			locale,
+		}),
+	]);
 
 	return {
 		props: {
 			project: projectsRes.data[0],
-			categories: categoriesRes.data,
-			homepage: homepageRes.data,
-			contact: contactRes.data,
 		},
 		revalidate: true,
 	};

@@ -1,5 +1,6 @@
 import { MediaBlock, RichTextBlock } from './block';
 import { Category } from './category';
+import { Locale } from './locale';
 import { Picture } from './picture';
 import { Seo } from './seo';
 
@@ -18,6 +19,6 @@ export interface Project {
 		updatedAt: Date;
 		publishedAt: Date;
 		seo?: Seo;
-		locale: string;
+		locale: Locale;
 	};
 }

@@ -1,32 +1,25 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
 import { Contact as ContactType } from '@/models/contact';
-import { Homepage as HomepageType } from '@/models/homepage';
-import { Category as CategoryType } from '@/models/category';
 import { Locale } from '@/models/locale';
 
 import Seo from '@/components/Seo';
 import { Container } from '@/stitches.config';
 import { fetchAPI } from '@/lib/api';
-import Layout from '@/components/Layout';
 
 interface ContactProps {
 	contact: ContactType;
-	homepage: HomepageType;
-	categories: CategoryType[];
 }
 
-const Contact = ({ contact, homepage, categories }: ContactProps) => {
+const Contact = ({ contact }: ContactProps) => {
 	return (
-		<Layout homepage={homepage} categories={categories} contact={contact}>
-			<Container>
-				<Seo seo={contact.attributes.seo} />
-				<div>
-					<h1>{contact.attributes.title}</h1>
-					<p>{contact.attributes.description}</p>
-				</div>
-			</Container>
-		</Layout>
+		<Container>
+			<Seo seo={contact.attributes.seo} />
+			<div>
+				<h1>{contact.attributes.title}</h1>
+				<p>{contact.attributes.description}</p>
+			</div>
+		</Container>
 	);
 };
 
@@ -42,7 +35,7 @@ export const getStaticProps: GetStaticProps<ContactProps> = async ({
 }) => {
 	const { locale } = params as { locale: Locale };
 
-	const [contactRes, categoriesRes, homepageRes] = await Promise.all([
+	const [contactRes] = await Promise.all([
 		fetchAPI<ContactType>('/contact', {
 			populate: {
 				title: '*',
@@ -51,21 +44,11 @@ export const getStaticProps: GetStaticProps<ContactProps> = async ({
 			},
 			locale,
 		}),
-		fetchAPI<CategoryType[]>('/categories', {
-			fields: ['title', 'slug', 'locale'],
-			locale,
-		}),
-		fetchAPI<HomepageType>('/homepage', {
-			fields: ['title'],
-			locale,
-		}),
 	]);
 
 	return {
 		props: {
 			contact: contactRes.data,
-			categories: categoriesRes.data,
-			homepage: homepageRes.data,
 		},
 		revalidate: true,
 	};
