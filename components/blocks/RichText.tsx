@@ -1,6 +1,7 @@
 import ReactMarkdown from 'react-markdown';
+import { RichTextBlock as RichTextBlockType } from '@/models/block';
 
-const RichText = ({ body }: { body?: string }) => {
+const RichText = ({ body }: RichTextBlockType) => {
 	return <ReactMarkdown>{body || ''}</ReactMarkdown>;
 };
 

@@ -16,6 +16,13 @@ export interface MediaBlock extends Block {
 }
 
 export interface QuoteBlock extends Block {
-	title: string;
 	body: string;
+	link?: string;
+	citation?: Citation;
+}
+
+export interface Citation {
+	author: string;
+	company?: string;
+	link?: string;
 }
