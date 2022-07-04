@@ -12,7 +12,7 @@ import { Locale } from '@/models/locale';
 import { Banner, Container } from '@/stitches.config';
 import BlockManager from '@/components/BlockManager';
 import Seo from '@/components/Seo';
-import Image from '@/components/Image';
+import Picture from '@/components/Picture';
 
 interface ProjectProps {
 	project: ProjectType;
@@ -39,7 +39,7 @@ const Project = ({ project }: ProjectProps) => {
 							position: 'relative',
 						}}
 					>
-						<Image image={project.attributes.cover} layout="fill" />
+						<Picture src={project.attributes.cover} layout="fill" />
 					</motion.div>
 
 					<div

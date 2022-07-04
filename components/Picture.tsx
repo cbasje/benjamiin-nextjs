@@ -5,26 +5,26 @@ import { Picture as PictureType } from '@/models/picture';
 
 import { getStrapiMedia } from '@/lib/media';
 
-const Image = ({
-	image,
+const Picture = ({
+	src,
 	layout,
 }: {
-	image?: { data?: PictureType | undefined };
+	src?: { data?: PictureType | undefined };
 	layout?: 'fixed' | 'fill' | 'intrinsic' | 'responsive';
 }) => {
-	if (!(image && image.data)) return <Error statusCode={404} />;
+	if (!(src && src.data)) return <Error statusCode={404} />;
 
-	const { alternativeText, width, height } = image.data.attributes;
+	const { alternativeText, width, height } = src.data.attributes;
 	return (
 		<NextImage
 			layout={layout}
 			width={layout && layout !== 'fill' ? 16 : undefined}
 			height={layout && layout !== 'fill' ? 9 : undefined}
 			objectFit="cover"
-			src={getStrapiMedia(image)}
+			src={getStrapiMedia(src)}
 			alt={alternativeText || ''}
 		/>
 	);
 };
 
-export default Image;
+export default Picture;

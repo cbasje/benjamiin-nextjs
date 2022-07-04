@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from './Image';
+import Picture from './Picture';
 import { motion } from 'framer-motion';
 import { Project as ProjectType } from '@/models/project';
 
@@ -23,8 +23,8 @@ const Card = ({ project }: { project: ProjectType }) => {
 						position: 'relative',
 					}}
 				>
-					<Image
-						image={project.attributes.cover}
+					<Picture
+						src={project.attributes.cover}
 						layout="responsive"
 					/>
 				</motion.div>
