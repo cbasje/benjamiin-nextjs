@@ -6,7 +6,6 @@ import { Project as ProjectType } from '@/models/project';
 import { Homepage as HomepageType } from '@/models/homepage';
 import { Locale } from '@/models/locale';
 
-import Carbonbadge from 'react-carbonbadge';
 import ProjectGrid from '@/components/ProjectGrid';
 import Seo from '@/components/Seo';
 import { Container } from '@/stitches.config';
@@ -22,7 +21,6 @@ const Home = ({ projects, homepage }: HomeProps) => {
 			<Seo seo={homepage.attributes.seo} />
 			<div>
 				<h1>{homepage.attributes.title}</h1>
-				<Carbonbadge darkMode={true} />
 				<ProjectGrid projects={projects} />
 			</div>
 		</Container>
