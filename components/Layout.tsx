@@ -1,9 +1,8 @@
 import { ReactNode } from 'react';
-import { AnimatePresence } from 'framer-motion';
 
 import { Locale } from '@/models/locale';
 
-import { Box } from '@/stitches.config';
+import { Container } from '@/stitches.config';
 import Nav, { NavProps } from './Nav';
 
 export interface LayoutProps extends NavProps {
@@ -11,12 +10,18 @@ export interface LayoutProps extends NavProps {
 	locale: Locale;
 }
 
-const Layout = ({ children, locale, categories, contacts }: LayoutProps) => {
+const Layout = ({
+	children,
+	locale,
+	categories,
+	contacts,
+	abouts,
+}: LayoutProps) => {
 	return (
-		<Box>
-			<Nav {...{ locale, categories, contacts }} />
+		<Container>
+			<Nav {...{ locale, categories, contacts, abouts }} />
 			{children}
-		</Box>
+		</Container>
 	);
 };
 

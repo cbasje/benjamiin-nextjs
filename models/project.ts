@@ -1,4 +1,4 @@
-import { MediaBlock, RichTextBlock } from './block';
+import { Block } from './block';
 import { Category } from './category';
 import { Locale } from './locale';
 import { Picture } from './picture';
@@ -14,7 +14,7 @@ export interface Project {
 		category: {
 			data?: Category;
 		};
-		blocks: (RichTextBlock | MediaBlock)[];
+		blocks: Block[];
 		createdAt: Date;
 		updatedAt: Date;
 		publishedAt: Date;

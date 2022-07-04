@@ -9,6 +9,7 @@ import { Locale } from '@/models/locale';
 import { Global as GlobalType } from '@/models/global';
 import { Category as CategoryType } from '@/models/category';
 import { Contact as ContactType } from '@/models/contact';
+import { About as AboutType } from '@/models/about';
 
 import { GlobalProvider } from '@/contexts/GlobalContext';
 import { globalStyles } from '@/stitches.config';
@@ -19,7 +20,7 @@ interface MyAppProps extends LayoutProps {
 }
 
 const MyApp = ({ Component, pageProps, router }: AppProps) => {
-	const { global, categories, contacts }: MyAppProps = pageProps;
+	const { global, categories, contacts, abouts }: MyAppProps = pageProps;
 
 	globalStyles();
 
@@ -29,7 +30,7 @@ const MyApp = ({ Component, pageProps, router }: AppProps) => {
 				<RecoilRoot>
 					<Layout
 						locale={router.query.locale as Locale}
-						{...{ categories, contacts }}
+						{...{ categories, contacts, abouts }}
 					>
 						{/* <AnimatePresence exitBeforeEnter> */}
 						<Component {...pageProps} key={router.route} />
@@ -42,7 +43,6 @@ const MyApp = ({ Component, pageProps, router }: AppProps) => {
 };
 
 MyApp.getInitialProps = async (ctx: AppContext) => {
-	// Calls page's `getInitialProps` and fills `appProps.pageProps`
 	const appProps = await App.getInitialProps(ctx);
 
 	// Fetch global site settings from Strapi
@@ -71,14 +71,25 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
 			return res.data;
 		})
 	);
+	const aboutRes = await Promise.all(
+		Object.values(Locale).map(async (locale: Locale) => {
+			const res = await fetchAPI<AboutType>('/about', {
+				fields: ['title', 'locale'],
+				locale,
+			});
+			return res.data;
+		})
+	);
 
+	type PageProps = Omit<MyAppProps, 'layout' | 'children' | 'locale'>;
 	return {
 		...appProps,
 		pageProps: {
 			global: globalRes.data,
 			categories: categoriesRes.data,
 			contacts: contactRes,
-		},
+			abouts: aboutRes,
+		} as PageProps,
 	};
 };
 

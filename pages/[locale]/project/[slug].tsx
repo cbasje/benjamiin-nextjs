@@ -9,7 +9,7 @@ import { Project as ProjectType } from '@/models/project';
 import { Seo as SeoType } from '@/models/seo';
 import { Locale } from '@/models/locale';
 
-import { Banner, Container } from '@/stitches.config';
+import { Banner, Box } from '@/stitches.config';
 import BlockManager from '@/components/BlockManager';
 import Seo from '@/components/Seo';
 import Picture from '@/components/Picture';
@@ -29,7 +29,7 @@ const Project = ({ project }: ProjectProps) => {
 	return (
 		<>
 			<Seo seo={seo} />
-			<Container>
+			<Box>
 				<Banner>
 					<motion.div
 						layoutId={`cover-${project.attributes.slug}`}
@@ -62,10 +62,10 @@ const Project = ({ project }: ProjectProps) => {
 						</motion.h1>
 					</div>
 				</Banner>
-				<div>
+				<Box>
 					<BlockManager blocks={project.attributes.blocks} />
-				</div>
-			</Container>
+				</Box>
+			</Box>
 		</>
 	);
 };

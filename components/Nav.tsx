@@ -4,15 +4,17 @@ import { getLocaleLabel } from '@/util/locale';
 
 import { Category as CategoryType } from '@/models/category';
 import { Contact as ContactType } from '@/models/contact';
+import { About as AboutType } from '@/models/about';
 import { Locale } from '@/models/locale';
 
 export interface NavProps {
 	locale: Locale;
 	categories: CategoryType[];
 	contacts: ContactType[];
+	abouts: AboutType[];
 }
 
-const Nav = ({ locale, categories, contacts }: NavProps) => {
+const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 	const router = useRouter();
 
 	return (
@@ -57,6 +59,24 @@ const Nav = ({ locale, categories, contacts }: NavProps) => {
 								}}
 							>
 								<a>{contact.attributes.title}</a>
+							</Link>
+						</li>
+					))}
+			</ul>
+			<ul>
+				{abouts
+					.filter((a) => a.attributes?.locale === locale)
+					.map((about) => (
+						<li key={about.id}>
+							<Link
+								href={{
+									pathname: '/[locale]/about',
+									query: {
+										locale,
+									},
+								}}
+							>
+								<a>{about.attributes.title}</a>
 							</Link>
 						</li>
 					))}

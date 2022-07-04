@@ -4,8 +4,8 @@ import { Contact as ContactType } from '@/models/contact';
 import { Locale } from '@/models/locale';
 
 import Seo from '@/components/Seo';
-import { Container } from '@/stitches.config';
 import { fetchAPI } from '@/lib/api';
+import { Box } from '@/stitches.config';
 
 interface ContactProps {
 	contact: ContactType;
@@ -13,13 +13,13 @@ interface ContactProps {
 
 const Contact = ({ contact }: ContactProps) => {
 	return (
-		<Container>
+		<>
 			<Seo seo={contact.attributes.seo} />
-			<div>
+			<Box>
 				<h1>{contact.attributes.title}</h1>
 				<p>{contact.attributes.description}</p>
-			</div>
-		</Container>
+			</Box>
+		</>
 	);
 };
 
@@ -37,11 +37,7 @@ export const getStaticProps: GetStaticProps<ContactProps> = async ({
 
 	const [contactRes] = await Promise.all([
 		fetchAPI<ContactType>('/contact', {
-			populate: {
-				title: '*',
-				description: '*',
-				seo: { populate: '*' },
-			},
+			populate: '*',
 			locale,
 		}),
 	]);

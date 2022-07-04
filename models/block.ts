@@ -1,33 +1,35 @@
 import { Picture } from './picture';
 
-export interface Block {
+export type Block = RichTextBlock | MediaBlock | CarouselBlock | QuoteBlock;
+
+export interface BaseBlock {
 	id: number;
 	__component: string;
 }
 
-export interface RichTextBlock extends Block {
+export interface RichTextBlock extends BaseBlock {
 	body: string;
 }
 
-export interface MediaBlock extends Block {
+export interface MediaBlock extends BaseBlock {
 	file: {
 		data: Picture;
 	};
 }
 
-export interface CarouselBlock extends Block {
+export interface CarouselBlock extends BaseBlock {
 	files: {
 		data: Picture[];
 	};
 }
 
-export interface QuoteBlock extends Block {
+export interface QuoteBlock extends BaseBlock {
 	body: string;
 	link?: string;
 	citation?: Citation;
 }
 
-export interface Citation {
+interface Citation {
 	author: string;
 	company?: string;
 	link?: string;

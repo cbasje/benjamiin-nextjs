@@ -9,7 +9,7 @@ import { Locale } from '@/models/locale';
 
 import ProjectGrid from '@/components/ProjectGrid';
 import Seo from '@/components/Seo';
-import { Container } from '@/stitches.config';
+import { Box } from '@/stitches.config';
 
 interface CategoryProps {
 	category: CategoryType;
@@ -24,12 +24,12 @@ const Category = ({ category }: CategoryProps) => {
 	return (
 		<>
 			<Seo seo={seo} />
-			<Container>
+			<Box>
 				<h1>{category.attributes.title}</h1>
 				<ProjectGrid
 					projects={category.attributes.projects?.data || []}
 				/>
-			</Container>
+			</Box>
 		</>
 	);
 };

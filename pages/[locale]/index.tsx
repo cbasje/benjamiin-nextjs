@@ -8,7 +8,7 @@ import { Locale } from '@/models/locale';
 
 import ProjectGrid from '@/components/ProjectGrid';
 import Seo from '@/components/Seo';
-import { Container } from '@/stitches.config';
+import { Box } from '@/stitches.config';
 
 interface HomeProps {
 	projects: ProjectType[];
@@ -17,13 +17,13 @@ interface HomeProps {
 
 const Home = ({ projects, homepage }: HomeProps) => {
 	return (
-		<Container>
+		<>
 			<Seo seo={homepage.attributes.seo} />
-			<div>
+			<Box>
 				<h1>{homepage.attributes.title}</h1>
 				<ProjectGrid projects={projects} />
-			</div>
-		</Container>
+			</Box>
+		</>
 	);
 };
 
@@ -49,10 +49,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({ params }) => {
 			locale: convertedLocale,
 		}),
 		fetchAPI<HomepageType>('/homepage', {
-			populate: {
-				title: '*',
-				seo: { populate: '*' },
-			},
+			populate: '*',
 			locale: convertedLocale,
 		}),
 	]);

@@ -4,15 +4,13 @@ import {
 	RichTextBlock as RichTextBlockType,
 	MediaBlock as MediaBlockType,
 	QuoteBlock as QuoteBlockType,
+	Block as BlockType,
 } from '@/models/block';
 
 import { Media, RichText, Quote } from './blocks';
 import { BlocksContainer } from '@/stitches.config';
 
-const getBlockComponent = (
-	blockType: RichTextBlockType | MediaBlockType | QuoteBlockType,
-	index: number
-): ReactNode => {
+const getBlockComponent = (blockType: BlockType, index: number): ReactNode => {
 	let block: ReactNode;
 	let props;
 
@@ -37,7 +35,7 @@ const getBlockComponent = (
 };
 
 const BlockManager = (
-	{ blocks }: { blocks?: (RichTextBlockType | MediaBlockType)[] } = {
+	{ blocks }: { blocks?: BlockType[] } = {
 		blocks: [],
 	}
 ) => {
