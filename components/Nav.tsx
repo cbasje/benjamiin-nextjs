@@ -2,6 +2,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { getLocaleLabel } from '@/util/locale';
 
+import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
+import * as Label from '@radix-ui/react-label';
+import * as Select from '@radix-ui/react-select';
+
 import { Category as CategoryType } from '@/models/category';
 import { Contact as ContactType } from '@/models/contact';
 import { About as AboutType } from '@/models/about';
@@ -17,11 +21,28 @@ export interface NavProps {
 const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 	const router = useRouter();
 
+	const handleLocaleChange = (newLocale: Locale) => {
+		console.log(router.pathname, router.query.slug);
+		router.push({
+			pathname: '/[locale]',
+			query: {
+				locale: newLocale,
+			},
+		});
+	};
+
 	return (
 		<nav>
 			<ul>
 				<li>
-					<Link href="/">
+					<Link
+						href={{
+							pathname: '/[locale]',
+							query: {
+								locale,
+							},
+						}}
+					>
 						<a>Sebastiaan Benjamins</a>
 					</Link>
 				</li>
@@ -83,28 +104,35 @@ const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 			</ul>
 			<ul>
 				<li>
-					<label htmlFor="languageSwitcher" className="sr-only">
-						Switch languages
-					</label>
-					<select
-						id="languageSwitcher"
-						value={locale}
-						onChange={(e) => {
-							console.log(router.pathname, router.query.slug);
-							router.push({
-								pathname: '/[locale]',
-								query: {
-									locale: e.target.value as Locale,
-								},
-							});
-						}}
+					<VisuallyHidden.Root>
+						<Label.Root htmlFor="languageSwitcher">
+							Switch languages
+						</Label.Root>
+					</VisuallyHidden.Root>
+					<Select.Root
+						defaultValue={locale}
+						onValueChange={handleLocaleChange}
 					>
-						{Object.values(Locale).map((locale) => (
-							<option key={locale} value={locale}>
-								{getLocaleLabel(locale)}
-							</option>
-						))}
-					</select>
+						<Select.Trigger>
+							<Select.Value />
+							<Select.Icon />
+						</Select.Trigger>
+
+						<Select.Content>
+							<Select.ScrollUpButton />
+							<Select.Viewport>
+								{Object.values(Locale).map((l) => (
+									<Select.Item value={l}>
+										<Select.ItemText>
+											{getLocaleLabel(l)}
+										</Select.ItemText>
+										<Select.ItemIndicator />
+									</Select.Item>
+								))}
+							</Select.Viewport>
+							<Select.ScrollDownButton />
+						</Select.Content>
+					</Select.Root>
 				</li>
 			</ul>
 		</nav>
