@@ -2,7 +2,7 @@ import qs from 'qs';
 
 export function getStrapiURL(path: string = ''): string {
 	return `${
-		!!process.env.NEXT_PUBLIC_STRAPI_USE_LOCAL
+		process.env.NEXT_PUBLIC_STRAPI_USE_LOCAL === 'true'
 			? 'http://localhost:1337'
 			: process.env.NEXT_PUBLIC_STRAPI_API_URL
 	}${path}`;
