@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { getLocaleLabel } from '@/util/locale';
 
 import { Category as CategoryType } from '@/models/category';
 import { Contact as ContactType } from '@/models/contact';
@@ -11,6 +13,8 @@ export interface NavProps {
 }
 
 const Nav = ({ locale, categories, contacts }: NavProps) => {
+	const router = useRouter();
+
 	return (
 		<nav>
 			<ul>
@@ -56,6 +60,32 @@ const Nav = ({ locale, categories, contacts }: NavProps) => {
 							</Link>
 						</li>
 					))}
+			</ul>
+			<ul>
+				<li>
+					<label htmlFor="languageSwitcher" className="sr-only">
+						Switch languages
+					</label>
+					<select
+						id="languageSwitcher"
+						value={locale}
+						onChange={(e) => {
+							console.log(router.pathname, router.query.slug);
+							router.push({
+								pathname: '/[locale]',
+								query: {
+									locale: e.target.value as Locale,
+								},
+							});
+						}}
+					>
+						{Object.values(Locale).map((locale) => (
+							<option key={locale} value={locale}>
+								{getLocaleLabel(locale)}
+							</option>
+						))}
+					</select>
+				</li>
 			</ul>
 		</nav>
 	);

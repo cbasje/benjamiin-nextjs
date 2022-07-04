@@ -31,9 +31,9 @@ const MyApp = ({ Component, pageProps, router }: AppProps) => {
 						locale={router.query.locale as Locale}
 						{...{ categories, contacts }}
 					>
-						<AnimatePresence exitBeforeEnter>
-							<Component {...pageProps} key={router.route} />
-						</AnimatePresence>
+						{/* <AnimatePresence exitBeforeEnter> */}
+						<Component {...pageProps} key={router.route} />
+						{/* </AnimatePresence> */}
 					</Layout>
 				</RecoilRoot>
 			</GlobalProvider>

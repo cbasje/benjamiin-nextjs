@@ -11,11 +11,11 @@ const BlockQuote = styled('blockquote', {
 		borderRadius: '5px',
 
 		'&:before': {
-			content: '\201C',
+			content: '“',
 		},
 
 		'&:after': {
-			content: '\201D',
+			content: '”',
 		},
 	},
 });

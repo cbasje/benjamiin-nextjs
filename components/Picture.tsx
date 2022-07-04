@@ -18,8 +18,8 @@ const Picture = ({
 	return (
 		<NextImage
 			layout={layout}
-			width={layout && layout !== 'fill' ? 16 : undefined}
-			height={layout && layout !== 'fill' ? 9 : undefined}
+			width={layout && layout !== 'fill' ? 16 : width}
+			height={layout && layout !== 'fill' ? 9 : height}
 			objectFit="cover"
 			src={getStrapiMedia(src)}
 			alt={alternativeText || ''}
