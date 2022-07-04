@@ -3,26 +3,37 @@ import { ReactNode } from 'react';
 import {
 	RichTextBlock as RichTextBlockType,
 	MediaBlock as MediaBlockType,
+	QuoteBlock as QuoteBlockType,
 } from '@/models/block';
 
-import Media from './blocks/Media';
-import RichText from './blocks/RichText';
+import { Media, RichText, Quote } from './blocks';
+import { BlocksContainer } from '@/stitches.config';
 
 const getBlockComponent = (
-	block: RichTextBlockType | MediaBlockType,
+	blockType: RichTextBlockType | MediaBlockType | QuoteBlockType,
 	index: number
 ): ReactNode => {
-	let Block;
+	let block: ReactNode;
+	let props;
 
-	switch (block.__component) {
+	const key = `i-${index}`;
+
+	switch (blockType.__component) {
 		case 'blocks.rich-text':
-			Block = RichText;
+			props = blockType as RichTextBlockType;
+			block = <RichText key={key} {...props} />;
 			break;
 		case 'blocks.media':
-			Block = Media;
+			props = blockType as MediaBlockType;
+			block = <Media key={key} {...props} />;
+			break;
+		case 'blocks.quote':
+			props = blockType as QuoteBlockType;
+			block = <Quote key={key} {...props} />;
+			break;
 	}
 
-	return Block ? <Block key={`i-${index}`} {...block} /> : null;
+	return block;
 };
 
 const BlockManager = (
@@ -30,7 +41,11 @@ const BlockManager = (
 		blocks: [],
 	}
 ) => {
-	return <div>{blocks && blocks.map(getBlockComponent)}</div>;
+	return (
+		<BlocksContainer>
+			{blocks && blocks.map(getBlockComponent)}
+		</BlocksContainer>
+	);
 };
 
 export default BlockManager;

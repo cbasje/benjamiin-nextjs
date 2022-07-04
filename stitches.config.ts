@@ -61,6 +61,8 @@ export const Banner = styled('div', {
 	position: 'relative',
 });
 
+export const BlocksContainer = styled('div', {});
+
 const Button = styled('button', {
 	// Mini reset
 	appearance: 'none',
