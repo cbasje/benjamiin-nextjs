@@ -57,6 +57,10 @@ const Project = ({ project }: ProjectProps) => {
 					>
 						<motion.h1
 							layoutId={`title-${project.attributes.slug}`}
+							style={{
+								mixBlendMode: 'difference',
+								color: 'white',
+							}}
 						>
 							{project.attributes.title}
 						</motion.h1>

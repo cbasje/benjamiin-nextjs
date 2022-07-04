@@ -48,27 +48,28 @@ const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 						<a>Sebastiaan Benjamins</a>
 					</Link>
 				</li>
-			</ul>
-			<ul>
-				{categories
-					.filter((c) => c.attributes?.locale === locale)
-					.map((category) => (
-						<li key={`category-${category.id}`}>
-							<Link
-								href={{
-									pathname: '/[locale]/category/[slug]',
-									query: {
-										locale,
-										slug: category.attributes?.slug,
-									},
-								}}
-							>
-								<a>{category.attributes?.title}</a>
-							</Link>
-						</li>
-					))}
-			</ul>
-			<ul>
+				<li>
+					<ul>
+						{categories
+							.filter((c) => c.attributes?.locale === locale)
+							.map((category) => (
+								<li key={`category-${category.id}`}>
+									<Link
+										href={{
+											pathname:
+												'/[locale]/category/[slug]',
+											query: {
+												locale,
+												slug: category.attributes?.slug,
+											},
+										}}
+									>
+										<a>{category.attributes?.title}</a>
+									</Link>
+								</li>
+							))}
+					</ul>
+				</li>
 				<li key={`contact-${contact?.id}`}>
 					<Link
 						href={{
@@ -81,8 +82,6 @@ const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 						<a>{contact?.attributes.title}</a>
 					</Link>
 				</li>
-			</ul>
-			<ul>
 				<li key={`about-${about?.id}`}>
 					<Link
 						href={{
@@ -95,8 +94,6 @@ const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 						<a>{about?.attributes.title}</a>
 					</Link>
 				</li>
-			</ul>
-			<ul>
 				<li>
 					<VisuallyHidden.Root>
 						<Label.Root htmlFor="languageSwitcher">
