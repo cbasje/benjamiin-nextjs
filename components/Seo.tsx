@@ -19,7 +19,7 @@ const Seo = ({ seo }: { seo?: SeoType }) => {
 			seoWithDefaults.metaTitle === siteName
 				? siteName
 				: `${seoWithDefaults.metaTitle} | ${siteName}`,
-		shareImage: getStrapiMedia(seoWithDefaults.shareImage),
+		shareImage: getStrapiMedia(seoWithDefaults.shareImage?.data),
 	};
 
 	return (

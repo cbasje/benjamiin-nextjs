@@ -9,12 +9,12 @@ const Picture = ({
 	src,
 	layout,
 }: {
-	src?: { data?: PictureType | undefined };
+	src?: PictureType;
 	layout?: 'fixed' | 'fill' | 'intrinsic' | 'responsive';
 }) => {
-	if (!(src && src.data)) return <Error statusCode={404} />;
+	if (!src) return <Error statusCode={404} />;
 
-	const { alternativeText, width, height } = src.data.attributes;
+	const { alternativeText, width, height } = src.attributes;
 	return (
 		<NextImage
 			layout={layout}

@@ -39,7 +39,10 @@ const Project = ({ project }: ProjectProps) => {
 							position: 'relative',
 						}}
 					>
-						<Picture src={project.attributes.cover} layout="fill" />
+						<Picture
+							src={project.attributes.cover.data}
+							layout="fill"
+						/>
 					</motion.div>
 
 					<div

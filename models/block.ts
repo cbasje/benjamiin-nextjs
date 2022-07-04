@@ -15,6 +15,12 @@ export interface MediaBlock extends Block {
 	};
 }
 
+export interface CarouselBlock extends Block {
+	files: {
+		data: Picture[];
+	};
+}
+
 export interface QuoteBlock extends Block {
 	body: string;
 	link?: string;

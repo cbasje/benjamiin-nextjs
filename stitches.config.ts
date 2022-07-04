@@ -63,6 +63,8 @@ export const Banner = styled('div', {
 
 export const BlocksContainer = styled('div', {});
 
+export const CarouselContainer = styled('div', {});
+
 const Button = styled('button', {
 	// Mini reset
 	appearance: 'none',

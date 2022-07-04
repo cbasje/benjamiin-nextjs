@@ -24,7 +24,7 @@ const Card = ({ project }: { project: ProjectType }) => {
 					}}
 				>
 					<Picture
-						src={project.attributes.cover}
+						src={project.attributes.cover.data}
 						layout="responsive"
 					/>
 				</motion.div>
