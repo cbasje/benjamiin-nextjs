@@ -21,8 +21,10 @@ export interface NavProps {
 const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 	const router = useRouter();
 
+	const about = abouts.find((a) => a.attributes.locale === locale);
+	const contact = contacts.find((c) => c.attributes.locale === locale);
+
 	const handleLocaleChange = (newLocale: Locale) => {
-		console.log(router.pathname, router.query.slug);
 		router.push({
 			pathname: '/[locale]',
 			query: {
@@ -67,40 +69,32 @@ const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 					))}
 			</ul>
 			<ul>
-				{contacts
-					.filter((c) => c.attributes?.locale === locale)
-					.map((contact) => (
-						<li key={`contact-${contact.id}`}>
-							<Link
-								href={{
-									pathname: '/[locale]/contact',
-									query: {
-										locale,
-									},
-								}}
-							>
-								<a>{contact.attributes.title}</a>
-							</Link>
-						</li>
-					))}
+				<li key={`contact-${contact?.id}`}>
+					<Link
+						href={{
+							pathname: '/[locale]/contact',
+							query: {
+								locale,
+							},
+						}}
+					>
+						<a>{contact?.attributes.title}</a>
+					</Link>
+				</li>
 			</ul>
 			<ul>
-				{abouts
-					.filter((a) => a.attributes?.locale === locale)
-					.map((about) => (
-						<li key={`about-${about.id}`}>
-							<Link
-								href={{
-									pathname: '/[locale]/about',
-									query: {
-										locale,
-									},
-								}}
-							>
-								<a>{about.attributes.title}</a>
-							</Link>
-						</li>
-					))}
+				<li key={`about-${about?.id}`}>
+					<Link
+						href={{
+							pathname: '/[locale]/about',
+							query: {
+								locale,
+							},
+						}}
+					>
+						<a>{about?.attributes.title}</a>
+					</Link>
+				</li>
 			</ul>
 			<ul>
 				<li>
