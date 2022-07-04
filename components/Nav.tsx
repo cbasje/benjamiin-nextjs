@@ -51,7 +51,7 @@ const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 				{categories
 					.filter((c) => c.attributes?.locale === locale)
 					.map((category) => (
-						<li key={category.id}>
+						<li key={`category-${category.id}`}>
 							<Link
 								href={{
 									pathname: '/[locale]/category/[slug]',
@@ -70,7 +70,7 @@ const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 				{contacts
 					.filter((c) => c.attributes?.locale === locale)
 					.map((contact) => (
-						<li key={contact.id}>
+						<li key={`contact-${contact.id}`}>
 							<Link
 								href={{
 									pathname: '/[locale]/contact',
@@ -88,7 +88,7 @@ const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 				{abouts
 					.filter((a) => a.attributes?.locale === locale)
 					.map((about) => (
-						<li key={about.id}>
+						<li key={`about-${about.id}`}>
 							<Link
 								href={{
 									pathname: '/[locale]/about',
@@ -122,7 +122,7 @@ const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 							<Select.ScrollUpButton />
 							<Select.Viewport>
 								{Object.values(Locale).map((l) => (
-									<Select.Item value={l}>
+									<Select.Item key={`locale-${l}`} value={l}>
 										<Select.ItemText>
 											{getLocaleLabel(l)}
 										</Select.ItemText>

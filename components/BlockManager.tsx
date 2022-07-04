@@ -19,15 +19,15 @@ const getBlockComponent = (blockType: BlockType, index: number): ReactNode => {
 	switch (blockType.__component) {
 		case 'blocks.rich-text':
 			props = blockType as RichTextBlockType;
-			block = <RichText key={key} {...props} />;
+			block = <RichText key={`block-${key}`} {...props} />;
 			break;
 		case 'blocks.media':
 			props = blockType as MediaBlockType;
-			block = <Media key={key} {...props} />;
+			block = <Media key={`block-${key}`} {...props} />;
 			break;
 		case 'blocks.quote':
 			props = blockType as QuoteBlockType;
-			block = <Quote key={key} {...props} />;
+			block = <Quote key={`block-${key}`} {...props} />;
 			break;
 	}
 

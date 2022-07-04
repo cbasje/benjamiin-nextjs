@@ -5,7 +5,9 @@ import { CarouselContainer } from '@/stitches.config';
 const Carousel = ({ files }: CarouselBlockType) => {
 	return (
 		<CarouselContainer>
-			{files && files.data && files.data.map((f) => <Picture src={f} />)}
+			{files &&
+				files.data &&
+				files.data.map((f) => <Picture key={`pic-${f.id}`} src={f} />)}
 		</CarouselContainer>
 	);
 };
