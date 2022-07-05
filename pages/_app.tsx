@@ -15,6 +15,8 @@ import { GlobalProvider } from '@/contexts/GlobalContext';
 import { globalStyles } from '@/stitches.config';
 import Layout, { LayoutProps } from '@/components/Layout';
 
+import '@/util/prism.css';
+
 interface MyAppProps extends LayoutProps {
 	global: GlobalType;
 }

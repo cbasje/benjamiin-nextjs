@@ -1,6 +1,22 @@
 import { Picture } from './picture';
 
-export type Block = RichTextBlock | MediaBlock | CarouselBlock | QuoteBlock;
+export type Block =
+	| RichTextBlock
+	| CodeBlock
+	| MediaBlock
+	| CarouselBlock
+	| QuoteBlock;
+
+enum CodeLang {
+	Markup = 'markup',
+	C = 'clike',
+	JS = 'javascript',
+	JSX = 'jsx',
+	TS = 'typescript',
+	TSX = 'tsx',
+	Python = 'python',
+	Swift = 'swift',
+}
 
 export interface BaseBlock {
 	id: number;
@@ -9,6 +25,11 @@ export interface BaseBlock {
 
 export interface RichTextBlock extends BaseBlock {
 	body: string;
+}
+
+export interface CodeBlock extends BaseBlock {
+	body: string;
+	lang: CodeLang;
 }
 
 export interface MediaBlock extends BaseBlock {
