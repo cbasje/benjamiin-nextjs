@@ -2,7 +2,7 @@ import Picture from '@/components/Picture';
 import { CarouselBlock as CarouselBlockType } from '@/models/block';
 import { CarouselContainer } from '@/stitches.config';
 
-const Carousel = ({ files }: CarouselBlockType) => {
+const CarouselBlock = ({ files }: CarouselBlockType) => {
 	return (
 		<CarouselContainer>
 			{files &&
@@ -12,4 +12,4 @@ const Carousel = ({ files }: CarouselBlockType) => {
 	);
 };
 
-export default Carousel;
+export default CarouselBlock;

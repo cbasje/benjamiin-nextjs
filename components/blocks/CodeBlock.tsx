@@ -4,7 +4,7 @@ import Prism from '@/util/prism.js';
 
 import { CodeBlock as CodeBlockType } from '@/models/block';
 
-const Code = ({ body, lang }: CodeBlockType) => {
+const CodeBlock = ({ body, lang }: CodeBlockType) => {
 	useEffect(() => {
 		Prism.highlightAll();
 	}, []);
@@ -16,4 +16,4 @@ const Code = ({ body, lang }: CodeBlockType) => {
 	);
 };
 
-export default Code;
+export default CodeBlock;

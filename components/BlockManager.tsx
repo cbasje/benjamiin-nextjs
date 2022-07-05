@@ -4,13 +4,17 @@ import {
 	Block as BlockType,
 	RichTextBlock as RichTextBlockType,
 	CodeBlock as CodeBlockType,
-	MediaBlock as MediaBlockType,
+	PictureBlock as PictureBlockType,
 	CarouselBlock as CarouselBlockType,
 	QuoteBlock as QuoteBlockType,
 } from '@/models/block';
 
-import { RichText, Code, Media, Carousel, Quote } from './blocks';
 import { BlocksContainer } from '@/stitches.config';
+import RichTextBlock from './blocks/RichTextBlock';
+import CodeBlock from './blocks/CodeBlock';
+import PictureBlock from './blocks/PictureBlock';
+import CarouselBlock from './blocks/CarouselBlock';
+import QuoteBlock from './blocks/QuoteBlock';
 
 const getBlockComponent = (blockType: BlockType, index: number): ReactNode => {
 	let block: ReactNode;
@@ -21,23 +25,23 @@ const getBlockComponent = (blockType: BlockType, index: number): ReactNode => {
 	switch (blockType.__component) {
 		case 'blocks.rich-text':
 			props = blockType as RichTextBlockType;
-			block = <RichText key={`block-${key}`} {...props} />;
+			block = <RichTextBlock key={`block-${key}`} {...props} />;
 			break;
 		case 'blocks.code':
 			props = blockType as CodeBlockType;
-			block = <Code key={`block-${key}`} {...props} />;
+			block = <CodeBlock key={`block-${key}`} {...props} />;
 			break;
 		case 'blocks.media':
-			props = blockType as MediaBlockType;
-			block = <Media key={`block-${key}`} {...props} />;
+			props = blockType as PictureBlockType;
+			block = <PictureBlock key={`block-${key}`} {...props} />;
 			break;
 		case 'blocks.carousel':
 			props = blockType as CarouselBlockType;
-			block = <Carousel key={`block-${key}`} {...props} />;
+			block = <CarouselBlock key={`block-${key}`} {...props} />;
 			break;
 		case 'blocks.quote':
 			props = blockType as QuoteBlockType;
-			block = <Quote key={`block-${key}`} {...props} />;
+			block = <QuoteBlock key={`block-${key}`} {...props} />;
 			break;
 	}
 
