@@ -12,7 +12,8 @@ const Picture = ({
 	src?: PictureType;
 	layout?: 'fixed' | 'fill' | 'intrinsic' | 'responsive';
 }) => {
-	if (!src) return <Error statusCode={404} />;
+	// FIXME: If no src is provided, return an error
+	if (!src) return <p>Not found</p>;
 
 	const { alternativeText, width, height } = src.attributes;
 	return (
