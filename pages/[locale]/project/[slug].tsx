@@ -41,7 +41,7 @@ const Project = ({ project }: ProjectProps) => {
 					>
 						<Picture
 							src={project.attributes.cover.data}
-							layout="fill"
+							fillContainer
 						/>
 					</motion.div>
 

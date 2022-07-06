@@ -14,27 +14,30 @@ const Card = ({ project }: { project: ProjectType }) => {
 				},
 			}}
 		>
-			<a>
+			<>
 				<motion.div
 					layoutId={`cover-${project.attributes.slug}`}
 					style={{
-						width: '17vmax',
-						// height: '100%',
+						width: '16vmax',
+						height: '9vmax',
 						position: 'relative',
 					}}
 				>
 					<Picture
 						src={project.attributes.cover.data}
-						layout="responsive"
+						fillContainer
 					/>
 				</motion.div>
 				<div>
-					<motion.h1 layoutId={`title-${project.attributes.slug}`}>
+					<motion.h1
+						layoutId={`title-${project.attributes.slug}`}
+						style={{ width: 'fit-content' }}
+					>
 						{project.attributes.title}
 					</motion.h1>
 					<p>{project.attributes.category.data?.attributes.title}</p>
 				</div>
-			</a>
+			</>
 		</Link>
 	);
 };

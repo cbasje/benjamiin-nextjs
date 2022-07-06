@@ -45,7 +45,7 @@ const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 							},
 						}}
 					>
-						<a>Sebastiaan Benjamins</a>
+						Sebastiaan Benjamins
 					</Link>
 				</li>
 				<li>
@@ -64,7 +64,7 @@ const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 											},
 										}}
 									>
-										<a>{category.attributes?.title}</a>
+										{category.attributes?.title}
 									</Link>
 								</li>
 							))}
@@ -79,7 +79,7 @@ const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 							},
 						}}
 					>
-						<a>{contact?.attributes.title}</a>
+						{contact?.attributes.title}
 					</Link>
 				</li>
 				<li key={`about-${about?.id}`}>
@@ -91,7 +91,7 @@ const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 							},
 						}}
 					>
-						<a>{about?.attributes.title}</a>
+						{about?.attributes.title}
 					</Link>
 				</li>
 				<li>

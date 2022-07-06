@@ -1,29 +1,42 @@
-import NextImage from 'next/image';
-import Error from 'next/error';
+import Image from 'next/future/image';
 
 import { Picture as PictureType } from '@/models/picture';
 
 import { getStrapiMedia } from '@/lib/media';
+import { CSSProperties } from '@stitches/react';
+import { styled } from '@/stitches.config';
+
+const StyledImage = styled(Image, {
+	objectFit: 'cover',
+
+	variants: {
+		fill: {
+			true: {
+				width: '100%',
+				height: '100%',
+			},
+		},
+	},
+});
 
 const Picture = ({
 	src,
-	layout,
+	fillContainer,
 }: {
 	src?: PictureType;
-	layout?: 'fixed' | 'fill' | 'intrinsic' | 'responsive';
+	fillContainer?: boolean;
 }) => {
 	// FIXME: If no src is provided, return an error
 	if (!src) return <p>Not found</p>;
 
 	const { alternativeText, width, height } = src.attributes;
 	return (
-		<NextImage
-			layout={layout}
-			width={layout && layout !== 'fill' ? 16 : width}
-			height={layout && layout !== 'fill' ? 9 : height}
-			objectFit="cover"
+		<StyledImage
+			width={width}
+			height={height}
 			src={getStrapiMedia(src)}
 			alt={alternativeText || ''}
+			fill={fillContainer}
 		/>
 	);
 };
