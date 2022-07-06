@@ -9,6 +9,7 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@mantine/form": "^4.2.12",
 		"@radix-ui/react-label": "^0.1.5",
 		"@radix-ui/react-select": "^0.1.1",
 		"@radix-ui/react-visually-hidden": "^0.1.4",
