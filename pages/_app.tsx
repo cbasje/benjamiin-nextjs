@@ -2,6 +2,7 @@ import App from 'next/app';
 import type { AppContext, AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
 import { AnimatePresence } from 'framer-motion';
+import * as Toast from '@radix-ui/react-toast';
 
 import { fetchAPI } from '@/lib/api';
 
@@ -11,10 +12,10 @@ import { Category as CategoryType } from '@/models/category';
 import { Contact as ContactType } from '@/models/contact';
 import { About as AboutType } from '@/models/about';
 
-import { GlobalProvider } from '@/contexts/GlobalContext';
 import { globalStyles } from '@/stitches.config';
 import Layout, { LayoutProps } from '@/components/Layout';
 
+// FIXME: move to @/stitches.config
 import '@/util/prism.css';
 
 interface MyAppProps extends LayoutProps {
@@ -28,18 +29,18 @@ const MyApp = ({ Component, pageProps, router }: AppProps) => {
 
 	return (
 		<>
-			<GlobalProvider global={global.attributes}>
-				<RecoilRoot>
+			<RecoilRoot>
+				<Toast.Provider>
 					<Layout
 						locale={router.query.locale as Locale}
-						{...{ categories, contacts, abouts }}
+						{...{ global, categories, contacts, abouts }}
 					>
 						{/* <AnimatePresence exitBeforeEnter> */}
 						<Component {...pageProps} key={router.route} />
 						{/* </AnimatePresence> */}
 					</Layout>
-				</RecoilRoot>
-			</GlobalProvider>
+				</Toast.Provider>
+			</RecoilRoot>
 		</>
 	);
 };

@@ -1,18 +1,18 @@
 import { atom } from 'recoil';
 
-import { Homepage } from '@/models/homepage';
-import { Category } from '@/models/category';
-import { Contact } from '@/models/contact';
+import { GlobalAttributes as GlobalAttributesType } from '@/models/global';
 
-export const homepageState = atom<Homepage>({
-	key: 'homepageState',
-	default: {} as Homepage,
-});
-export const categoriesState = atom<Category[]>({
-	key: 'categoriesState',
-	default: [],
-});
-export const contactState = atom<Contact>({
-	key: 'contactState',
-	default: {} as Contact,
+export const globalState = atom<GlobalAttributesType>({
+	key: 'globalState',
+	default: {
+		siteName: '',
+		siteDescription: '',
+		defaultSeo: {
+			metaTitle: '',
+			metaDescription: '',
+			shareImage: { data: undefined },
+			isArticle: false,
+			locale: 'en',
+		},
+	},
 });
