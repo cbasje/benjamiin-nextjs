@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
 import { fetchAPI } from '@/lib/api';
@@ -12,22 +11,21 @@ import Seo from '@/components/Seo';
 import { Box } from '@/stitches.config';
 import SpotifyPlayer from '@/components/SpotifyPlayer';
 
-import NetlifyGraph from '@/lib/netlifyGraph';
+import { parseLocale } from '@/util/locale';
+import { SpotifyData } from '@/models/spotify';
 
 interface HomeProps {
-	song: string;
+	spotify: SpotifyData;
 	projects: ProjectType[];
 	homepage: HomepageType;
 }
 
-const Home = ({ song, projects, homepage }: HomeProps) => {
+const Home = ({ spotify, projects, homepage }: HomeProps) => {
 	return (
 		<>
 			<Seo seo={homepage.attributes.seo} />
 			<Box>
-				<Suspense fallback={<p>Fallback</p>}>
-					<SpotifyPlayer song={song} />
-				</Suspense>
+				<SpotifyPlayer {...spotify} />
 				<h1>{homepage.attributes.title}</h1>
 				<ProjectGrid projects={projects} />
 			</Box>
@@ -43,31 +41,28 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<HomeProps> = async ({ params }) => {
-	const { locale } = params as { locale: Locale };
+	const locale = await parseLocale(params?.locale as Locale);
 
-	const netlifyRes = await NetlifyGraph.fetchNowPlayingQuery({});
-
-	const fetch = async (locale: Locale): Promise<string> => {
-		const index = Object.values(Locale).indexOf(locale);
-		return Object.values(Locale)[index === -1 ? 0 : index];
-	};
-	const convertedLocale = await fetch(locale);
+	const baseUrl =
+		process.env.NODE_ENV === 'production'
+			? 'https://next.benjami.in'
+			: 'http://localhost:3000';
+	const spotifyRes = await fetch(`${baseUrl}/api/spotify`);
 
 	const [projectsRes, homepageRes] = await Promise.all([
 		fetchAPI<ProjectType[]>('/projects', {
 			populate: ['cover', 'category'],
-			locale: convertedLocale,
+			locale,
 		}),
 		fetchAPI<HomepageType>('/homepage', {
 			populate: '*',
-			locale: convertedLocale,
+			locale,
 		}),
 	]);
 
 	return {
 		props: {
-			song:
-				netlifyRes.data.me.spotify.player.item?.name ?? 'Nothing found',
+			spotify: await spotifyRes.json(),
 			projects: projectsRes.data,
 			homepage: homepageRes.data,
 		},
