@@ -31,7 +31,7 @@ export default async function handler(req: NextRequest, res: NextResponse) {
 			.map((_artist: any) => _artist.name)
 			.join(', '),
 		album: song.item.album.name,
-		albumImageUrl: song.item.album.images[0].url,
+		albumImage: song.item.album.images[0],
 		songUrl: song.item.external_urls.spotify,
 	};
 

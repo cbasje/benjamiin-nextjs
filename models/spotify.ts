@@ -3,6 +3,12 @@ export interface SpotifyData {
 	title: string;
 	artist: string;
 	album: string;
-	albumImageUrl: string;
+	albumImage?: AlbumImage;
 	songUrl: string;
+}
+
+interface AlbumImage {
+	url: string;
+	width: number;
+	height: number;
 }
