@@ -1,0 +1,22 @@
+query NowPlayingQuery @netlify(id: """26dab1fc-e4fc-4b6f-af3a-bef0acc4f7d7""", doc: """A query to receive the currently playing music from Spotify.""") {
+  me {
+    spotify {
+      player {
+        isPlaying
+        item {
+          name
+          externalUrls {
+            spotify
+          }
+          album {
+            images {
+              url
+              height
+              width
+            }
+          }
+        }
+      }
+    }
+  }
+}
