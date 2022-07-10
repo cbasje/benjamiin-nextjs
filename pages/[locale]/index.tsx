@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
 import { fetchAPI } from '@/lib/api';
@@ -9,17 +10,24 @@ import { Locale } from '@/models/locale';
 import ProjectGrid from '@/components/ProjectGrid';
 import Seo from '@/components/Seo';
 import { Box } from '@/stitches.config';
+import SpotifyPlayer from '@/components/SpotifyPlayer';
+
+import NetlifyGraph from '@/lib/netlifyGraph';
 
 interface HomeProps {
+	song: string;
 	projects: ProjectType[];
 	homepage: HomepageType;
 }
 
-const Home = ({ projects, homepage }: HomeProps) => {
+const Home = ({ song, projects, homepage }: HomeProps) => {
 	return (
 		<>
 			<Seo seo={homepage.attributes.seo} />
 			<Box>
+				<Suspense fallback={<p>Fallback</p>}>
+					<SpotifyPlayer song={song} />
+				</Suspense>
 				<h1>{homepage.attributes.title}</h1>
 				<ProjectGrid projects={projects} />
 			</Box>
@@ -36,6 +44,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<HomeProps> = async ({ params }) => {
 	const { locale } = params as { locale: Locale };
+
+	const netlifyRes = await NetlifyGraph.fetchNowPlayingQuery({});
 
 	const fetch = async (locale: Locale): Promise<string> => {
 		const index = Object.values(Locale).indexOf(locale);
@@ -56,6 +66,8 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({ params }) => {
 
 	return {
 		props: {
+			song:
+				netlifyRes.data.me.spotify.player.item?.name ?? 'Nothing found',
 			projects: projectsRes.data,
 			homepage: homepageRes.data,
 		},
