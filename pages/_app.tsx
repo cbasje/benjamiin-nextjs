@@ -5,12 +5,14 @@ import { AnimatePresence } from 'framer-motion';
 import * as Toast from '@radix-ui/react-toast';
 
 import { fetchAPI } from '@/lib/api';
+import { getNowPlaying } from '@/lib/spotify';
 
 import { Locale } from '@/models/locale';
 import { Global as GlobalType } from '@/models/global';
 import { Category as CategoryType } from '@/models/category';
 import { Contact as ContactType } from '@/models/contact';
 import { About as AboutType } from '@/models/about';
+import { SpotifyData } from '@/models/spotify';
 
 import { globalStyles } from '@/stitches.config';
 import Layout, { LayoutProps } from '@/components/Layout';
@@ -23,7 +25,8 @@ interface MyAppProps extends LayoutProps {
 }
 
 const MyApp = ({ Component, pageProps, router }: AppProps) => {
-	const { global, categories, contacts, abouts }: MyAppProps = pageProps;
+	const { global, categories, contacts, abouts, spotify }: MyAppProps =
+		pageProps;
 
 	globalStyles();
 
@@ -33,7 +36,7 @@ const MyApp = ({ Component, pageProps, router }: AppProps) => {
 				<Toast.Provider>
 					<Layout
 						locale={router.query.locale as Locale}
-						{...{ global, categories, contacts, abouts }}
+						{...{ global, categories, contacts, abouts, spotify }}
 					>
 						{/* <AnimatePresence exitBeforeEnter> */}
 						<Component {...pageProps} key={router.route} />
@@ -84,6 +87,31 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
 		})
 	);
 
+	// FIXME: use tRPC?
+	const spotifyRes = await getNowPlaying();
+	let spotify: SpotifyData;
+	if (
+		!spotifyRes.ok ||
+		spotifyRes.status === 204 ||
+		spotifyRes.status >= 400
+	) {
+		spotify = {
+			isPlaying: false,
+		};
+	} else {
+		const data = await spotifyRes.json();
+		spotify = {
+			isPlaying: data.is_playing,
+			title: data.item.name,
+			artist: data.item.artists
+				.map((_artist: any) => _artist.name)
+				.join(', '),
+			album: data.item.album.name,
+			albumImage: data.item.album.images[0],
+			songUrl: data.item.external_urls.spotify,
+		};
+	}
+
 	type PageProps = Omit<MyAppProps, 'layout' | 'children' | 'locale'>;
 	return {
 		...appProps,
@@ -92,6 +120,7 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
 			categories: categoriesRes.data,
 			contacts: contactRes,
 			abouts: aboutRes,
+			spotify,
 		} as PageProps,
 	};
 };

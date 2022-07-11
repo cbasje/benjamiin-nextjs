@@ -1,10 +1,10 @@
 export interface SpotifyData {
 	isPlaying: boolean;
-	title: string;
-	artist: string;
-	album: string;
+	title?: string;
+	artist?: string;
+	album?: string;
 	albumImage?: AlbumImage;
-	songUrl: string;
+	songUrl?: string;
 }
 
 interface AlbumImage {

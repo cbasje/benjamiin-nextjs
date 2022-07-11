@@ -122,7 +122,7 @@ export const getStaticProps: GetStaticProps<
 		props: {
 			project: projectsRes.data[0],
 		},
-		revalidate: true,
+		revalidate: 1,
 	};
 };
 

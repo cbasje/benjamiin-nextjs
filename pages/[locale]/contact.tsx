@@ -155,7 +155,7 @@ export const getStaticProps: GetStaticProps<ContactProps> = async ({
 		props: {
 			contact: contactRes.data,
 		},
-		revalidate: true,
+		revalidate: 1,
 	};
 };
 

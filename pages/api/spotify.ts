@@ -8,9 +8,6 @@ export const config = {
 
 export default async function handler(req: NextRequest, res: NextResponse) {
 	const response = await getNowPlaying();
-	console.log('🚀 --------------------------------🚀');
-	console.log('🚀 ~ handler ~ response', response.status);
-	console.log('🚀 --------------------------------🚀');
 
 	if (!response.ok || response.status === 204 || response.status >= 400) {
 		return new Response(

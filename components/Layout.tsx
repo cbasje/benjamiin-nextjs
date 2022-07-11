@@ -21,13 +21,14 @@ const Layout = ({
 	categories,
 	contacts,
 	abouts,
+	spotify,
 }: LayoutProps) => {
 	const setGlobal = useSetRecoilState(globalState);
 	setGlobal(global.attributes);
 
 	return (
 		<Container>
-			<Nav {...{ locale, categories, contacts, abouts }} />
+			<Nav {...{ locale, categories, contacts, abouts, spotify }} />
 			{children}
 		</Container>
 	);

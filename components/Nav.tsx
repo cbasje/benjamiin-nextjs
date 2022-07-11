@@ -6,19 +6,23 @@ import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import * as Label from '@radix-ui/react-label';
 import * as Select from '@radix-ui/react-select';
 
+import { Locale } from '@/models/locale';
 import { Category as CategoryType } from '@/models/category';
 import { Contact as ContactType } from '@/models/contact';
 import { About as AboutType } from '@/models/about';
-import { Locale } from '@/models/locale';
+import { SpotifyData } from '@/models/spotify';
+
+import SpotifyPlayer from './SpotifyPlayer';
 
 export interface NavProps {
 	locale: Locale;
 	categories: CategoryType[];
 	contacts: ContactType[];
 	abouts: AboutType[];
+	spotify: SpotifyData;
 }
 
-const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
+const Nav = ({ locale, categories, contacts, abouts, spotify }: NavProps) => {
 	const router = useRouter();
 
 	const about = abouts.find((a) => a.attributes.locale === locale);
@@ -124,6 +128,11 @@ const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 							<Select.ScrollDownButton />
 						</Select.Content>
 					</Select.Root>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<SpotifyPlayer {...spotify} />
 				</li>
 			</ul>
 		</nav>

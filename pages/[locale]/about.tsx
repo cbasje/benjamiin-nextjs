@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps<AboutProps> = async ({
 		props: {
 			about: aboutRes.data,
 		},
-		revalidate: true,
+		revalidate: 1,
 	};
 };
 

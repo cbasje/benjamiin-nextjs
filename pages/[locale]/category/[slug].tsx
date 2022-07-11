@@ -73,7 +73,7 @@ export const getStaticProps: GetStaticProps<
 		props: {
 			category: matchingCategoriesRes.data[0],
 		},
-		revalidate: true,
+		revalidate: 1,
 	};
 };
 
