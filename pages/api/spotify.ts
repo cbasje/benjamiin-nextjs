@@ -2,8 +2,8 @@ import { getNowPlaying } from '@/lib/spotify';
 import { SpotifyData } from '@/models/spotify';
 import type { NextRequest, NextResponse } from 'next/server';
 
-export const config = {
-	runtime: 'experimental-edge',
+const parseName = (name: string) => {
+	return name.split(/[\(\-]/i)[0];
 };
 
 export default async function handler(req: NextRequest, res: NextResponse) {
@@ -26,9 +26,11 @@ export default async function handler(req: NextRequest, res: NextResponse) {
 	const song = await response.json();
 	const data: SpotifyData = {
 		isPlaying: song.is_playing,
-		title: song.item.name,
-		artist: song.item.artists.map((_artist: any) => _artist.name),
-		album: song.item.album.name,
+		title: parseName(song.item.name),
+		artist: song.item.artists
+			.map((_artist: any) => _artist.name)
+			.join(', '),
+		album: parseName(song.item.album.name),
 		albumImage: song.item.album.images[2],
 		songUrl: song.item.external_urls.spotify,
 	};
@@ -40,3 +42,7 @@ export default async function handler(req: NextRequest, res: NextResponse) {
 		},
 	});
 }
+
+export const config = {
+	runtime: 'experimental-edge',
+};

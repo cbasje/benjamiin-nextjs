@@ -2,9 +2,6 @@ import Link from 'next/link';
 import Image from 'next/future/image';
 import useSWR, { Fetcher } from 'swr';
 
-// import fetch from '@/lib/fetch';
-// import fetch from 'isomorphic-unfetch';
-
 import { SpotifyData } from '@/models/spotify';
 
 const SpotifyPlayer = () => {
@@ -32,12 +29,12 @@ const SpotifyPlayer = () => {
 							width={albumImage.width}
 							height={albumImage.height}
 							alt={`Album cover of ${album ?? 'the album'} by ${
-								artist?.join(', ') ?? 'the artist'
+								artist ?? 'the artist'
 							}`}
 						/>
 					)}
 					title: {title} <br />
-					artist: {artist?.join(', ')} <br />
+					artist: {artist} <br />
 					album: {album}
 				</Link>
 			) : (
