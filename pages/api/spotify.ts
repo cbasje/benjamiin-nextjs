@@ -2,12 +2,15 @@ import { getNowPlaying } from '@/lib/spotify';
 import { SpotifyData } from '@/models/spotify';
 import type { NextRequest, NextResponse } from 'next/server';
 
-export const config = {
-	runtime: 'experimental-edge',
-};
+// export const config = {
+// 	runtime: 'experimental-edge',
+// };
 
 export default async function handler(req: NextRequest, res: NextResponse) {
 	const response = await getNowPlaying();
+	console.log('🚀 --------------------------------🚀');
+	console.log('🚀 ~ handler ~ response', response);
+	console.log('🚀 --------------------------------🚀');
 
 	if (!response.ok || response.status === 204 || response.status >= 400) {
 		return new Response(
