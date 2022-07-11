@@ -4,27 +4,62 @@ import type * as Stitches from '@stitches/react';
 export const { globalCss, styled, getCssText, createTheme } = createStitches({
 	theme: {
 		colors: {
-			gray400: 'gainsboro',
-			gray500: 'lightgray',
-			purple400: 'blueviolet',
-			purple500: 'darkviolet',
-			red400: 'tomato',
-			red500: '#cc0000',
+			primary0: '#f3f0ff',
+			primary1: '#e5dbff',
+			primary2: '#d0bfff',
+			primary3: '#b197fc',
+			primary4: '#9775fa',
+			primary5: '#845ef7',
+			primary6: '#7950f2',
+			primary7: '#7048e8',
+			primary8: '#6741d9',
+			primary9: '#5f3dc4',
+			secondary0: '#f4fce3',
+			secondary1: '#e9fac8',
+			secondary2: '#d8f5a2',
+			secondary3: '#c0eb75',
+			secondary4: '#a9e34b',
+			secondary5: '#94d82d',
+			secondary6: '#82c91e',
+			secondary7: '#74b816',
+			secondary8: '#66a80f',
+			secondary9: '#5c940d',
+			tertiary0: '#e7f5ff',
+			tertiary1: '#d0ebff',
+			tertiary2: '#a5d8ff',
+			tertiary3: '#74c0fc',
+			tertiary4: '#4dabf7',
+			tertiary5: '#339af0',
+			tertiary6: '#228be6',
+			tertiary7: '#1c7ed6',
+			tertiary8: '#1971c2',
+			tertiary9: '#1864ab',
+			gray0: '#f8f9fa',
+			gray1: '#f1f3f5',
+			gray2: '#e9ecef',
+			gray3: '#dee2e6',
+			gray4: '#ced4da',
+			gray5: '#adb5bd',
+			gray6: '#868e96',
+			gray7: '#495057',
+			gray8: '#343a40',
+			gray9: '#212529',
 
-			primary: '$purple400',
-			primaryDark: '$purple500',
+			primary: '$primary3',
+			primaryDark: '$primary5',
+			textOnPrimary: '$gray0',
+			bg: '$gray0',
+			textOnBg: '$gray9',
 		},
 		space: {
-			1: '1rem',
-			2: '2rem',
+			1: '0.5rem',
+			2: '1rem',
+		},
+		fonts: {
+			system: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Droid Sans, Helvetica Neue, sans-serif',
+			code: 'Cascadia Code, monospace',
 		},
 		fontSizes: {},
-	},
-	utils: {
-		px: (value: Stitches.ScaleValue<'space'>) => ({
-			paddingLeft: value,
-			paddingRight: value,
-		}),
 	},
 	media: {
 		sm: '(min-width: 640px)',
@@ -34,11 +69,26 @@ export const { globalCss, styled, getCssText, createTheme } = createStitches({
 });
 
 export const globalStyles = globalCss({
-	'html, body': {
+	'@font-face': [
+		{
+			fontFamily: 'Cascadia Code',
+			src: 'url("/fonts/CascadiaCode.woff2") format("woff2")',
+			fontVariant: 'normal',
+		},
+		{
+			fontFamily: 'Cascadia Code',
+			src: 'url("/fonts/CascadiaCodeItalic.woff2") format("woff2")',
+			fontStyle: 'italic',
+			fontVariant: 'normal',
+		},
+	],
+	body: {
 		padding: 0,
 		margin: 0,
-		fontFamily:
-			'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif',
+		fontFamily: '$system',
+		backgroundColor: '$bg',
+		accentColor: '$colors$primary',
+		caretColor: '$colors$primary',
 	},
 	a: {
 		color: 'inherit',
@@ -47,10 +97,17 @@ export const globalStyles = globalCss({
 	'*': {
 		boxSizing: 'border-box',
 	},
+	'::selection': {
+		backgroundColor: '$primary',
+		color: '$textOnPrimary',
+	},
 });
 
 export const Container = styled('div', {
-	padding: '0 $2',
+	paddingInline: '$2',
+	marginInline: 'auto',
+	width: '100%',
+	maxWidth: '60ch',
 });
 
 export const Box = styled('div');
@@ -65,78 +122,79 @@ export const BlocksContainer = styled('div', {});
 
 export const CarouselContainer = styled('div', {});
 
-const Button = styled('button', {
-	// Mini reset
+export const Button = styled('button', {
 	appearance: 'none',
 	border: 'none',
 	backgroundColor: 'transparent',
-	lineHeight: 1,
+	lineHeight: '1rem',
 	borderRadius: '99999px',
-	px: '$1',
+	paddingBlock: '$1',
+	paddingInline: '$2',
+	cursor: 'pointer',
+	userSelect: 'none',
+	outline: 'currentColor',
+
+	$$gradient:
+		'linear-gradient(135deg, $colors$primary4, $colors$tertiary4, $colors$secondary4)',
+	'&:hover': {
+		$$gradient:
+			'linear-gradient(135deg, $colors$primary3, $colors$tertiary3, $colors$secondary3)',
+	},
 
 	variants: {
-		size: {
-			1: {
-				fontSize: '13px',
-				height: '25px',
-			},
-			2: {
-				fontSize: '15px',
-				height: '35px',
-			},
-		},
 		variant: {
-			gray: {
-				backgroundColor: '$gray400',
-				'&:hover': {
-					backgroundColor: '$gray500',
-				},
-			},
 			primary: {
-				backgroundColor: '$primary',
-				color: 'white',
-				'&:hover': {
-					backgroundColor: '$primaryDark',
-				},
+				background: '$$gradient',
+				color: '$textOnPrimary',
 			},
 		},
 		outlined: {
 			true: {
-				$$shadowColor: 'transparent',
-				backgroundColor: 'transparent',
-				boxShadow: '0 0 0 1px $$shadowColor',
+				position: 'relative',
+				margin: '$1',
+
+				'&:before': {
+					content: '""',
+					display: 'block',
+					background: '$$gradient',
+					position: 'absolute',
+					top: '-$1',
+					left: '-$1',
+					width: 'calc(100% + (2 * $space$1))',
+					height: 'calc(100% + (2 * $space$1))',
+					borderRadius: 'inherit',
+					zIndex: -1,
+				},
 			},
 		},
 	},
 
 	defaultVariants: {
-		variant: 'gray',
-		size: 1,
+		variant: 'primary',
 	},
 
 	compoundVariants: [
 		{
-			variant: 'gray',
-			outlined: true,
-			css: {
-				$$shadowColor: '$colors$gray400',
-			},
-		},
-		{
 			variant: 'primary',
 			outlined: true,
 			css: {
-				$$shadowColor: '$colors$primary',
-				color: '$primary',
+				color: '$textOnBg',
+				background: '$bg',
 				'&:hover': {
-					color: 'white',
+					background: '$bg',
 				},
 			},
 		},
 	],
 });
 
-const newTheme = createTheme({
+export const lightTheme = createTheme('light-theme', {
+	colors: {
+		primary: '$red400',
+		primaryDark: '$red500',
+	},
+});
+export const darkTheme = createTheme('dark-theme', {
 	colors: {
 		primary: '$red400',
 		primaryDark: '$red500',

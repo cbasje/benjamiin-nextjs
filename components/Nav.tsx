@@ -13,6 +13,7 @@ import { Contact as ContactType } from '@/models/contact';
 import { About as AboutType } from '@/models/about';
 
 import SpotifyPlayer from './SpotifyPlayer';
+import { Button } from '@/stitches.config';
 
 export interface NavProps {
 	locale: Locale;
@@ -132,6 +133,11 @@ const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 			<ul>
 				<li>
 					<SpotifyPlayer />
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<Button outlined>Hey!</Button>
 				</li>
 			</ul>
 		</nav>
