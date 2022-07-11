@@ -27,11 +27,9 @@ export default async function handler(req: NextRequest, res: NextResponse) {
 	const data: SpotifyData = {
 		isPlaying: song.is_playing,
 		title: song.item.name,
-		artist: song.item.artists
-			.map((_artist: any) => _artist.name)
-			.join(', '),
+		artist: song.item.artists.map((_artist: any) => _artist.name),
 		album: song.item.album.name,
-		albumImage: song.item.album.images[0],
+		albumImage: song.item.album.images[2],
 		songUrl: song.item.external_urls.spotify,
 	};
 

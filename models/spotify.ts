@@ -1,7 +1,7 @@
 export interface SpotifyData {
 	isPlaying: boolean;
 	title?: string;
-	artist?: string;
+	artist?: string[];
 	album?: string;
 	albumImage?: AlbumImage;
 	songUrl?: string;

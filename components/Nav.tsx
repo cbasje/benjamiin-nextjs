@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
 import { getLocaleLabel } from '@/util/locale';
 
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
@@ -10,7 +11,6 @@ import { Locale } from '@/models/locale';
 import { Category as CategoryType } from '@/models/category';
 import { Contact as ContactType } from '@/models/contact';
 import { About as AboutType } from '@/models/about';
-import { SpotifyData } from '@/models/spotify';
 
 import SpotifyPlayer from './SpotifyPlayer';
 
@@ -19,10 +19,9 @@ export interface NavProps {
 	categories: CategoryType[];
 	contacts: ContactType[];
 	abouts: AboutType[];
-	spotify: SpotifyData;
 }
 
-const Nav = ({ locale, categories, contacts, abouts, spotify }: NavProps) => {
+const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 	const router = useRouter();
 
 	const about = abouts.find((a) => a.attributes.locale === locale);
@@ -132,7 +131,7 @@ const Nav = ({ locale, categories, contacts, abouts, spotify }: NavProps) => {
 			</ul>
 			<ul>
 				<li>
-					<SpotifyPlayer {...spotify} />
+					<SpotifyPlayer />
 				</li>
 			</ul>
 		</nav>
