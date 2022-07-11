@@ -43,6 +43,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<HomeProps> = async ({ params }) => {
 	const locale = await parseLocale(params?.locale as Locale);
 
+	// FIXME: use tRPC?
 	const baseUrl =
 		process.env.NODE_ENV === 'production'
 			? 'https://next.benjami.in'
