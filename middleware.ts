@@ -11,5 +11,5 @@ export default function middleware(req: NextRequest) {
 
 	// Rewrite the path (`/`) to the localized page (pages/[locale])
 	req.nextUrl.pathname = `/${locale}`;
-	return NextResponse.rewrite(req.nextUrl);
+	return NextResponse.redirect(req.nextUrl);
 }

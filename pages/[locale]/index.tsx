@@ -1,18 +1,15 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
 import { fetchAPI } from '@/lib/api';
-import { getNowPlaying } from '@/lib/spotify';
 import { parseLocale } from '@/util/locale';
 
 import { Project as ProjectType } from '@/models/project';
 import { Homepage as HomepageType } from '@/models/homepage';
 import { Locale } from '@/models/locale';
-import { SpotifyData } from '@/models/spotify';
 
 import ProjectGrid from '@/components/ProjectGrid';
 import Seo from '@/components/Seo';
 import { Box } from '@/stitches.config';
-import SpotifyPlayer from '@/components/SpotifyPlayer';
 
 interface HomeProps {
 	projects: ProjectType[];
