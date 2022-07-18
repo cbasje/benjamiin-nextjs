@@ -1,18 +1,16 @@
 import App from 'next/app';
 import type { AppContext, AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
-import { AnimatePresence } from 'framer-motion';
 import * as Toast from '@radix-ui/react-toast';
+import { AnimatePresence } from 'framer-motion';
 
 import { fetchAPI } from '@/lib/api';
-import { getNowPlaying } from '@/lib/spotify';
 
 import { Locale } from '@/models/locale';
 import { Global as GlobalType } from '@/models/global';
 import { Category as CategoryType } from '@/models/category';
 import { Contact as ContactType } from '@/models/contact';
 import { About as AboutType } from '@/models/about';
-import { SpotifyData } from '@/models/spotify';
 
 import { globalStyles } from '@/stitches.config';
 import Layout, { LayoutProps } from '@/components/Layout';

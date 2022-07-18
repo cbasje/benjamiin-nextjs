@@ -123,10 +123,8 @@ export const BlocksContainer = styled('div', {});
 export const CarouselContainer = styled('div', {});
 
 export const Button = styled('button', {
-	appearance: 'none',
-	border: 'none',
-	backgroundColor: 'transparent',
-	lineHeight: '1rem',
+	all: 'unset',
+
 	borderRadius: '99999px',
 	paddingBlock: '$1',
 	paddingInline: '$2',
@@ -156,13 +154,13 @@ export const Button = styled('button', {
 				'&:before': {
 					content: '""',
 					display: 'block',
-					background: '$$gradient',
+					padding: '$1',
 					position: 'absolute',
-					top: '-$1',
-					left: '-$1',
-					width: 'calc(100% + (2 * $space$1))',
-					height: 'calc(100% + (2 * $space$1))',
+					inset: '-$1',
 					borderRadius: 'inherit',
+					background: '$$gradient',
+					mask: 'linear-gradient(black, black) content-box, linear-gradient(black, black)',
+					maskComposite: 'exclude',
 					zIndex: -1,
 				},
 			},
@@ -179,9 +177,9 @@ export const Button = styled('button', {
 			outlined: true,
 			css: {
 				color: '$textOnBg',
-				background: '$bg',
+				background: 'none',
 				'&:hover': {
-					background: '$bg',
+					background: 'none',
 				},
 			},
 		},
