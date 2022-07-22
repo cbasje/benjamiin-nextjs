@@ -13,7 +13,12 @@ import { Contact as ContactType } from '@/models/contact';
 import { About as AboutType } from '@/models/about';
 
 import SpotifyPlayer from './SpotifyPlayer';
-import { Button } from '@/stitches.config';
+import { Button, styled } from '@/stitches.config';
+import { CaretDown } from 'phosphor-react';
+
+const SelectIcon = styled(Select.Icon, {
+	verticalAlign: 'text-bottom',
+});
 
 export interface NavProps {
 	locale: Locale;
@@ -110,7 +115,9 @@ const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
 					>
 						<Select.Trigger>
 							<Select.Value />
-							<Select.Icon />
+							<SelectIcon asChild>
+								<CaretDown size="1rem" weight="bold" />
+							</SelectIcon>
 						</Select.Trigger>
 
 						<Select.Content>
