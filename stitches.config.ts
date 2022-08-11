@@ -117,12 +117,6 @@ export const Container = styled("div", {
 export const Flex = styled("div", { display: "flex" });
 export const Box = styled("div", {});
 
-export const Banner = styled("div", {
-    width: "100vw",
-    height: "75vh",
-    position: "relative",
-});
-
 export const BlocksContainer = styled("div", {});
 
 export const CarouselContainer = styled("div", {});

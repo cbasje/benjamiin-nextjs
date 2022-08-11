@@ -3,13 +3,12 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import type { ParsedUrlQuery } from "querystring";
 import { motion } from "framer-motion";
-import { violet, blackA, mauve, green, whiteA } from "@radix-ui/colors";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "phosphor-react";
 
 import { fetchAPI } from "@/lib/api";
 import { overlayVariants, pageVariants } from "@/util/transition";
-import { Banner, Container, Flex, styled } from "@/stitches.config";
+import { Container, Flex, styled } from "@/stitches.config";
 
 import { Project as ProjectType } from "@/models/project";
 import { Seo as SeoType } from "@/models/seo";
@@ -20,14 +19,14 @@ import Layout from "@/components/Layout";
 import Picture from "@/components/Picture";
 
 const StyledOverlay = styled(DialogPrimitive.Overlay, {
-    backgroundColor: blackA.blackA9,
+    backgroundColor: "rgb(151 117 250 / 0.25)", // TODO: convert everything to space rgba
     position: "fixed",
     inset: 0,
     zIndex: -1,
 });
 
 const StyledContent = styled(DialogPrimitive.Content, {
-    backgroundColor: "white",
+    backgroundColor: "$bg",
     borderTopLeftRadius: 6,
     borderTopRightRadius: 6,
     marginTop: "4em",
@@ -41,50 +40,15 @@ const StyledContent = styled(DialogPrimitive.Content, {
 const StyledTitle = styled(DialogPrimitive.Title, {
     margin: 0,
     fontWeight: 500,
-    color: mauve.mauve12,
+    color: "$textOnBg",
     fontSize: 17,
 });
 
 const StyledDescription = styled(DialogPrimitive.Description, {
     margin: "10px 0 20px",
-    color: mauve.mauve11,
+    color: "$textOnBg",
     fontSize: 15,
     lineHeight: 1.5,
-});
-
-const Button = styled("button", {
-    all: "unset",
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 4,
-    padding: "0 15px",
-    fontSize: 15,
-    lineHeight: 1,
-    fontWeight: 500,
-    height: 35,
-
-    variants: {
-        variant: {
-            violet: {
-                backgroundColor: "white",
-                color: violet.violet11,
-                boxShadow: `0 2px 10px ${blackA.blackA7}`,
-                "&:hover": { backgroundColor: mauve.mauve3 },
-                "&:focus": { boxShadow: `0 0 0 2px black` },
-            },
-            green: {
-                backgroundColor: green.green4,
-                color: green.green11,
-                "&:hover": { backgroundColor: green.green5 },
-                "&:focus": { boxShadow: `0 0 0 2px ${green.green7}` },
-            },
-        },
-    },
-
-    defaultVariants: {
-        variant: "violet",
-    },
 });
 
 const IconButton = styled("button", {
@@ -96,7 +60,7 @@ const IconButton = styled("button", {
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    color: whiteA.whiteA12,
+    color: "$gray8",
     position: "fixed",
     top: ".5em",
     right: ".5em",
@@ -104,8 +68,8 @@ const IconButton = styled("button", {
     pointerEvents: "all",
     zIndex: 1,
 
-    "&:hover": { backgroundColor: violet.violet8 },
-    "&:focus": { boxShadow: `0 0 0 2px ${violet.violet7}` },
+    "&:hover": { backgroundColor: "$primary4", color: "$gray0" },
+    "&:focus": { boxShadow: "0 0 0 2px $primary4" },
 });
 
 const Content = ({ children, ...props }: { children: ReactNode }) => {
@@ -137,6 +101,12 @@ export const DialogContent = Content;
 export const DialogTitle = StyledTitle;
 export const DialogDescription = StyledDescription;
 export const DialogClose = DialogPrimitive.Close;
+
+export const Banner = styled("div", {
+    width: "100vw",
+    height: "75vh",
+    position: "relative",
+});
 
 interface ProjectProps {
     project: ProjectType;
