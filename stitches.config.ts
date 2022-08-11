@@ -166,9 +166,9 @@ export const Button = styled("button", {
                     background: "$$gradient",
                     mask: "linear-gradient(black, black) content-box, linear-gradient(black, black)",
                     maskComposite: "exclude",
-                    "-webkit-mask":
+                    WebkitMask:
                         "linear-gradient(black, black) content-box, linear-gradient(black, black)",
-                    "-webkit-mask-composite": "xor",
+                    WebkitMaskComposite: "xor",
                     zIndex: -1,
                 },
             },
