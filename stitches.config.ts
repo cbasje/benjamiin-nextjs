@@ -54,6 +54,10 @@ export const { globalCss, styled, getCssText, createTheme } = createStitches({
         space: {
             1: "0.5rem",
             2: "1rem",
+            3: "1.5rem",
+            4: "2rem",
+            5: "2.5rem",
+            6: "3rem",
         },
         fonts: {
             system: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Droid Sans, Helvetica Neue, sans-serif",

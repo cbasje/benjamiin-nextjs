@@ -121,7 +121,7 @@ const Content = ({ children, ...props }: { children: ReactNode }) => {
             </motion.div>
             <motion.div variants={pageVariants}>
                 <StyledContent {...props}>
-                    <Container css={{ minHeight: "100%", paddingY: "$6" }}>
+                    <Container css={{ minHeight: "100%", paddingBlock: "$6" }}>
                         {children}
                     </Container>
                 </StyledContent>
@@ -201,12 +201,6 @@ const Project = ({ project }: ProjectProps) => {
                     </Banner>
 
                     <BlockManager blocks={project.attributes.blocks} />
-
-                    <Flex css={{ marginTop: 25, justifyContent: "flex-end" }}>
-                        <DialogClose asChild>
-                            <Button variant="green">Save changes</Button>
-                        </DialogClose>
-                    </Flex>
                 </DialogContent>
             </Dialog>
         </Layout>

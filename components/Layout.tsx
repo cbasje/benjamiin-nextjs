@@ -1,11 +1,9 @@
 import { ReactNode } from "react";
 import { motion, Variants } from "framer-motion";
 
-import Nav, { NavProps } from "./Nav";
 import Seo from "./Seo";
 import { styled } from "@/stitches.config";
 
-import { Locale } from "@/models/locale";
 import { Seo as SeoType } from "@/models/seo";
 
 export interface LayoutProps {
