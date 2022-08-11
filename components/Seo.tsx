@@ -3,11 +3,13 @@ import Head from "next/head";
 import { getStrapiMedia } from "@/lib/media";
 
 import { Seo as SeoType } from "@/models/seo";
-import { useRecoilValue } from "recoil";
-import { globalState } from "@/store/atoms";
+
+import { useGlobal } from "@/contexts/GlobalContext";
 
 const Seo = ({ seo }: { seo?: SeoType }) => {
-    const { defaultSeo, siteName } = useRecoilValue(globalState);
+    const {
+        global: { defaultSeo, siteName },
+    } = useGlobal();
 
     const seoWithDefaults: SeoType = {
         ...defaultSeo,

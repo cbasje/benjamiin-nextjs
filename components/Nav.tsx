@@ -15,6 +15,7 @@ import { About as AboutType } from "@/models/about";
 import SpotifyPlayer from "./SpotifyPlayer";
 import { Button, styled } from "@/stitches.config";
 import { CaretDown } from "phosphor-react";
+import { useGlobal } from "@/contexts/GlobalContext";
 
 const SelectIcon = styled(Select.Icon, {
     verticalAlign: "text-bottom",
@@ -26,7 +27,9 @@ export interface NavProps {
     abouts: AboutType[];
 }
 
-const Nav = ({ categories, contacts, abouts }: NavProps) => {
+const Nav = () => {
+    const { categories, contacts, abouts } = useGlobal();
+
     const router = useRouter();
 
     const locale = router.query.locale as Locale;

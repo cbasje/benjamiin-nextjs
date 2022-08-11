@@ -1,12 +1,11 @@
 import { ReactNode } from "react";
 import App from "next/app";
 import type { AppContext, AppProps } from "next/app";
-import { RecoilRoot, useSetRecoilState } from "recoil";
 import * as Toast from "@radix-ui/react-toast";
 import { AnimatePresence } from "framer-motion";
 
 import { fetchAPI } from "@/lib/api";
-import { globalState } from "@/store/atoms";
+import { globalStyles } from "@/stitches.config";
 
 import { Locale } from "@/models/locale";
 import { Global as GlobalType } from "@/models/global";
@@ -14,28 +13,11 @@ import { Category as CategoryType } from "@/models/category";
 import { Contact as ContactType } from "@/models/contact";
 import { About as AboutType } from "@/models/about";
 
-import { globalStyles } from "@/stitches.config";
+import { GlobalProvider } from "@/contexts/GlobalContext";
 import { NavProps } from "@/components/Nav";
 
 // FIXME: move to @/stitches.config
 import "@/util/prism.css";
-
-const MyAppContainer = ({
-    children,
-    global,
-}: {
-    children: ReactNode;
-    global: GlobalType;
-}) => {
-    const setGlobal = useSetRecoilState(globalState);
-    setGlobal(global.attributes);
-
-    return (
-        <AnimatePresence exitBeforeEnter initial={false}>
-            {children}
-        </AnimatePresence>
-    );
-};
 
 interface MyAppProps extends NavProps {
     global: GlobalType;
@@ -48,15 +30,20 @@ const MyApp = ({ Component, pageProps, router }: AppProps) => {
 
     return (
         <>
-            <RecoilRoot>
+            <GlobalProvider
+                props={{
+                    global: global.attributes,
+                    categories,
+                    contacts,
+                    abouts,
+                }}
+            >
                 <Toast.Provider>
-                    <MyAppContainer
-                        {...{ global, categories, contacts, abouts }}
-                    >
+                    <AnimatePresence exitBeforeEnter initial={false}>
                         <Component {...pageProps} key={router.route} />
-                    </MyAppContainer>
+                    </AnimatePresence>
                 </Toast.Provider>
-            </RecoilRoot>
+            </GlobalProvider>
         </>
     );
 };
