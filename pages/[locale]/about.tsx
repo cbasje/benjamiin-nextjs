@@ -1,12 +1,15 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 
+import { fetchAPI } from "@/lib/api";
+import { pageVariants } from "@/util/transition";
+import { Container } from "@/stitches.config";
+
 import { About as AboutType } from "@/models/about";
 import { Locale } from "@/models/locale";
 
-import Seo from "@/components/Seo";
+import Layout from "@/components/Layout";
 import BlockManager from "@/components/BlockManager";
-import { fetchAPI } from "@/lib/api";
-import { Box } from "@/stitches.config";
+import Nav from "@/components/Nav";
 
 interface AboutProps {
     about: AboutType;
@@ -14,16 +17,15 @@ interface AboutProps {
 
 const About = ({ about }: AboutProps) => {
     return (
-        <>
-            <Seo seo={about.attributes.seo} />
-            <Box>
+        <Layout variants={pageVariants} seo={about.attributes.seo}>
+            <Nav />
+            <Container css={{ paddingBlock: "$6" }}>
                 <h1>{about.attributes.title}</h1>
                 <p>{about.attributes.description}</p>
-            </Box>
-            <Box>
+
                 <BlockManager blocks={about.attributes.blocks} />
-            </Box>
-        </>
+            </Container>
+        </Layout>
     );
 };
 

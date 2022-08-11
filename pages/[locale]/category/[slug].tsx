@@ -2,14 +2,16 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 import type { ParsedUrlQuery } from "querystring";
 
 import { fetchAPI } from "@/lib/api";
+import { pageVariants } from "@/util/transition";
+import { Container } from "@/stitches.config";
 
 import { Category as CategoryType } from "@/models/category";
 import { Seo as SeoType } from "@/models/seo";
 import { Locale } from "@/models/locale";
 
 import ProjectGrid from "@/components/ProjectGrid";
-import Seo from "@/components/Seo";
-import { Box } from "@/stitches.config";
+import Layout from "@/components/Layout";
+import Nav from "@/components/Nav";
 
 interface CategoryProps {
     category: CategoryType;
@@ -22,15 +24,15 @@ const Category = ({ category }: CategoryProps) => {
     };
 
     return (
-        <>
-            <Seo seo={seo} />
-            <Box>
+        <Layout variants={pageVariants} seo={seo}>
+            <Nav />
+            <Container css={{ paddingBlock: "$6" }}>
                 <h1>{category.attributes.title}</h1>
                 <ProjectGrid
                     projects={category.attributes.projects?.data || []}
                 />
-            </Box>
-        </>
+            </Container>
+        </Layout>
     );
 };
 

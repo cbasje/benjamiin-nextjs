@@ -16,7 +16,6 @@ const Card = ({ project }: { project: ProjectType }) => {
         >
             <>
                 <motion.div
-                    layoutId={`cover-${project.attributes.slug}`}
                     style={{
                         width: "16vmax",
                         height: "9vmax",
@@ -29,10 +28,7 @@ const Card = ({ project }: { project: ProjectType }) => {
                     />
                 </motion.div>
                 <div>
-                    <motion.h1
-                        layoutId={`title-${project.attributes.slug}`}
-                        style={{ width: "fit-content" }}
-                    >
+                    <motion.h1 style={{ width: "fit-content" }}>
                         {project.attributes.title}
                     </motion.h1>
                     <p>{project.attributes.category.data?.attributes.title}</p>

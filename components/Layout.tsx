@@ -1,35 +1,37 @@
 import { ReactNode } from "react";
-import { useSetRecoilState } from "recoil";
+import { motion, Variants } from "framer-motion";
 
 import Nav, { NavProps } from "./Nav";
-import { globalState } from "@/store/atoms";
-import { Container } from "@/stitches.config";
+import Seo from "./Seo";
+import { styled } from "@/stitches.config";
 
 import { Locale } from "@/models/locale";
-import { Global as GlobalType } from "@/models/global";
+import { Seo as SeoType } from "@/models/seo";
 
-export interface LayoutProps extends NavProps {
-    global: GlobalType;
+export interface LayoutProps {
+    seo?: SeoType;
     children: ReactNode;
-    locale: Locale;
+    variants?: Variants;
 }
 
-const Layout = ({
-    global,
-    children,
-    locale,
-    categories,
-    contacts,
-    abouts,
-}: LayoutProps) => {
-    const setGlobal = useSetRecoilState(globalState);
-    setGlobal(global.attributes);
+const AnimateContainer = styled(motion.div, {
+    width: "100%",
+    height: "100%",
+});
 
+const Layout = ({ seo, children, variants }: LayoutProps) => {
     return (
-        <Container>
-            <Nav {...{ locale, categories, contacts, abouts }} />
-            {children}
-        </Container>
+        <>
+            <Seo seo={seo} />
+            <AnimateContainer
+                initial="exit"
+                animate="enter"
+                exit="exit"
+                variants={variants}
+            >
+                {children}
+            </AnimateContainer>
+        </>
     );
 };
 

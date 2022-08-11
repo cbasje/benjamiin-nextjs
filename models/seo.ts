@@ -1,3 +1,4 @@
+import { Locale } from "./locale";
 import { Picture } from "./picture";
 
 export interface Seo {
@@ -5,5 +6,5 @@ export interface Seo {
     metaDescription?: string;
     shareImage?: { data?: Picture };
     isArticle?: boolean;
-    locale?: string;
+    locale?: Locale;
 }

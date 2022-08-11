@@ -104,13 +104,14 @@ export const globalStyles = globalCss({
 });
 
 export const Container = styled("div", {
-    paddingInline: "$2",
-    marginInline: "auto",
     width: "100%",
     maxWidth: "60ch",
+    marginInline: "auto",
+    paddingInline: "$2",
 });
 
-export const Box = styled("div");
+export const Flex = styled("div", { display: "flex" });
+export const Box = styled("div", {});
 
 export const Banner = styled("div", {
     width: "100vw",
@@ -161,6 +162,9 @@ export const Button = styled("button", {
                     background: "$$gradient",
                     mask: "linear-gradient(black, black) content-box, linear-gradient(black, black)",
                     maskComposite: "exclude",
+                    "-webkit-mask":
+                        "linear-gradient(black, black) content-box, linear-gradient(black, black)",
+                    "-webkit-mask-composite": "xor",
                     zIndex: -1,
                 },
             },

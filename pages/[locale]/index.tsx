@@ -2,14 +2,16 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 
 import { fetchAPI } from "@/lib/api";
 import { parseLocale } from "@/util/locale";
+import { pageVariants } from "@/util/transition";
+import { Container } from "@/stitches.config";
 
 import { Project as ProjectType } from "@/models/project";
 import { Homepage as HomepageType } from "@/models/homepage";
 import { Locale } from "@/models/locale";
 
 import ProjectGrid from "@/components/ProjectGrid";
-import Seo from "@/components/Seo";
-import { Box } from "@/stitches.config";
+import Layout from "@/components/Layout";
+import Nav from "@/components/Nav";
 
 interface HomeProps {
     projects: ProjectType[];
@@ -18,13 +20,13 @@ interface HomeProps {
 
 const Home = ({ projects, homepage }: HomeProps) => {
     return (
-        <>
-            <Seo seo={homepage.attributes.seo} />
-            <Box>
+        <Layout variants={pageVariants} seo={homepage.attributes.seo}>
+            <Nav />
+            <Container css={{ paddingBlock: "$6" }}>
                 <h1>{homepage.attributes.title}</h1>
                 <ProjectGrid projects={projects} />
-            </Box>
-        </>
+            </Container>
+        </Layout>
     );
 };
 

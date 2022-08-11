@@ -21,14 +21,15 @@ const SelectIcon = styled(Select.Icon, {
 });
 
 export interface NavProps {
-    locale: Locale;
     categories: CategoryType[];
     contacts: ContactType[];
     abouts: AboutType[];
 }
 
-const Nav = ({ locale, categories, contacts, abouts }: NavProps) => {
+const Nav = ({ categories, contacts, abouts }: NavProps) => {
     const router = useRouter();
+
+    const locale = router.query.locale as Locale;
 
     const about = abouts.find((a) => a.attributes.locale === locale);
     const contact = contacts.find((c) => c.attributes.locale === locale);
