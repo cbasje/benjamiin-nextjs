@@ -1,13 +1,13 @@
-import { Picture } from './picture';
-import { Seo } from './seo';
+import { Picture } from "./picture";
+import { Seo } from "./seo";
 
 export interface Global {
-	id: number;
-	attributes: GlobalAttributes;
+    id: number;
+    attributes: GlobalAttributes;
 }
 
 export interface GlobalAttributes {
-	siteName: string;
-	siteDescription: string;
-	defaultSeo: Seo;
+    siteName: string;
+    siteDescription: string;
+    defaultSeo: Seo;
 }

@@ -1,14 +1,14 @@
 export interface SpotifyData {
-	isPlaying: boolean;
-	title?: string;
-	artist?: string;
-	album?: string;
-	albumImage?: AlbumImage;
-	songUrl?: string;
+    isPlaying: boolean;
+    title?: string;
+    artist?: string;
+    album?: string;
+    albumImage?: AlbumImage;
+    songUrl?: string;
 }
 
 interface AlbumImage {
-	url: string;
-	width: number;
-	height: number;
+    url: string;
+    width: number;
+    height: number;
 }
