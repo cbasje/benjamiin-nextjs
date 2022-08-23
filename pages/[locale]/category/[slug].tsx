@@ -26,7 +26,7 @@ const Category = ({ category }: CategoryProps) => {
     return (
         <Layout variants={pageVariants} seo={seo}>
             <Nav />
-            <Container css={{ paddingBlock: "$6" }}>
+            <Container paddingY>
                 <h1>{category.attributes.title}</h1>
                 <ProjectGrid
                     projects={category.attributes.projects?.data || []}

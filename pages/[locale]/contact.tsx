@@ -62,7 +62,7 @@ const Contact = ({ contact }: ContactProps) => {
     return (
         <Layout variants={pageVariants} seo={contact.attributes.seo}>
             <Nav />
-            <Container css={{ paddingBlock: "$6" }}>
+            <Container paddingY>
                 <Box>
                     <h1>{contact.attributes.title}</h1>
                     <p>{contact.attributes.description}</p>

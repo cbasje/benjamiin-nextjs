@@ -22,7 +22,7 @@ const Home = ({ projects, homepage }: HomeProps) => {
     return (
         <Layout variants={pageVariants} seo={homepage.attributes.seo}>
             <Nav />
-            <Container css={{ paddingBlock: "$6" }}>
+            <Container paddingY>
                 <h1>{homepage.attributes.title}</h1>
                 <ProjectGrid projects={projects} />
             </Container>

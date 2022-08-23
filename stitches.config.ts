@@ -107,11 +107,32 @@ export const globalStyles = globalCss({
     },
 });
 
+export const lightTheme = createTheme("light-theme", {
+    colors: {
+        primary: "$red400",
+        primaryDark: "$red500",
+    },
+});
+export const darkTheme = createTheme("dark-theme", {
+    colors: {
+        primary: "$red400",
+        primaryDark: "$red500",
+    },
+});
+
 export const Container = styled("div", {
     width: "100%",
     maxWidth: "60ch",
     marginInline: "auto",
     paddingInline: "$2",
+
+    variants: {
+        paddingY: {
+            true: {
+                paddingBlock: "$6",
+            },
+        },
+    },
 });
 
 export const Flex = styled("div", { display: "flex" });
@@ -186,17 +207,4 @@ export const Button = styled("button", {
             },
         },
     ],
-});
-
-export const lightTheme = createTheme("light-theme", {
-    colors: {
-        primary: "$red400",
-        primaryDark: "$red500",
-    },
-});
-export const darkTheme = createTheme("dark-theme", {
-    colors: {
-        primary: "$red400",
-        primaryDark: "$red500",
-    },
 });

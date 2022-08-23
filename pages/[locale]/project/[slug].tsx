@@ -7,7 +7,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "phosphor-react";
 
 import { fetchAPI } from "@/lib/api";
-import { overlayVariants, pageVariants } from "@/util/transition";
+import { dialogOverlayVariants, dialogVariants } from "@/util/transition";
 import { Container, Flex, styled } from "@/stitches.config";
 
 import { Project as ProjectType } from "@/models/project";
@@ -75,7 +75,7 @@ const IconButton = styled("button", {
 const Content = ({ children, ...props }: { children: ReactNode }) => {
     return (
         <>
-            <motion.div variants={overlayVariants}>
+            <motion.div variants={dialogOverlayVariants}>
                 <StyledOverlay />
                 <DialogClose asChild>
                     <IconButton aria-label="Close">
@@ -83,9 +83,9 @@ const Content = ({ children, ...props }: { children: ReactNode }) => {
                     </IconButton>
                 </DialogClose>
             </motion.div>
-            <motion.div variants={pageVariants}>
+            <motion.div variants={dialogVariants}>
                 <StyledContent {...props}>
-                    <Container css={{ minHeight: "100%", paddingBlock: "$6" }}>
+                    <Container paddingY css={{ minHeight: "100%" }}>
                         {children}
                     </Container>
                 </StyledContent>

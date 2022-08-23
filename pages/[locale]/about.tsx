@@ -19,7 +19,7 @@ const About = ({ about }: AboutProps) => {
     return (
         <Layout variants={pageVariants} seo={about.attributes.seo}>
             <Nav />
-            <Container css={{ paddingBlock: "$6" }}>
+            <Container paddingY>
                 <h1>{about.attributes.title}</h1>
                 <p>{about.attributes.description}</p>
 

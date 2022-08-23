@@ -7,6 +7,14 @@ export const transition: Transition = {
 };
 
 export const pageVariants: Variants = {
+    exit: { opacity: 0, transition },
+    enter: {
+        opacity: 1,
+        transition,
+    },
+};
+
+export const dialogVariants: Variants = {
     exit: { y: 150, opacity: 0, transition },
     enter: {
         y: 0,
@@ -15,7 +23,7 @@ export const pageVariants: Variants = {
     },
 };
 
-export const overlayVariants: Variants = {
+export const dialogOverlayVariants: Variants = {
     exit: { opacity: 0, transition },
     enter: {
         opacity: 1,
