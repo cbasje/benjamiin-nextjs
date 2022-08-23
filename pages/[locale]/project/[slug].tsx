@@ -19,7 +19,7 @@ import Layout from "@/components/Layout";
 import Picture from "@/components/Picture";
 
 const StyledOverlay = styled(DialogPrimitive.Overlay, {
-    backgroundColor: "rgb(151 117 250 / 0.25)", // TODO: convert everything to space rgba
+    backgroundColor: "rgb(33 37 41 / 35%)", // TODO: convert everything to space rgba
     position: "fixed",
     inset: 0,
     zIndex: -1,
@@ -60,7 +60,7 @@ const IconButton = styled("button", {
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    color: "$gray8",
+    color: "$gray0",
     position: "fixed",
     top: ".5em",
     right: ".5em",
@@ -68,8 +68,8 @@ const IconButton = styled("button", {
     pointerEvents: "all",
     zIndex: 1,
 
-    "&:hover": { backgroundColor: "$primary4", color: "$gray0" },
-    "&:focus": { boxShadow: "0 0 0 2px $primary4" },
+    "&:hover": { backgroundColor: "$purple4" },
+    "&:focus": { boxShadow: "0 0 0 2px $purple4" },
 });
 
 const Content = ({ children, ...props }: { children: ReactNode }) => {
