@@ -59,6 +59,11 @@ export const { globalCss, styled, getCssText, createTheme } = createStitches({
             5: "2.5rem",
             6: "3rem",
         },
+        radii: {
+            sm: "0.5rem",
+            md: "1rem",
+            lg: "1.5rem",
+        },
         fonts: {
             system: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Droid Sans, Helvetica Neue, sans-serif",
             code: "Cascadia Code, monospace",
@@ -93,6 +98,7 @@ export const globalStyles = globalCss({
         backgroundColor: "$bg",
         accentColor: "$colors$primary",
         caretColor: "$colors$primary",
+        fontSize: "1rem",
     },
     a: {
         color: "inherit",
@@ -153,7 +159,7 @@ export const Button = styled("button", {
     outline: "currentColor",
 
     $$gradient:
-        "linear-gradient(135deg, $colors$purple4, $colors$blue, $colors$green4)",
+        "linear-gradient(135deg, $colors$purple4, $colors$blue4, $colors$green4)",
     "&:hover": {
         $$gradient:
             "linear-gradient(135deg, $colors$purple3, $colors$blue3, $colors$green3)",

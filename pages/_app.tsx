@@ -16,9 +16,6 @@ import { About as AboutType } from "@/models/about";
 import { GlobalProvider } from "@/contexts/GlobalContext";
 import { NavProps } from "@/components/Nav";
 
-// FIXME: move to @/stitches.config
-import "@/util/prism.css";
-
 interface MyAppProps extends NavProps {
     global: GlobalType;
 }
