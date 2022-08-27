@@ -3,6 +3,7 @@ import { Picture } from "./picture";
 export type Block =
     | RichTextBlock
     | CodeBlock
+    | IframeBlock
     | PictureBlock
     | CarouselBlock
     | QuoteBlock;
@@ -30,6 +31,10 @@ export interface RichTextBlock extends BaseBlock {
 export interface CodeBlock extends BaseBlock {
     body: string;
     lang: CodeLang;
+}
+
+export interface IframeBlock extends BaseBlock {
+    url: string;
 }
 
 export interface PictureBlock extends BaseBlock {
