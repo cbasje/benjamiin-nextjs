@@ -5,7 +5,7 @@ export default class Document extends NextDocument {
     render() {
         return (
             // TODO: update lang
-            <Html>
+            <Html lang="en">
                 <Head>
                     <style
                         id="stitches"

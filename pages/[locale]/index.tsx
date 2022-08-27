@@ -24,6 +24,8 @@ const Home = ({ projects, homepage }: HomeProps) => {
             <Nav />
             <Container paddingY>
                 <h1>{homepage.attributes.title}</h1>
+                <p>{homepage.attributes.description}</p>
+
                 <ProjectGrid projects={projects} />
             </Container>
         </Layout>

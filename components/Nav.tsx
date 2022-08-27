@@ -128,7 +128,11 @@ const Nav = () => {
                             <Select.ScrollUpButton />
                             <Select.Viewport>
                                 {Object.values(Locale).map((l) => (
-                                    <Select.Item key={`locale-${l}`} value={l}>
+                                    <Select.Item
+                                        key={`locale-${l}`}
+                                        value={l}
+                                        lang={l}
+                                    >
                                         <Select.ItemText>
                                             {getLocaleLabel(l)}
                                         </Select.ItemText>
