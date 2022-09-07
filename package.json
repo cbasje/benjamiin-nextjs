@@ -19,7 +19,7 @@
         "@radix-ui/react-toast": "^0.1.1",
         "@radix-ui/react-visually-hidden": "^0.1.4",
         "@stitches/react": "^1.2.8",
-        "framer-motion": "^7.2.1",
+        "framer-motion": "^7.3.2",
         "isomorphic-unfetch": "^3.1.0",
         "moment": "^2.29.4",
         "next": "^12.2.5",
