@@ -47,9 +47,11 @@ export const { globalCss, styled, getCssText, createTheme } = createStitches({
 
             primary: "$purple3",
             primaryDark: "$purple5",
-            textOnPrimary: "$gray0",
+            textOnPrimary: "$gray1",
+            displayOnPrimary: "$gray0",
             bg: "$gray0",
-            textOnBg: "$gray9",
+            textOnBg: "$gray8",
+            displayOnBg: "$gray9",
         },
         space: {
             1: "0.5rem",
@@ -82,7 +84,8 @@ export const { globalCss, styled, getCssText, createTheme } = createStitches({
 export const globalStyles = globalCss({
     "h1, h2, h3, h4, h5, h6": {
         fontFamily: "$display",
-        fontWeight: 500,
+        fontWeight: 600,
+        color: "$displayOnBg",
 
         "&, p": {
             overflowWrap: "break-word",
@@ -93,6 +96,7 @@ export const globalStyles = globalCss({
         margin: 0,
         fontFamily: "$text",
         backgroundColor: "$bg",
+        color: "$textOnBg",
         accentColor: "$colors$primary",
         caretColor: "$colors$primary",
         fontSize: "1rem",
@@ -114,13 +118,13 @@ export const globalStyles = globalCss({
     },
 });
 
-export const lightTheme = createTheme("light-theme", {
+export const lightTheme = createTheme("light", {
     colors: {
         primary: "$red400",
         primaryDark: "$red500",
     },
 });
-export const darkTheme = createTheme("dark-theme", {
+export const darkTheme = createTheme("dark", {
     colors: {
         primary: "$red400",
         primaryDark: "$red500",
@@ -152,7 +156,6 @@ export const CarouselContainer = styled("div", {});
 export const Button = styled("button", {
     all: "unset",
 
-    borderRadius: "99999px",
     paddingBlock: "$1",
     paddingInline: "$2",
     cursor: "pointer",
