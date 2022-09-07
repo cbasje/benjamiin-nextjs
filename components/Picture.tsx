@@ -1,10 +1,9 @@
 import Image from "next/future/image";
 
-import { Picture as PictureType } from "@/models/picture";
+import { Picture as PictureSrc } from "lib/types";
 
-import { getStrapiMedia } from "@/lib/media";
-import { CSSProperties } from "@stitches/react";
 import { styled } from "@/stitches.config";
+import { urlFor } from "@/lib/sanity";
 
 const StyledImage = styled(Image, {
     objectFit: "cover",
@@ -22,22 +21,32 @@ const StyledImage = styled(Image, {
 const Picture = ({
     src,
     fillContainer,
+    width = 2048,
+    height = 1080,
 }: {
-    src?: PictureType;
+    src?: PictureSrc;
     fillContainer?: boolean;
+    width?: number;
+    height?: number;
 }) => {
     // FIXME: If no src is provided, return an error
     if (!src) return <p>Not found</p>;
 
-    const { alternativeText, width, height } = src.attributes;
+    // const { alternativeText, width, height } = src;
     return (
         <StyledImage
-            width={width}
-            height={height}
-            src={getStrapiMedia(src)}
-            alt={alternativeText || ""}
+            width={1000}
+            height={562.5}
+            src={urlFor(src)
+                .width(width)
+                .height(height)
+                .auto("format")
+                .fit("max")
+                .url()}
+            alt={""}
             fill={fillContainer}
         />
+        // <div>{urlFor(src).auto("format").fit("max").url()}</div>
     );
 };
 

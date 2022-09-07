@@ -1,52 +1,49 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 import type { ParsedUrlQuery } from "querystring";
 
-import { fetchAPI } from "@/lib/api";
-import { pageVariants } from "@/util/transition";
+import { categoryQuery, categorySlugsQuery } from "@/lib/queries";
+import { getClient, sanityClient } from "@/lib/sanity-server";
+import { parseLocale } from "@/lib/locale";
+import { pageVariants } from "@/lib/transition";
 import { Container } from "@/stitches.config";
 
-import { Category as CategoryType } from "@/models/category";
-import { Seo as SeoType } from "@/models/seo";
-import { Locale } from "@/models/locale";
+import { Category, Seo, Locale } from "@/lib/types";
 
 import ProjectGrid from "@/components/ProjectGrid";
 import Layout from "@/components/Layout";
 import Nav from "@/components/Nav";
 
 interface CategoryProps {
-    category: CategoryType;
+    category: Category;
 }
 
-const Category = ({ category }: CategoryProps) => {
-    const seo: SeoType = {
-        metaTitle: category.attributes.title,
-        metaDescription: `All ${category.attributes.title} projects`,
+const CategoryPage = ({ category }: CategoryProps) => {
+    const seo: Seo = {
+        metaTitle: category.title,
+        metaDescription: `All ${category.title} projects`,
     };
 
     return (
         <Layout variants={pageVariants} seo={seo}>
             <Nav />
             <Container paddingY>
-                <h1>{category.attributes.title}</h1>
-                <ProjectGrid
-                    projects={category.attributes.projects?.data || []}
-                />
+                <h1>{category.title}</h1>
+                <ProjectGrid projects={category.projects || []} />
             </Container>
         </Layout>
     );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const categoriesRes = await fetchAPI<CategoryType[]>("/categories", {
-        fields: ["slug", "locale"],
-        locale: "all",
-    });
+    const categoriesRes = await sanityClient.fetch<Category[]>(
+        categorySlugsQuery
+    );
 
     return {
-        paths: categoriesRes.data.map((category: CategoryType) => ({
+        paths: categoriesRes.map((category: Category) => ({
             params: {
-                slug: category.attributes.slug,
-                locale: category.attributes.locale,
+                slug: category.slug,
+                locale: category.locale,
             },
         })),
         fallback: "blocking",
@@ -56,27 +53,24 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<
     CategoryProps,
     ParsedUrlQuery
-> = async ({ params }) => {
-    const { locale, slug } = params as { locale: Locale; slug: string };
+> = async ({ params, preview = false }) => {
+    const slug = params?.slug;
+    const locale = await parseLocale(params?.locale as Locale);
 
-    const [matchingCategoriesRes] = await Promise.all([
-        fetchAPI<CategoryType[]>("/categories", {
-            filters: { slug },
-            populate: {
-                projects: {
-                    populate: "*",
-                },
-            },
+    const { category } = await getClient(preview).fetch<{ category: Category }>(
+        categoryQuery,
+        {
+            slug,
             locale,
-        }),
-    ]);
+        }
+    );
 
     return {
         props: {
-            category: matchingCategoriesRes.data[0],
+            category,
         },
         revalidate: 1,
     };
 };
 
-export default Category;
+export default CategoryPage;

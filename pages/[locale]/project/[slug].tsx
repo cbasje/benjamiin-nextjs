@@ -6,17 +6,15 @@ import { motion } from "framer-motion";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "phosphor-react";
 
-import { fetchAPI } from "@/lib/api";
-import { dialogOverlayVariants, dialogVariants } from "@/util/transition";
-import { Container, Flex, styled } from "@/stitches.config";
-
-import { Project as ProjectType } from "@/models/project";
-import { Seo as SeoType } from "@/models/seo";
-import { Locale } from "@/models/locale";
-
-import BlockManager from "@/components/BlockManager";
 import Layout from "@/components/Layout";
 import Picture from "@/components/Picture";
+import { Container, styled } from "@/stitches.config";
+
+import { dialogOverlayVariants, dialogVariants } from "@/lib/transition";
+import { sanityClient, getClient } from "@/lib/sanity-server";
+import { projectQuery, projectSlugsQuery } from "@/lib/queries";
+import { Project, Seo, Locale } from "@/lib/types";
+import { parseLocale } from "@/lib/locale";
 
 const StyledOverlay = styled(DialogPrimitive.Overlay, {
     backgroundColor: "rgb(33 37 41 / 35%)", // TODO: convert everything to space rgba
@@ -109,14 +107,14 @@ export const Banner = styled("div", {
 });
 
 interface ProjectProps {
-    project: ProjectType;
+    project: Project;
 }
 
-const Project = ({ project }: ProjectProps) => {
-    const seo: SeoType = {
-        metaTitle: project.attributes.title,
-        metaDescription: project.attributes.description,
-        shareImage: project.attributes.cover,
+const ProjectPage = ({ project }: ProjectProps) => {
+    const seo: Seo = {
+        metaTitle: project.title,
+        metaDescription: project.description,
+        shareImage: project.mainImage,
         isArticle: true,
     };
 
@@ -130,10 +128,8 @@ const Project = ({ project }: ProjectProps) => {
         <Layout seo={seo}>
             <Dialog open={true} onOpenChange={(e) => !e && router.push("/")}>
                 <DialogContent>
-                    <DialogTitle>{project.attributes.title}</DialogTitle>
-                    <DialogDescription>
-                        {project.attributes.description}
-                    </DialogDescription>
+                    <DialogTitle>{project.title}</DialogTitle>
+                    <DialogDescription>{project.description}</DialogDescription>
 
                     <Banner>
                         <motion.div
@@ -143,10 +139,7 @@ const Project = ({ project }: ProjectProps) => {
                                 position: "relative",
                             }}
                         >
-                            <Picture
-                                src={project.attributes.cover.data}
-                                fillContainer
-                            />
+                            <Picture src={project.mainImage} fillContainer />
                         </motion.div>
 
                         <div
@@ -165,12 +158,13 @@ const Project = ({ project }: ProjectProps) => {
                                     color: "white",
                                 }}
                             >
-                                {project.attributes.title}
+                                {project.title}
                             </motion.h1>
                         </div>
                     </Banner>
 
-                    <BlockManager blocks={project.attributes.blocks} />
+                    {/* <BlockManager blocks={project.attributes.blocks} /> */}
+                    <div>{project.body}</div>
                 </DialogContent>
             </Dialog>
         </Layout>
@@ -178,16 +172,13 @@ const Project = ({ project }: ProjectProps) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const projectsRes = await fetchAPI<ProjectType[]>("/projects", {
-        fields: ["slug", "locale"],
-        locale: "all",
-    });
+    const projectsRes = await sanityClient.fetch<Project[]>(projectSlugsQuery);
 
     return {
-        paths: projectsRes.data.map((project: ProjectType) => ({
+        paths: projectsRes.map((project: Project) => ({
             params: {
-                slug: project.attributes.slug,
-                locale: project.attributes.locale,
+                slug: project.slug,
+                locale: project.locale,
             },
         })),
         fallback: "blocking",
@@ -197,36 +188,24 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<
     ProjectProps,
     ParsedUrlQuery
-> = async ({ params }) => {
-    const { locale, slug } = params as { locale: Locale; slug: string };
+> = async ({ params, preview = false }) => {
+    const slug = params?.slug;
+    const locale = await parseLocale(params?.locale as Locale);
 
-    const [projectsRes] = await Promise.all([
-        fetchAPI<ProjectType[]>("/projects", {
-            filters: { slug },
-            populate: {
-                author: {
-                    populate: "*",
-                },
-                blocks: {
-                    populate: "*",
-                },
-                cover: {
-                    populate: "*",
-                },
-                category: {
-                    populate: "*",
-                },
-            },
+    const { project } = await getClient(preview).fetch<{ project: Project }>(
+        projectQuery,
+        {
+            slug,
             locale,
-        }),
-    ]);
+        }
+    );
 
     return {
         props: {
-            project: projectsRes.data[0],
+            project,
         },
         revalidate: 1,
     };
 };
 
-export default Project;
+export default ProjectPage;

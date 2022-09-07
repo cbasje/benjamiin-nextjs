@@ -1,4 +1,4 @@
-import { Locale } from "@/models/locale";
+import { Locale } from "@/lib/types";
 
 export const getLocaleLabel = (locale: Locale) => {
     switch (locale) {

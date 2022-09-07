@@ -1,13 +1,13 @@
 import { ReactNode } from "react";
 import { motion, Variants } from "framer-motion";
 
-import Seo from "./Seo";
+import Meta from "./Meta";
 import { styled } from "@/stitches.config";
 
-import { Seo as SeoType } from "@/models/seo";
+import { Seo } from "lib/types";
 
 export interface LayoutProps {
-    seo?: SeoType;
+    seo?: Seo;
     children: ReactNode;
     variants?: Variants;
 }
@@ -20,7 +20,7 @@ const AnimateContainer = styled(motion.div, {
 const Layout = ({ seo, children, variants }: LayoutProps) => {
     return (
         <>
-            <Seo seo={seo} />
+            <Meta seo={seo} />
             <AnimateContainer
                 initial="exit"
                 animate="enter"
