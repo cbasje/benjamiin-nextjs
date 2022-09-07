@@ -1,17 +1,20 @@
 import Head from "next/head";
-
-import { getStrapiMedia } from "@/lib/media";
-
-import { Seo as SeoType } from "@/models/seo";
+import { useRouter } from "next/router";
 
 import { useGlobal } from "@/contexts/GlobalContext";
 
-const Seo = ({ seo }: { seo?: SeoType }) => {
-    const {
-        global: { defaultSeo, siteName },
-    } = useGlobal();
+import { Locale, Seo } from "@/lib/types";
 
-    const seoWithDefaults: SeoType = {
+const Meta = ({ seo }: { seo?: Seo }) => {
+    const router = useRouter();
+    const locale = router.query.locale as Locale;
+
+    const { global } = useGlobal();
+    const { defaultSeo, siteName } = global.find(
+        (g) => g.locale === locale
+    ) ?? { defaultSeo: { metaTitle: "" } };
+
+    const seoWithDefaults: Seo = {
         ...defaultSeo,
         ...seo,
     };
@@ -22,7 +25,7 @@ const Seo = ({ seo }: { seo?: SeoType }) => {
             seoWithDefaults.metaTitle === siteName
                 ? siteName
                 : `${seoWithDefaults.metaTitle} | ${siteName}`,
-        shareImage: getStrapiMedia(seoWithDefaults.shareImage?.data),
+        shareImage: seoWithDefaults.shareImage,
     };
 
     return (
@@ -63,4 +66,4 @@ const Seo = ({ seo }: { seo?: SeoType }) => {
     );
 };
 
-export default Seo;
+export default Meta;

@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/future/image";
 import useSWR, { Fetcher } from "swr";
 
-import { SpotifyData } from "@/models/spotify";
+import { SpotifyData } from "@/lib/types";
 
 const SpotifyPlayer = () => {
     const fetcher: Fetcher<SpotifyData> = async (url: string) => {
@@ -10,12 +10,14 @@ const SpotifyPlayer = () => {
         return res.json();
     };
 
-    const { data, error } = useSWR("/api/spotify", fetcher, {
+    const { data, error } = useSWR("/api/now-playing", fetcher, {
         refreshInterval: 30000,
         // revalidateIfStale: false,
         // revalidateOnFocus: false,
         // revalidateOnReconnect: false,
     });
+
+    if (error) return <div></div>;
 
     const { isPlaying, title, artist, album, albumImage, songUrl } = data ?? {};
 

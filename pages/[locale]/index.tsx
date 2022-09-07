@@ -1,32 +1,33 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 
-import { fetchAPI } from "@/lib/api";
-import { parseLocale } from "@/util/locale";
-import { pageVariants } from "@/util/transition";
-import { Container } from "@/stitches.config";
-
-import { Project as ProjectType } from "@/models/project";
-import { Homepage as HomepageType } from "@/models/homepage";
-import { Locale } from "@/models/locale";
+import { getClient } from "@/lib/sanity-server";
+import { parseLocale } from "@/lib/locale";
+import { pageVariants } from "@/lib/transition";
+import { Project, Home, Locale } from "@/lib/types";
+import { homeQuery, projectsQuery } from "@/lib/queries";
 
 import ProjectGrid from "@/components/ProjectGrid";
 import Layout from "@/components/Layout";
 import Nav from "@/components/Nav";
+import Contact from "@/components/Contact";
+import { Container } from "@/stitches.config";
 
 interface HomeProps {
-    projects: ProjectType[];
-    homepage: HomepageType;
+    projects: Project[];
+    homepage: Home;
 }
 
-const Home = ({ projects, homepage }: HomeProps) => {
+const HomePage = ({ projects, homepage }: HomeProps) => {
     return (
-        <Layout variants={pageVariants} seo={homepage.attributes.seo}>
+        <Layout variants={pageVariants} seo={homepage.seo}>
             <Nav />
             <Container paddingY>
-                <h1>{homepage.attributes.title}</h1>
-                <p>{homepage.attributes.description}</p>
+                <h1>{homepage.title}</h1>
+                <p>{homepage.description}</p>
 
                 <ProjectGrid projects={projects} />
+
+                <Contact />
             </Container>
         </Layout>
     );
@@ -39,27 +40,28 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
 };
 
-export const getStaticProps: GetStaticProps<HomeProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<HomeProps> = async ({
+    params,
+    preview,
+}) => {
     const locale = await parseLocale(params?.locale as Locale);
 
     const [projectsRes, homepageRes] = await Promise.all([
-        fetchAPI<ProjectType[]>("/projects", {
-            populate: ["cover", "category"],
+        getClient(preview!).fetch<Project[]>(projectsQuery, {
             locale,
         }),
-        fetchAPI<HomepageType>("/homepage", {
-            populate: "*",
+        getClient(preview!).fetch<Home>(homeQuery, {
             locale,
         }),
     ]);
 
     return {
         props: {
-            projects: projectsRes.data,
-            homepage: homepageRes.data,
+            projects: projectsRes,
+            homepage: homepageRes,
         },
         revalidate: 1,
     };
 };
 
-export default Home;
+export default HomePage;

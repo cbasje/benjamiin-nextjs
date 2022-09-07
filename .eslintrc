@@ -1,0 +1,9 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "@sanity/eslint-config-studio",
+        "next",
+        "prettier"
+    ],
+    "ignorePatterns": ["prism.js"]
+}

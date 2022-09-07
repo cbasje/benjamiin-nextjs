@@ -1,16 +1,16 @@
 import Link from "next/link";
 import Picture from "./Picture";
 import { motion } from "framer-motion";
-import { Project as ProjectType } from "@/models/project";
+import { Project } from "@/lib/types";
 
-const Card = ({ project }: { project: ProjectType }) => {
+const Card = ({ project }: { project: Project }) => {
     return (
         <Link
             href={{
                 pathname: "/[locale]/project/[slug]",
                 query: {
-                    locale: project.attributes.locale,
-                    slug: project.attributes.slug,
+                    locale: project.locale,
+                    slug: project.slug,
                 },
             }}
         >
@@ -22,16 +22,13 @@ const Card = ({ project }: { project: ProjectType }) => {
                         position: "relative",
                     }}
                 >
-                    <Picture
-                        src={project.attributes.cover.data}
-                        fillContainer
-                    />
+                    <Picture src={project.mainImage} fillContainer />
                 </motion.div>
                 <div>
                     <motion.h1 style={{ width: "fit-content" }}>
-                        {project.attributes.title}
+                        {project.title}
                     </motion.h1>
-                    <p>{project.attributes.category.data?.attributes.title}</p>
+                    <p>{project.categories?.map((c) => c.title).join(", ")}</p>
                 </div>
             </>
         </Link>

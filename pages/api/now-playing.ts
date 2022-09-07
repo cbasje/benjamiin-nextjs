@@ -1,9 +1,10 @@
-import { getNowPlaying } from "@/lib/spotify";
-import { SpotifyData } from "@/models/spotify";
 import type { NextRequest, NextResponse } from "next/server";
 
+import { getNowPlaying } from "@/lib/now-playing";
+import { SpotifyData } from "@/lib/types";
+
 const parseName = (name: string) => {
-    return name.split(/[\(\-]/i)[0];
+    return name.split(/[(-]/i)[0];
 };
 
 export default async function handler(req: NextRequest, res: NextResponse) {
