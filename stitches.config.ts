@@ -65,8 +65,10 @@ export const { globalCss, styled, getCssText, createTheme } = createStitches({
             lg: "1.5rem",
         },
         fonts: {
-            system: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Droid Sans, Helvetica Neue, sans-serif",
-            code: "Cascadia Code, monospace",
+            display:
+                "Space Grotesk, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
+            text: "Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
+            code: "Space Mono, monospace",
         },
         fontSizes: {},
     },
@@ -78,27 +80,26 @@ export const { globalCss, styled, getCssText, createTheme } = createStitches({
 });
 
 export const globalStyles = globalCss({
-    "@font-face": [
-        {
-            fontFamily: "Cascadia Code",
-            src: 'url("/fonts/CascadiaCode.woff2") format("woff2")',
-            fontVariant: "normal",
+    "h1, h2, h3, h4, h5, h6": {
+        fontFamily: "$display",
+        fontWeight: 500,
+
+        "&, p": {
+            overflowWrap: "break-word",
         },
-        {
-            fontFamily: "Cascadia Code",
-            src: 'url("/fonts/CascadiaCodeItalic.woff2") format("woff2")',
-            fontStyle: "italic",
-            fontVariant: "normal",
-        },
-    ],
+    },
     body: {
         padding: 0,
         margin: 0,
-        fontFamily: "$system",
+        fontFamily: "$text",
         backgroundColor: "$bg",
         accentColor: "$colors$primary",
         caretColor: "$colors$primary",
         fontSize: "1rem",
+        lineHeight: 1.5,
+    },
+    p: {
+        margin: "0 0 1.5em",
     },
     a: {
         color: "inherit",

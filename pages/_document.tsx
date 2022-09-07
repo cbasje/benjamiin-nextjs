@@ -13,6 +13,10 @@ export default class Document extends ServerStyleSheetDocument {
                         dangerouslySetInnerHTML={{ __html: getCssText() }}
                     />
                     <link rel="shortcut icon" href="/favicon.ico" />
+                    <link
+                        href="https://fonts.googleapis.com/css2?family=Inter&family=Space+Grotesk&family=Space+Mono&display=swap"
+                        rel="stylesheet"
+                    />
                 </Head>
                 <body>
                     <Main />
