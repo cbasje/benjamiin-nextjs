@@ -11,7 +11,7 @@
         "lint": "next lint"
     },
     "dependencies": {
-        "@mantine/form": "^5.2.4",
+        "@mantine/form": "^5.2.6",
         "@radix-ui/colors": "^0.1.8",
         "@radix-ui/react-dialog": "^1.0.0",
         "@radix-ui/react-label": "^0.1.5",
