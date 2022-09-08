@@ -1665,10 +1665,10 @@
   dependencies:
     diff-match-patch "^1.0.4"
 
-"@sanity/document-internationalization@^1.0.0-v3-studio.6":
-  version "1.0.0-v3-studio.6"
-  resolved "https://registry.yarnpkg.com/@sanity/document-internationalization/-/document-internationalization-1.0.0-v3-studio.6.tgz#64f9ab9d743602e1f27041f011775415076a0846"
-  integrity sha512-e+jU6QjyQtiCW2CcjzDsEllgNl+PsoRiVJJRrqpkeyN19YrYvz7IH5sCkyoo+2T9X9u3un8ordaVluYz488X/Q==
+"@sanity/document-internationalization@^1.0.0-v3-studio.7":
+  version "1.0.0-v3-studio.7"
+  resolved "https://registry.yarnpkg.com/@sanity/document-internationalization/-/document-internationalization-1.0.0-v3-studio.7.tgz#7ef39e5a29cd1d95fc8eadf9d7f7777ac1d72598"
+  integrity sha512-UaUlF+PoLOxpC8GMEjxyxZoGA+q+QUuEZ/n/1IDNbOcS2fltCHO+/UxpNXa0/Q95FaFEQB9LCZSnZFBo3zKMRg==
   dependencies:
     "@cprecioso/country-flag-emoji" "^1.0.0"
     "@sanity/color" "^2.1.11"
