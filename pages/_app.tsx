@@ -15,6 +15,7 @@ interface MyAppProps {
 }
 
 const MyApp = ({ Component, pageProps, router }: AppProps) => {
+    // @ts-ignore
     const { global }: MyAppProps = pageProps;
 
     globalStyles();
