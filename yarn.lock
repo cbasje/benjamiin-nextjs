@@ -1108,7 +1108,7 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@juggle/resize-observer@^3.3.1":
+"@juggle/resize-observer@^3.3.1", "@juggle/resize-observer@^3.4.0":
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.4.0.tgz#08d6c5e20cf7e4cc02fd181c4b0c225cd31dbb60"
   integrity sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==
@@ -1284,7 +1284,7 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@popperjs/core@^2.11.5":
+"@popperjs/core@^2.11.5", "@popperjs/core@^2.11.6":
   version "2.11.6"
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.6.tgz#cee20bd55e68a1720bdab363ecf0c821ded4cd45"
   integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
@@ -1658,6 +1658,11 @@
   resolved "https://registry.yarnpkg.com/@sanity/color/-/color-2.1.14.tgz#96b486c24eecf9b657c358953a12cd5988810429"
   integrity sha512-ntCT72qUNck9XrCrMEpMrTGsNPK7edt3arou7YUBgb6IRjba6MtByTAz/LNXbRK5meMQFqYFpNKDErM351X+Ug==
 
+"@sanity/color@^2.1.16":
+  version "2.1.16"
+  resolved "https://registry.yarnpkg.com/@sanity/color/-/color-2.1.16.tgz#4d4b36874279e1801c89827c6eb3332c960a729f"
+  integrity sha512-R5Wh4qt+Jv20nvwSwE5xA+eS3kF2diPA6noAPQZSUsSG9UIUGGgxJyU0hWUa9O06RTCNqgBQI1YJiZTeJ6S7SA==
+
 "@sanity/diff@3.0.0-dev-preview.15":
   version "3.0.0-dev-preview.15"
   resolved "https://registry.yarnpkg.com/@sanity/diff/-/diff-3.0.0-dev-preview.15.tgz#e54bfcf99a7470236c6e930f8f611affb5f1dfd0"
@@ -1756,6 +1761,11 @@
   resolved "https://registry.yarnpkg.com/@sanity/icons/-/icons-1.3.4.tgz#145327737af84251be4a410f536f3267169a3b9a"
   integrity sha512-aRnqGrp30liSqV/etF4uSuQfCMxbrEztUNTgH1755MsrzQSowadK/d6yRiEHmamcqxiE0ovJK+SFNw1qltWXaQ==
 
+"@sanity/icons@^1.3.4", "@sanity/icons@^1.3.6":
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/@sanity/icons/-/icons-1.3.6.tgz#4de4848304bf8487e1c08188decbb0ba5e86a158"
+  integrity sha512-/GeFmwHMQVTCBvo4qAQgZJHKB1UzU8u42gnjs6696PWh626G4xbElb3/YJ9sM1PwTc0OaYrvIDes8qUTvrlhrA==
+
 "@sanity/image-url@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@sanity/image-url/-/image-url-1.0.1.tgz#960d649b2f4396da0adb31cf94503c929495cea0"
@@ -1794,14 +1804,14 @@
     "@sanity/ui" "^0.37.0"
     react-copy-to-clipboard "^5.0.0"
 
-"@sanity/incompatible-plugin@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@sanity/incompatible-plugin/-/incompatible-plugin-1.0.0.tgz#8c9ca553ebbc70d6f742e8a0f187c366fd26e2d9"
-  integrity sha512-LmuMUT/XBaGLCa3DzsZlnCShDeLhE1XoXtTscyDelhdyFPA4oRLUjOacWTQsd4jeSD8QESPSEr8fG/xmq3qOLg==
+"@sanity/incompatible-plugin@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@sanity/incompatible-plugin/-/incompatible-plugin-1.0.1.tgz#0e088cd315c2968de16ad8a89d4f81ba96b1721c"
+  integrity sha512-OrukNxKul/11YcKCX2DGw9MGbQhm1+2hLEnd3llzEniLx+Xm/eZf2pbAYuuRnaVAuHlAA4f10TiLkH9VnLCmdQ==
   dependencies:
-    "@sanity/icons" "^1.3.0"
-    "@sanity/ui" "^0.37.0"
-    react-copy-to-clipboard "^5.0.0"
+    "@sanity/icons" "^1.3.4"
+    "@sanity/ui" "^0.38.0"
+    react-copy-to-clipboard "^5.1.0"
 
 "@sanity/logos@^1.1.11":
   version "1.1.15"
@@ -1903,7 +1913,7 @@
     "@types/react" "^17.0.42"
     rxjs "^6.5.3"
 
-"@sanity/ui@^0.37.0", "@sanity/ui@^0.37.11", "@sanity/ui@^0.37.9":
+"@sanity/ui@^0.37.0", "@sanity/ui@^0.37.11":
   version "0.37.21"
   resolved "https://registry.yarnpkg.com/@sanity/ui/-/ui-0.37.21.tgz#a07d08f5cfc080d14e64f5ed23352fbdbbfdb2c2"
   integrity sha512-OVnAZnOqBn7FpoOQVChTISedpQvwTlU+fEDG9c49rob1DaAxkSNnsT2IM6OG6nV0an1Z6izDFC47VcrC+twFnw==
@@ -1917,6 +1927,22 @@
     popper-max-size-modifier "^0.2.0"
     react-is "^17.0.2"
     react-popper "^2.2.5"
+    react-refractor "^2.1.7"
+
+"@sanity/ui@^0.38.0":
+  version "0.38.2"
+  resolved "https://registry.yarnpkg.com/@sanity/ui/-/ui-0.38.2.tgz#170f7c0032616fc9eac711aa0e486293b65898ff"
+  integrity sha512-jP0NoEmSIws97tkLifRHuzTKvEztXakcAGuJ6jJ45IYUjgQXZp3bpDobfD9TZY4eeR0WafUB3UntkfSHqRVNOQ==
+  dependencies:
+    "@juggle/resize-observer" "^3.4.0"
+    "@popperjs/core" "^2.11.6"
+    "@reach/auto-id" "^0.17.0"
+    "@sanity/color" "^2.1.16"
+    "@sanity/icons" "^1.3.6"
+    framer-motion "6.3.0"
+    popper-max-size-modifier "^0.2.0"
+    react-is "^17.0.2"
+    react-popper "^2.3.0"
     react-refractor "^2.1.7"
 
 "@sanity/util@3.0.0-dev-preview.15":
@@ -6282,7 +6308,7 @@ react-clientside-effect@^1.2.6:
   dependencies:
     "@babel/runtime" "^7.12.13"
 
-react-copy-to-clipboard@^5.0.0, react-copy-to-clipboard@^5.0.4:
+react-copy-to-clipboard@^5.0.0, react-copy-to-clipboard@^5.0.4, react-copy-to-clipboard@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/react-copy-to-clipboard/-/react-copy-to-clipboard-5.1.0.tgz#09aae5ec4c62750ccb2e6421a58725eabc41255c"
   integrity sha512-k61RsNgAayIJNoy9yDsYzDe/yAZAzEbEgcz3DZMhF686LEyukcE1hzurxe85JandPUG+yTfGVFzuEw3xt8WP/A==
@@ -6351,7 +6377,7 @@ react-markdown@^8.0.3, react-markdown@~8.0.0:
     unist-util-visit "^4.0.0"
     vfile "^5.0.0"
 
-react-popper@^2.2.5:
+react-popper@^2.2.5, react-popper@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-2.3.0.tgz#17891c620e1320dce318bad9fede46a5f71c70ba"
   integrity sha512-e1hj8lL3uM+sgSR4Lxzn5h1GxBlpa4CQz0XLF8kx4MDrDRWY0Ena4c97PUeSX9i5W3UAfDP0z0FXCTQkoXUl3Q==
@@ -6853,14 +6879,14 @@ sanity-diff-patch@^1.0.9:
   dependencies:
     diff-match-patch "^1.0.5"
 
-sanity-plugin-markdown@^3.0.0-v3-studio.1:
-  version "3.0.0-v3-studio.1"
-  resolved "https://registry.yarnpkg.com/sanity-plugin-markdown/-/sanity-plugin-markdown-3.0.0-v3-studio.1.tgz#c536dd4b13d3a05dd631653d19535bcdaa66b6f8"
-  integrity sha512-jvEWxR2FDt3LYcL71JaF12ARKDvDhWncZ0NuxkOcYNbaNRsITIJpBMR61cZeqnqnQgMuuIbSL+TlcITg9KNcAw==
+sanity-plugin-markdown@^3.0.0-v3-studio.2:
+  version "3.0.0-v3-studio.2"
+  resolved "https://registry.yarnpkg.com/sanity-plugin-markdown/-/sanity-plugin-markdown-3.0.0-v3-studio.2.tgz#29b1d3da0c69803408403973e78881132fb74b4e"
+  integrity sha512-AQlzJujS8ECctezx1SrO3sIcTzPgCn3QvOhzwZnIptNvSNbP/AeTvjcoLobVxwSv35ypUf1xPbpOwnTsGjh6KQ==
   dependencies:
     "@reach/auto-id" "^0.17.0"
-    "@sanity/incompatible-plugin" "^1.0.0"
-    "@sanity/ui" "^0.37.9"
+    "@sanity/incompatible-plugin" "^1.0.1"
+    "@sanity/ui" "^0.38.0"
     "@uiw/react-md-editor" "^3.18.1"
     rehype-sanitize "^5.0.1"
 
