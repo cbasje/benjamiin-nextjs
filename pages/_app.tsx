@@ -1,5 +1,5 @@
 import App from "next/app";
-import type { AppContext, AppProps } from "next/app";
+import type { AppContext, AppProps as NextAppProps } from "next/app";
 import * as Toast from "@radix-ui/react-toast";
 import { AnimatePresence } from "framer-motion";
 
@@ -14,8 +14,8 @@ interface MyAppProps {
     global: Global[];
 }
 
-const MyApp = ({ Component, pageProps, router }: AppProps) => {
-    const { global }: MyAppProps = pageProps;
+const MyApp = ({ Component, pageProps, router }: NextAppProps<MyAppProps>) => {
+    const { global } = pageProps;
 
     globalStyles();
 
@@ -42,12 +42,11 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
     // Fetch global site settings from Strapi
     const globalRes = await sanityClient.fetch<Global[]>(globalQuery);
 
-    type PageProps = Omit<MyAppProps, "layout" | "children">;
     return {
         ...appProps,
         pageProps: {
             global: globalRes,
-        } as PageProps,
+        },
     };
 };
 
