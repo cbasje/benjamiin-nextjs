@@ -5,13 +5,13 @@ import { categoryQuery, categorySlugsQuery } from "@/lib/queries";
 import { getClient, sanityClient } from "@/lib/sanity-server";
 import { parseLocale } from "@/lib/locale";
 import { pageVariants } from "@/lib/transition";
-import { Container } from "@/stitches.config";
+import { Main } from "@/stitches.config";
 
 import { Category, Seo, Locale } from "@/lib/types";
 
 import ProjectGrid from "@/components/ProjectGrid";
 import Layout from "@/components/Layout";
-import Nav from "@/components/Nav";
+import Header from "@/components/Header";
 
 interface CategoryProps {
     category: Category;
@@ -25,11 +25,12 @@ const CategoryPage = ({ category }: CategoryProps) => {
 
     return (
         <Layout variants={pageVariants} seo={seo}>
-            <Nav />
-            <Container paddingY>
+            <Header />
+
+            <Main>
                 <h1>{category.title}</h1>
                 <ProjectGrid projects={category.projects || []} />
-            </Container>
+            </Main>
         </Layout>
     );
 };

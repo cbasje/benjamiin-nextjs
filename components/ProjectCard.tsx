@@ -14,11 +14,8 @@ import {
 } from "@/lib/transition";
 
 const StyledCard = styled(motion.div, {
-    flex: "1 0 33%",
     display: "flex",
-    justifyContent: "",
-    alignItems: "center",
-    cursor: "pointer",
+    flexDirection: "column",
 
     "& div": {
         overflow: "hidden",
@@ -30,37 +27,46 @@ const StyledCard = styled(motion.div, {
         objectFit: "cover",
     },
 });
+const StyledLink = styled(Link, {
+    cursor: "pointer",
+    display: "block",
+});
 
 const ProjectCard = ({ project }: { project: Project }) => {
-    if (!project.mainImage) return <p>Not found</p>;
-
     return (
-        <StyledCard variants={cardVariants}>
+        <StyledCard variants={cardVariants} role="gridcell">
             <motion.div
                 whileHover="hover"
                 variants={frameVariants}
                 transition={transition}
             >
-                <Link
-                    href={`[locale]/project/[slug]`}
-                    as={`${project.locale}/project/${project.slug}`}
+                <StyledLink
+                    href={{
+                        pathname: "[locale]/project/[slug]",
+                        query: { slug: project.slug, locale: project.locale },
+                    }}
                 >
                     <motion.div
                         variants={imageVariants}
                         transition={transition}
                     >
-                        <Image
-                            width={1333}
-                            height={2000}
-                            src={urlFor(project.mainImage)
-                                .width(1500)
-                                .auto("format")
-                                .fit("max")
-                                .url()}
-                            alt="The Barbican"
-                        />
+                        {project.mainImage ? (
+                            <Image
+                                width={1333}
+                                height={2000}
+                                src={urlFor(project.mainImage)
+                                    .width(1500)
+                                    .auto("format")
+                                    .fit("max")
+                                    .url()}
+                                alt="The Barbican"
+                            />
+                        ) : (
+                            <p>Not found</p>
+                        )}
                     </motion.div>
-                </Link>
+                    <h2>{project.title}</h2>
+                </StyledLink>
             </motion.div>
         </StyledCard>
     );

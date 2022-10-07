@@ -70,7 +70,7 @@ export const { globalCss, styled, getCssText, createTheme } = createStitches({
             display:
                 "Space Grotesk, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
             text: "Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
-            code: "Space Mono, monospace",
+            mono: "Space Mono, monospace",
         },
         fontSizes: {},
     },
@@ -82,15 +82,6 @@ export const { globalCss, styled, getCssText, createTheme } = createStitches({
 });
 
 export const globalStyles = globalCss({
-    "h1, h2, h3, h4, h5, h6": {
-        fontFamily: "$display",
-        fontWeight: 600,
-        color: "$displayOnBg",
-
-        "&, p": {
-            overflowWrap: "break-word",
-        },
-    },
     body: {
         padding: 0,
         margin: 0,
@@ -102,8 +93,18 @@ export const globalStyles = globalCss({
         fontSize: "1rem",
         lineHeight: 1.5,
     },
+    "h1, h2, h3, h4, h5, h6": {
+        fontFamily: "$display",
+        fontWeight: 600,
+        textTransform: "uppercase",
+        letterSpacing: "0.05rem",
+        color: "$displayOnBg",
+
+        overflowWrap: "break-word",
+    },
     p: {
         margin: "0 0 1.5em",
+        overflowWrap: "break-word",
     },
     a: {
         color: "inherit",
@@ -119,31 +120,26 @@ export const globalStyles = globalCss({
 });
 
 export const lightTheme = createTheme("light", {
-    colors: {
-        primary: "$red400",
-        primaryDark: "$red500",
-    },
+    colors: {},
 });
 export const darkTheme = createTheme("dark", {
-    colors: {
-        primary: "$red400",
-        primaryDark: "$red500",
-    },
+    colors: {},
 });
 
-export const Container = styled("div", {
+export const Main = styled("main", {
+    width: "100%",
+    maxWidth: "1024px",
+    marginInline: "auto",
+    paddingInline: "$2",
+    paddingBlock: "$6",
+});
+
+export const Article = styled("article", {
     width: "100%",
     maxWidth: "60ch",
     marginInline: "auto",
     paddingInline: "$2",
-
-    variants: {
-        paddingY: {
-            true: {
-                paddingBlock: "$6",
-            },
-        },
-    },
+    paddingBlock: "$6",
 });
 
 export const Flex = styled("div", { display: "flex" });

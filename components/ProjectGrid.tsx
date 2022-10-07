@@ -7,10 +7,26 @@ import { Project } from "@/lib/types";
 import ProjectCard from "./ProjectCard";
 
 const Grid = styled(motion.div, {
-    display: "inline-grid",
+    width: "100%",
+    height: "100%",
+    display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
-    gridGap: "10px",
-    gridAutoRows: "minmax(100px, auto)",
+    gridTemplateRows: "repeat(2, 1fr)",
+    gridTemplateAreas: "'main side-up' 'main side-down'",
+    gridGap: "1rem",
+
+    "& > :first-child": {
+        gridArea: "main",
+    },
+    "& > :nth-child(2)": {
+        gridArea: "side-up",
+    },
+    "& > :nth-child(3)": {
+        gridArea: "side-down",
+    },
+    // "& > :not(:first-child)": {
+    //     gridArea: "small",
+    // },
 });
 
 const ProjectGrid = ({ projects }: { projects: Project[] }) => {
@@ -24,12 +40,10 @@ const ProjectGrid = ({ projects }: { projects: Project[] }) => {
             variants={{
                 exit: { transition: { staggerChildren: 0.1 } },
             }}
+            role="grid"
         >
             {projects.map((project: Project, i: number) => (
-                <div key={project.slug}>
-                    <ProjectCard project={project} />
-                    <p>{project.title}</p>
-                </div>
+                <ProjectCard project={project} key={project.slug} />
             ))}
         </Grid>
     );

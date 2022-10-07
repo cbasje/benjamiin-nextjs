@@ -5,11 +5,11 @@ import { parseLocale } from "@/lib/locale";
 import { pageVariants } from "@/lib/transition";
 import { Project, Home, Locale } from "@/lib/types";
 import { homeQuery, projectsQuery } from "@/lib/queries";
-import { Container } from "@/stitches.config";
+import { Main } from "@/stitches.config";
 
 import ProjectGrid from "@/components/ProjectGrid";
 import Layout from "@/components/Layout";
-import Nav from "@/components/Nav";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 interface HomeProps {
@@ -20,15 +20,16 @@ interface HomeProps {
 const HomePage = ({ projects, homepage }: HomeProps) => {
     return (
         <Layout variants={pageVariants} seo={homepage.seo}>
-            <Nav />
-            <Container paddingY>
-                <h1>{homepage.title}</h1>
+            <Header />
+
+            <Main>
+                <h1 role="heading">{homepage.title}</h1>
                 <p>{homepage.description}</p>
 
                 <ProjectGrid projects={projects} />
+            </Main>
 
-                <Footer />
-            </Container>
+            <Footer />
         </Layout>
     );
 };

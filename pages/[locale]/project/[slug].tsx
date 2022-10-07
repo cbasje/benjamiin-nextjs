@@ -8,7 +8,7 @@ import { X } from "phosphor-react";
 
 import Layout from "@/components/Layout";
 import Picture from "@/components/Picture";
-import { Container, styled } from "@/stitches.config";
+import { Article, styled } from "@/stitches.config";
 
 import { dialogOverlayVariants, dialogVariants } from "@/lib/transition";
 import { sanityClient, getClient } from "@/lib/sanity-server";
@@ -83,9 +83,7 @@ const Content = ({ children, ...props }: { children: ReactNode }) => {
             </motion.div>
             <motion.div variants={dialogVariants}>
                 <StyledContent {...props}>
-                    <Container paddingY css={{ minHeight: "100%" }}>
-                        {children}
-                    </Container>
+                    <Article css={{ minHeight: "100%" }}>{children}</Article>
                 </StyledContent>
             </motion.div>
         </>

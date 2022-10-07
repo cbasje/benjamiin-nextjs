@@ -26,7 +26,7 @@ export const projectQuery = groq`
 }`;
 
 export const projectsQuery = groq`
-*[_type == "project" && defined(slug.current) && __i18n_lang == $locale] {
+*[_type == "project" && defined(slug.current) && __i18n_lang == $locale] | order(publishedAt desc) [0...3] {
     ${projectFields}
   }
 `;

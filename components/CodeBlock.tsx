@@ -22,7 +22,7 @@ const CodeWrapper = styled("div", {
     $$codeTextTertiary1: "$colors$blue9",
 
     color: "$$codeText1",
-    fontFamily: "$code",
+    fontFamily: "$mono",
     textAlign: "left",
     whiteSpace: "pre",
     wordSpacing: "normal",

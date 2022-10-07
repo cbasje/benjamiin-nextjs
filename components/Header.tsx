@@ -16,8 +16,8 @@ const StyledHeader = styled("header", {
     top: 0,
     left: 0,
     right: 0,
-    width: "100%",
-    padding: "1em 4em",
+    width: "100vw",
+    padding: "$1",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -29,6 +29,7 @@ const StyledNav = styled("nav", {
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
+    maxWidth: "1024px",
     background: "rgba(26,26,26,.8)",
     boxShadow: "0 6px 20px rgb(0 0 0 / 8%)",
     WebkitBackdropFilter: "blur(25px)",
@@ -195,7 +196,7 @@ const StyledUnderline = styled("hr", {
     transition: "transform .2s cubic-bezier(.33,1,.68,1)",
 });
 
-const Nav = () => {
+const Header = () => {
     const router = useRouter();
     const locale = router.query.locale as Locale;
 
@@ -294,4 +295,4 @@ const Nav = () => {
     );
 };
 
-export default Nav;
+export default Header;
