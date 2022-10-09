@@ -12,6 +12,9 @@ const PlayerContainer = styled("div", {
 });
 
 const StyledLink = styled(Link, {
+    display: "flex",
+    flexDirection: "row-reverse",
+    gap: "$2",
     padding: "$1 $2",
     transition: "background .6s cubic-bezier(.23,1,.32,1)",
     borderRadius: "$md",
@@ -21,8 +24,18 @@ const StyledLink = styled(Link, {
     },
 });
 
+const TextContainer = styled("div", {
+    display: "flex",
+    flexDirection: "column",
+    height: "3rem",
+    alignItems: "flex-end",
+    textAlign: "end",
+});
+
 const StyledImage = styled(Image, {
     borderRadius: "$full",
+    width: "3rem",
+    height: "3rem",
 });
 
 const SpotifyPlayer = () => {
@@ -58,10 +71,13 @@ const SpotifyPlayer = () => {
                             }`}
                         />
                     )}
-                    <span>Now playing</span>
-                    <span>
-                        {title} - {artist}
-                    </span>
+
+                    <TextContainer>
+                        <span>Now playing</span>
+                        <span>
+                            {title} - {artist}
+                        </span>
+                    </TextContainer>
                 </StyledLink>
             ) : (
                 <div>Not playing</div>

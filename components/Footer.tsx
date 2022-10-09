@@ -14,30 +14,29 @@ import SpotifyPlayer from "./SpotifyPlayer";
 
 const StyledFooter = styled("footer", {
     width: "100vw",
-    padding: "$1",
+    padding: "$2",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+
+    "& > *": {
+        width: "100%",
+        maxWidth: "1024px",
+    },
 });
 
 const StyledAside = styled("aside", {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    width: "100%",
-    maxWidth: "1024px",
-    background: "rgba(26,26,26,.8)",
-    boxShadow: "0 6px 20px rgb(0 0 0 / 8%)",
-    WebkitBackdropFilter: "blur(25px)",
-    backdropFilter: "blur(25px)",
-    borderRadius: "12px",
 });
 
 const StyledUl = styled("ul", {
     margin: 0,
     listStyle: "none",
-    position: "relative",
     display: "flex",
+    maxWidth: "30%",
+    position: "relative",
     alignItems: "center",
 
     variants: {
@@ -56,54 +55,7 @@ const StyledUl = styled("ul", {
     },
 });
 
-const StyledLi = styled("li", {
-    "&:hover .popup": {
-        opacity: 1,
-        visibility: "visible",
-    },
-    "& .popup": {
-        bottom: 40,
-        left: "50%",
-        transform: "translate(-50%)",
-        padding: "2px 8px",
-        flexDirection: "column",
-        justifyContent: "center",
-        fontWeight: 500,
-        fontSize: 14,
-        lineHeight: "20px",
-        textAlign: "center",
-        letterSpacing: "-.035em",
-        whiteSpace: "nowrap",
-        background: "#302f2f",
-        border: "1px solid #302f2f",
-        borderRadius: 6,
-        transition:
-            "opacity .2s cubic-bezier(.33,1,.68,1),visibility .2s cubic-bezier(.33,1,.68,1)",
-
-        position: "absolute",
-        display: "flex",
-        alignItems: "center",
-        color: "#efece6",
-        boxShadow: "0 6px 20px rgb(0 0 0 / 8%)",
-        WebkitBackdropFilter: "blur(25px)",
-        backdropFilter: "blur(25px)",
-        opacity: 0,
-        visibility: "hidden",
-    },
-
-    "& .link": {
-        display: "flex",
-        padding: "8px 16px",
-        fontWeight: 500,
-        fontSize: 16,
-        lineHeight: "24px",
-        zIndex: 1,
-        textAlign: "center",
-        letterSpacing: "-.01em",
-        color: "hsla(40,22%,92%,.7)",
-        transition: "color .6s cubic-bezier(.23,1,.32,1)",
-    },
-});
+const StyledLi = styled("li", {});
 
 const SelectIcon = styled(Select.Icon, {
     verticalAlign: "text-bottom",

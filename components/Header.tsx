@@ -17,24 +17,27 @@ const StyledHeader = styled("header", {
     left: 0,
     right: 0,
     width: "100vw",
-    padding: "$1",
+    padding: "$2",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     zIndex: 9,
+
+    "& > *": {
+        width: "100%",
+        maxWidth: "1024px",
+    },
 });
 
 const StyledNav = styled("nav", {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    width: "100%",
-    maxWidth: "1024px",
-    background: "rgba(26,26,26,.8)",
-    boxShadow: "0 6px 20px rgb(0 0 0 / 8%)",
+    background: "rgb($bg / 75%)",
+    // boxShadow: "0 6px 20px rgb(0 0 0 / 8%)",
     WebkitBackdropFilter: "blur(25px)",
     backdropFilter: "blur(25px)",
-    borderRadius: "12px",
+    borderRadius: "$md",
 });
 
 const StyledUl = styled("ul", {
@@ -60,14 +63,6 @@ const StyledUl = styled("ul", {
     },
 });
 
-const StyledLine = styled("hr", {
-    width: 0,
-    height: "20px",
-    opacity: 0.2,
-    border: "1px solid #8e8c87",
-    marginRight: 8,
-});
-
 const StyledAnchor = styled(Link, {
     position: "relative",
     display: "flex",
@@ -88,7 +83,7 @@ const StyledLi = styled("li", {
                     width: 20,
                     height: 20,
                     transition: "opacity .2s cubic-bezier(.33,1,.68,1)",
-                    color: "#efece6",
+                    color: "rgb($gray900)",
                 },
             },
         },
@@ -97,16 +92,16 @@ const StyledLi = styled("li", {
                 [`& ${StyledAnchor}`]: {
                     width: 32,
                     height: 32,
-                    backgroundColor: "#1a1a1a",
-                    border: "1px solid #302f2f",
-                    boxShadow: "0 6px 20px rgb(0 0 0 / 8%)",
+                    backgroundColor: "rgb($gray100)",
+                    border: "1px solid rgb($gray200)",
+                    boxShadow: "0 6px 20px rgb($gray100 / 8%)",
                     borderRadius: 8,
                     // boxShadow: "0 6px 20px 0 rgb(0 0 0 / 8%)",
                     transition:
                         "background-color .2s cubic-bezier(.33,1,.68,1)",
 
                     "&:hover": {
-                        backgroundColor: "#302f2f",
+                        backgroundColor: "rgb($gray200)",
                     },
                 },
             },
@@ -114,15 +109,15 @@ const StyledLi = styled("li", {
         isSelected: {
             true: {
                 [`& ${StyledAnchor}`]: {
-                    backgroundColor: "#efece6",
+                    backgroundColor: "rgb($gray900) !important",
 
                     "&:hover": {
-                        backgroundColor: "#efece6",
+                        backgroundColor: "rgb($gray900) !important",
                     },
                 },
 
                 "& .icon": {
-                    color: "#222222",
+                    color: "rgb($gray50) !important",
                 },
             },
         },
@@ -133,7 +128,7 @@ const StyledLi = styled("li", {
         width: 16,
         height: 16,
         transition: "opacity .2s cubic-bezier(.33,1,.68,1)",
-        color: "#efece6",
+        color: "rgb($gray900)",
     },
 
     "&:hover .popup": {
@@ -153,17 +148,17 @@ const StyledLi = styled("li", {
         textAlign: "center",
         letterSpacing: "-.035em",
         whiteSpace: "nowrap",
-        background: "#302f2f",
-        border: "1px solid #302f2f",
-        borderRadius: 6,
+        background: "rgb($gray100)",
+        border: "1px solid rgb($gray200)",
+        borderRadius: "$sm",
         transition:
             "opacity .2s cubic-bezier(.33,1,.68,1),visibility .2s cubic-bezier(.33,1,.68,1)",
 
         position: "absolute",
         display: "flex",
         alignItems: "center",
-        color: "#efece6",
-        boxShadow: "0 6px 20px rgb(0 0 0 / 8%)",
+        color: "rgb($gray900)",
+        // boxShadow: "0 6px 20px rgb(255 255 255 / 8%)",
         WebkitBackdropFilter: "blur(25px)",
         backdropFilter: "blur(25px)",
         opacity: 0,
@@ -179,7 +174,7 @@ const StyledLi = styled("li", {
         zIndex: 1,
         textAlign: "center",
         letterSpacing: "-.01em",
-        color: "hsla(40,22%,92%,.7)",
+        color: "rgb($gray900)",
         transition: "color .6s cubic-bezier(.23,1,.32,1)",
     },
 });
@@ -192,7 +187,7 @@ const StyledUnderline = styled("hr", {
     width: 16,
     height: 3,
     borderRadius: 1.5,
-    background: "#efece6",
+    background: "rgb($gray900)",
     transition: "transform .2s cubic-bezier(.33,1,.68,1)",
 });
 
@@ -220,7 +215,6 @@ const Header = () => {
                             />
                         </StyledAnchor>
                     </StyledLi>
-                    <StyledLine />
                     <StyledLi hasIcon isSelected>
                         <StyledAnchor href="#">
                             <UsersFour

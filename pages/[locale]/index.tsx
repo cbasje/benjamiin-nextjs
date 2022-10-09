@@ -7,6 +7,7 @@ import { pageVariants } from "@/lib/transition";
 import { Home, Locale, Project } from "@/lib/types";
 import { Main, styled } from "@/stitches.config";
 
+import CallToAction from "@/components/CallToAction";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Intro from "@/components/Intro";
@@ -56,7 +57,9 @@ const HomePage = ({ projects, homepage }: HomeProps) => {
                     <ProjectGrid projects={projects} />
                 </StyledSection>
 
-                <StyledSection for="callToAction"></StyledSection>
+                <StyledSection for="callToAction">
+                    <CallToAction />
+                </StyledSection>
             </Main>
 
             <Footer />

@@ -8,14 +8,6 @@ import { urlFor } from "@/lib/sanity";
 import { cardVariants, imageVariants, transition } from "@/lib/transition";
 import { styled } from "@/stitches.config";
 
-const StyledCard = styled(motion.div, {
-    display: "flex",
-    flexDirection: "column",
-    background: "$$cardBg",
-    borderRadius: "$sm",
-    overflow: "hidden",
-});
-
 const StyledLink = styled(Link, {
     display: "block",
     position: "relative",
@@ -49,6 +41,11 @@ const StyledLabelContainer = styled("div", {
     WebkitBackdropFilter: "blur(25px)",
     backdropFilter: "blur(25px)",
 
+    opacity: 0,
+    visibility: "hidden",
+    transition:
+        "opacity .2s cubic-bezier(.33,1,.68,1),visibility .2s cubic-bezier(.33,1,.68,1)",
+
     "h2, p": {
         margin: 0,
         fontFamily: "$display",
@@ -58,6 +55,19 @@ const StyledLabelContainer = styled("div", {
     },
     p: {
         fontSize: "0.9rem",
+    },
+});
+
+const StyledCard = styled(motion.div, {
+    display: "flex",
+    flexDirection: "column",
+    background: "$$cardBg",
+    borderRadius: "$md",
+    overflow: "hidden",
+
+    [`&:hover ${StyledLabelContainer}`]: {
+        opacity: 1,
+        visibility: "visible",
     },
 });
 
