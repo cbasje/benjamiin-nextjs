@@ -17,7 +17,7 @@ const StyledLink = styled(Link, {
     borderRadius: "$md",
 
     "&:hover": {
-        background: "$gray3",
+        background: "rgb($gray300)",
     },
 });
 

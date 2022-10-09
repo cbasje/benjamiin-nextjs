@@ -24,7 +24,7 @@ const StyledOverlay = styled(DialogPrimitive.Overlay, {
 });
 
 const StyledContent = styled(DialogPrimitive.Content, {
-    backgroundColor: "$bg",
+    backgroundColor: "rgb($bg)",
     borderTopLeftRadius: 6,
     borderTopRightRadius: 6,
     marginTop: "4em",
@@ -38,13 +38,13 @@ const StyledContent = styled(DialogPrimitive.Content, {
 const StyledTitle = styled(DialogPrimitive.Title, {
     margin: 0,
     fontWeight: 500,
-    color: "$textOnBg",
+    color: "rgb($textOnBg)",
     fontSize: 17,
 });
 
 const StyledDescription = styled(DialogPrimitive.Description, {
     margin: "10px 0 20px",
-    color: "$textOnBg",
+    color: "rgb($textOnBg)",
     fontSize: 15,
     lineHeight: 1.5,
 });
@@ -66,8 +66,8 @@ const IconButton = styled("button", {
     pointerEvents: "all",
     zIndex: 1,
 
-    "&:hover": { backgroundColor: "$purple4" },
-    "&:focus": { boxShadow: "0 0 0 2px $purple4" },
+    "&:hover": { backgroundColor: "rgb($purple400)" },
+    "&:focus": { boxShadow: "0 0 0 2px rgb($purple400)" },
 });
 
 const Content = ({ children, ...props }: { children: ReactNode }) => {

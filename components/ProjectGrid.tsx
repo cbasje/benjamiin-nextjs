@@ -22,15 +22,15 @@ const Grid = styled(motion.div, {
 
         "& > :first-child": {
             gridArea: "main",
-            $$cardBg: "$colors$purple1",
+            $$cardBg: "rgb($colors$purple100)",
         },
         "& > :nth-child(2)": {
             gridArea: "side-up",
-            $$cardBg: "$colors$green1",
+            $$cardBg: "rgb($colors$green100)",
         },
         "& > :nth-child(3)": {
             gridArea: "side-down",
-            $$cardBg: "$colors$blue1",
+            $$cardBg: "rgb($colors$blue100)",
         },
     },
 });

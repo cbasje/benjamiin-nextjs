@@ -6,22 +6,22 @@ import { styled } from "@/stitches.config";
 /* PrismJS 1.28.0
 https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript+arduino+c+cpp+jsx+tsx+scss+swift+typescript */
 const CodeWrapper = styled("div", {
-    $$codeBg: "$colors$gray9",
-    $$codeText1: "$colors$gray0",
-    $$codeText2: "$colors$gray2",
-    $$codeText3: "$colors$gray5",
-    $$codeText4: "$colors$gray6",
-    $$codeText5: "$colors$gray7",
-    $$codeTextPrimary1: "$colors$purple9",
-    $$codeTextPrimary2: "$colors$purple7",
-    $$codeTextPrimary3: "$colors$purple5",
-    $$codeTextPrimary4: "$colors$purple3",
-    $$codeTextSecondary1: "$colors$green5",
-    $$codeTextSecondary2: "$colors$green3",
-    $$codeTextTertiary2: "$colors$blue5",
-    $$codeTextTertiary1: "$colors$blue9",
+    $$codeBg: "$colors$gray900",
+    $$codeText1: "$colors$gray50",
+    $$codeText2: "$colors$gray200",
+    $$codeText3: "$colors$gray500",
+    $$codeText4: "$colors$gray600",
+    $$codeText5: "$colors$gray700",
+    $$codeTextPrimary1: "$colors$purple900",
+    $$codeTextPrimary2: "$colors$purple700",
+    $$codeTextPrimary3: "$colors$purple500",
+    $$codeTextPrimary4: "$colors$purple300",
+    $$codeTextSecondary1: "$colors$green500",
+    $$codeTextSecondary2: "$colors$green300",
+    $$codeTextTertiary2: "$colors$blue500",
+    $$codeTextTertiary1: "$colors$blue900",
 
-    color: "$$codeText1",
+    color: "rgb($$codeText1)",
     fontFamily: "$mono",
     textAlign: "left",
     whiteSpace: "pre",
@@ -39,51 +39,51 @@ const CodeWrapper = styled("div", {
     hyphens: "none",
 
     overflow: "auto",
-    background: "$$codeBg",
+    background: "rgb($$codeBg)",
     padding: "$2",
     borderRadius: "$sm",
 
     "pre.language-css .token.string, pre.style .token.string": {
-        color: "$$codeText2",
+        color: "rgb($$codeText2)",
     },
 
     "pre .token": {
         "&.cdata, &.comment, &.doctype, &.prolog": {
-            color: "$$codeText5",
+            color: "rgb($$codeText5)",
         },
         "&.punctuation": {
-            color: "$$codeText4",
+            color: "rgb($$codeText4)",
         },
         "&.namespace": {
             // TODO: Not sure about this
-            color: "$$codeText3",
+            color: "rgb($$codeText3)",
         },
         "&.constant, &.deleted, &.property, &.symbol, &.tag": {
-            color: "$$codeTextPrimary2",
+            color: "rgb($$codeTextPrimary2)",
         },
         "&.boolean, &.number": {
-            color: "$$codeTextTertiary2",
+            color: "rgb($$codeTextTertiary2)",
         },
         "&.attr-name, &.builtin, &.char, &.inserted": {
-            color: "$$codeTextPrimary4",
+            color: "rgb($$codeTextPrimary4)",
         },
         "&.selector, &.string": {
-            color: "$$codeTextSecondary2",
+            color: "rgb($$codeTextSecondary2)",
         },
         "&.entity, &.operator, &.url, &.variable": {
-            color: "$$codeText2",
+            color: "rgb($$codeText2)",
         },
         "&.atrule, &.attr-value, &.function": {
-            color: "$$codeTextSecondary2",
+            color: "rgb($$codeTextSecondary2)",
         },
         "&.class-name": {
-            color: "$$codeText3",
+            color: "rgb($$codeText3)",
         },
         "&.keyword": {
-            color: "$$codeTextPrimary3",
+            color: "rgb($$codeTextPrimary3)",
         },
         "&.important, &.regex": {
-            color: "$$codeTextPrimary1",
+            color: "rgb($$codeTextPrimary1)",
         },
         "&.bold, &.important": {
             fontWeight: "bold",
