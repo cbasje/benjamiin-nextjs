@@ -5,12 +5,37 @@ import { parseLocale } from "@/lib/locale";
 import { pageVariants } from "@/lib/transition";
 import { Project, Home, Locale } from "@/lib/types";
 import { homeQuery, projectsQuery } from "@/lib/queries";
-import { Main } from "@/stitches.config";
+import { Main, styled } from "@/stitches.config";
 
 import ProjectGrid from "@/components/ProjectGrid";
 import Layout from "@/components/Layout";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Intro from "@/components/Intro";
+
+const StyledSection = styled("section", {
+    width: "100%",
+    height: "100vh",
+
+    "& > *": {
+        width: "100%",
+        height: "100%",
+    },
+
+    variants: {
+        for: {
+            intro: {
+                height: "calc(100vh - $space$headerHeight - (2*$space$6))",
+            },
+            projects: {
+                height: "calc(100vh - $space$headerHeight - (2*$space$6))",
+            },
+            callToAction: {
+                height: "calc(100vh - $space$headerHeight - $space$footerHeight",
+            },
+        },
+    },
+});
 
 interface HomeProps {
     projects: Project[];
@@ -23,10 +48,15 @@ const HomePage = ({ projects, homepage }: HomeProps) => {
             <Header />
 
             <Main>
-                <h1 role="heading">{homepage.title}</h1>
-                <p>{homepage.description}</p>
+                <StyledSection for="intro">
+                    <Intro homepage={homepage} />
+                </StyledSection>
 
-                <ProjectGrid projects={projects} />
+                <StyledSection for="projects">
+                    <ProjectGrid projects={projects} />
+                </StyledSection>
+
+                <StyledSection for="callToAction"></StyledSection>
             </Main>
 
             <Footer />

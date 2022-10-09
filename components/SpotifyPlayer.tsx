@@ -3,6 +3,27 @@ import Image from "next/future/image";
 import useSWR, { Fetcher } from "swr";
 
 import { SpotifyData } from "@/lib/types";
+import { styled } from "@/stitches.config";
+
+const PlayerContainer = styled("div", {
+    display: "flex",
+    lineHeight: "24px",
+    letterSpacing: "-.01em",
+});
+
+const StyledLink = styled(Link, {
+    padding: "$1 $2",
+    transition: "background .6s cubic-bezier(.23,1,.32,1)",
+    borderRadius: "$md",
+
+    "&:hover": {
+        background: "$gray3",
+    },
+});
+
+const StyledImage = styled(Image, {
+    borderRadius: "$full",
+});
 
 const SpotifyPlayer = () => {
     const fetcher: Fetcher<SpotifyData> = async (url: string) => {
@@ -19,14 +40,16 @@ const SpotifyPlayer = () => {
 
     if (error) return <div></div>;
 
-    const { isPlaying, title, artist, album, albumImage, songUrl } = data ?? {};
+    const { isPlaying, title, artist, album, albumImage, songUrl } = data ?? {
+        isPlaying: false,
+    };
 
     return (
-        <div>
+        <PlayerContainer>
             {isPlaying ? (
-                <Link href={songUrl ?? ""} target="_blank">
+                <StyledLink href={songUrl ?? ""} target="_blank">
                     {albumImage && (
-                        <Image
+                        <StyledImage
                             src={albumImage.url}
                             width={albumImage.width}
                             height={albumImage.height}
@@ -35,14 +58,15 @@ const SpotifyPlayer = () => {
                             }`}
                         />
                     )}
-                    title: {title} <br />
-                    artist: {artist} <br />
-                    album: {album}
-                </Link>
+                    <span>Now playing</span>
+                    <span>
+                        {title} - {artist}
+                    </span>
+                </StyledLink>
             ) : (
                 <div>Not playing</div>
             )}
-        </div>
+        </PlayerContainer>
     );
 };
 
