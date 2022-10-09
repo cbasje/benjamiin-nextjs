@@ -1,20 +1,20 @@
-import { ReactNode, useEffect } from "react";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { motion } from "framer-motion";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import type { ParsedUrlQuery } from "querystring";
-import { motion } from "framer-motion";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "phosphor-react";
+import type { ParsedUrlQuery } from "querystring";
+import { ReactNode, useEffect } from "react";
 
 import Layout from "@/components/Layout";
 import Picture from "@/components/Picture";
 import { Article, styled } from "@/stitches.config";
 
-import { dialogOverlayVariants, dialogVariants } from "@/lib/transition";
-import { sanityClient, getClient } from "@/lib/sanity-server";
-import { projectQuery, projectSlugsQuery } from "@/lib/queries";
-import { Project, Seo, Locale } from "@/lib/types";
 import { parseLocale } from "@/lib/locale";
+import { projectQuery, projectSlugsQuery } from "@/lib/queries";
+import { getClient, sanityClient } from "@/lib/sanity-server";
+import { dialogOverlayVariants, dialogVariants } from "@/lib/transition";
+import { Locale, Project, Seo } from "@/lib/types";
 
 const StyledOverlay = styled(DialogPrimitive.Overlay, {
     backgroundColor: "rgb(33 37 41 / 35%)", // TODO: convert everything to space rgba

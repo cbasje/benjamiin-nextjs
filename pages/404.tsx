@@ -1,9 +1,9 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticProps } from "next";
 
 import { parseLocale } from "@/lib/locale";
-import { NotFound, Locale } from "@/lib/types";
-import { getClient } from "@/lib/sanity-server";
 import { notFoundQuery } from "@/lib/queries";
+import { getClient } from "@/lib/sanity-server";
+import { Locale, NotFound } from "@/lib/types";
 
 import Seo from "@/components/Meta";
 import { Box } from "@/stitches.config";

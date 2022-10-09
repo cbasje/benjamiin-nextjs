@@ -2,8 +2,8 @@ import Image from "next/future/image";
 
 import { Picture as PictureSrc } from "lib/types";
 
-import { styled } from "@/stitches.config";
 import { urlFor } from "@/lib/sanity";
+import { styled } from "@/stitches.config";
 
 const StyledImage = styled(Image, {
     objectFit: "cover",

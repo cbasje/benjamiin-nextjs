@@ -1,4 +1,4 @@
-import { Variants, Transition } from "framer-motion";
+import { Transition, Variants } from "framer-motion";
 
 // const easing = [0.175, 0.85, 0.42, 0.96];
 export const transition: Transition = {

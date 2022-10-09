@@ -1,6 +1,6 @@
-import { Html, Head, Main, NextScript } from "next/document";
-import { ServerStyleSheetDocument } from "next-sanity/studio";
 import { getCssText } from "@/stitches.config";
+import { ServerStyleSheetDocument } from "next-sanity/studio";
+import { Head, Html, Main, NextScript } from "next/document";
 
 export default class Document extends ServerStyleSheetDocument {
     render() {

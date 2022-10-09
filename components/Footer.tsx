@@ -2,15 +2,15 @@ import { useRouter } from "next/router";
 
 import { getLocaleLabel } from "@/lib/locale";
 
-import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import * as Label from "@radix-ui/react-label";
 import * as Select from "@radix-ui/react-select";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 
 import { Locale } from "@/lib/types";
 
-import SpotifyPlayer from "./SpotifyPlayer";
 import { styled } from "@/stitches.config";
 import { CaretDown } from "phosphor-react";
+import SpotifyPlayer from "./SpotifyPlayer";
 
 const StyledFooter = styled("footer", {
     width: "100vw",

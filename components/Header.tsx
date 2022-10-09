@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { Locale } from "@/lib/types";
+import { styled } from "@/stitches.config";
 import {
     AppleLogo,
     Bank,
@@ -9,7 +10,6 @@ import {
     PaperPlane,
     UsersFour,
 } from "phosphor-react";
-import { styled } from "@/stitches.config";
 
 const StyledHeader = styled("header", {
     position: "fixed",

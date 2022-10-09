@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/future/image";
+import Link from "next/link";
 import useSWR, { Fetcher } from "swr";
 
 import { SpotifyData } from "@/lib/types";

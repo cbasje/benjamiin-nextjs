@@ -1,12 +1,12 @@
-import Link from "next/link";
-import Image from "next/future/image";
 import { motion } from "framer-motion";
+import Image from "next/future/image";
+import Link from "next/link";
 
 import { Project } from "@/lib/types";
 
-import { styled } from "@/stitches.config";
 import { urlFor } from "@/lib/sanity";
 import { cardVariants, imageVariants, transition } from "@/lib/transition";
+import { styled } from "@/stitches.config";
 
 const StyledCard = styled(motion.div, {
     display: "flex",

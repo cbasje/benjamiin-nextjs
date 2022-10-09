@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
 import { motion, Variants } from "framer-motion";
+import { ReactNode } from "react";
 
-import Meta from "./Meta";
 import { styled } from "@/stitches.config";
+import Meta from "./Meta";
 
 import { Seo } from "lib/types";
 
