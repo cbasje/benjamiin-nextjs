@@ -15,12 +15,14 @@ export interface LayoutProps {
 const AnimateContainer = styled(motion.div, {
     width: "100%",
     height: "100%",
+    paddingTop: "$headerHeight",
 });
 
 const Layout = ({ seo, children, variants }: LayoutProps) => {
     return (
         <>
             <Meta seo={seo} />
+
             <AnimateContainer
                 initial="exit"
                 animate="enter"

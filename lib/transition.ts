@@ -40,10 +40,6 @@ export const cardVariants: Variants = {
     },
 };
 
-export const frameVariants: Variants = {
-    // hover: { scale: 0.95 },
-};
-
 export const imageVariants: Variants = {
     hover: { scale: 1.05 },
 };
