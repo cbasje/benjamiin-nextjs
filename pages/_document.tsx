@@ -14,7 +14,7 @@ export default class Document extends ServerStyleSheetDocument {
                     />
                     <link rel="shortcut icon" href="/favicon.ico" />
                     <link
-                        href="https://fonts.googleapis.com/css2?family=Inter&family=Space+Grotesk&family=Space+Mono&display=swap"
+                        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
                         rel="stylesheet"
                     />
                 </Head>

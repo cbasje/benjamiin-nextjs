@@ -60,19 +60,26 @@ export const { globalCss, styled, getCssText, createTheme } = createStitches({
             4: "2rem",
             5: "2.5rem",
             6: "3rem",
+
+            headerHeight: "5.5rem",
         },
         radii: {
             sm: "0.5rem",
             md: "1rem",
             lg: "1.5rem",
+            full: "99999px",
         },
         fonts: {
             display:
-                "Space Grotesk, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
+                "Space Mono, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
             text: "Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
             mono: "Space Mono, monospace",
         },
         fontSizes: {},
+        fontWeights: {
+            regular: 400,
+            bold: 700,
+        },
     },
     media: {
         sm: "(min-width: 640px)",
@@ -95,7 +102,7 @@ export const globalStyles = globalCss({
     },
     "h1, h2, h3, h4, h5, h6": {
         fontFamily: "$display",
-        fontWeight: 600,
+        fontWeight: "$bold",
         textTransform: "uppercase",
         letterSpacing: "0.05rem",
         color: "$displayOnBg",
@@ -127,11 +134,21 @@ export const darkTheme = createTheme("dark", {
 });
 
 export const Main = styled("main", {
-    width: "100%",
-    maxWidth: "1024px",
+    width: "100vw",
     marginInline: "auto",
     paddingInline: "$2",
-    paddingBlock: "$6",
+    // paddingBlock: "$6",
+
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "$6",
+
+    "& > *": {
+        width: "100%",
+        maxWidth: "1024px",
+    },
 });
 
 export const Article = styled("article", {
