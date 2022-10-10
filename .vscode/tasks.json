@@ -12,10 +12,10 @@
                 "reveal": "always",
                 "panel": "new",
                 "group": "develop"
-            },
-            "runOptions": {
-                "runOn": "folderOpen"
             }
+            // "runOptions": {
+            //     "runOn": "folderOpen"
+            // }
         },
         {
             "label": "🟥  Start Sanity Studio",
@@ -26,10 +26,10 @@
                 "reveal": "always",
                 "panel": "new",
                 "group": "develop"
-            },
-            "runOptions": {
-                "runOn": "folderOpen"
             }
+            // "runOptions": {
+            //     "runOn": "folderOpen"
+            // }
         },
         {
             "label": "🧶  Build",

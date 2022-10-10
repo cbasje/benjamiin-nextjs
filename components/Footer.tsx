@@ -1,9 +1,9 @@
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 
-import { Locale } from "@/lib/types";
+// import { Locale } from "@/lib/types";
 
 import { styled } from "@/stitches.config";
-import LanguageSwitcher from "./LanguageSwitcher";
+// import LanguageSwitcher from "./LanguageSwitcher";
 import SpotifyPlayer from "./SpotifyPlayer";
 import { Copyright } from "phosphor-react";
 
@@ -65,17 +65,17 @@ const StyledLi = styled("li", {
 });
 
 const Footer = () => {
-    const router = useRouter();
-    const locale = router.query.locale as Locale;
+    // const router = useRouter();
+    // const locale = router.query.locale as Locale;
 
-    const handleLocaleChange = (newLocale: Locale) => {
-        router.push({
-            pathname: "/[locale]",
-            query: {
-                locale: newLocale,
-            },
-        });
-    };
+    // const handleLocaleChange = (newLocale: Locale) => {
+    //     router.push({
+    //         pathname: "/[locale]",
+    //         query: {
+    //             locale: newLocale,
+    //         },
+    //     });
+    // };
 
     return (
         <StyledFooter>

@@ -1,6 +1,5 @@
 import Error from "next/error";
 
-import { urlFor } from "@/lib/sanity";
 import { Home } from "@/lib/types";
 import { styled } from "@/stitches.config";
 import Image from "next/future/image";

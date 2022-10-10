@@ -9,7 +9,7 @@ const CTAContainer = styled("div", {
 const CallToAction = () => {
     return (
         <CTAContainer>
-            <Button>Let's talk</Button>
+            <Button>Let&apos;s talk</Button>
         </CTAContainer>
     );
 };
