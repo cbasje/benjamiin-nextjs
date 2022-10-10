@@ -1,13 +1,14 @@
 import Error from "next/error";
 
+import { urlFor } from "@/lib/sanity";
 import { Home } from "@/lib/types";
 import { styled } from "@/stitches.config";
+import Image from "next/future/image";
 
 const IntroContainer = styled("div", {
     border: "8px solid rgb($gray900 / 10%)",
     borderRadius: "$md",
     position: "relative",
-    overflow: "hidden",
 });
 
 const TextContainer = styled("div", {
@@ -43,6 +44,17 @@ const StyledSVG = styled("svg", {
 });
 
 const StyledPath = styled("path");
+
+const StyledImage = styled(Image, {
+    position: "absolute",
+    top: "-45px",
+    right: "-130px",
+    width: "650px",
+    height: "auto",
+    mask: "linear-gradient(black, black) top left / 528px 685px no-repeat",
+    WebkitMask:
+        "linear-gradient(black, black) top left / 528px 685px no-repeat",
+});
 
 const ProjectGrid = ({ homepage }: { homepage: Home }) => {
     if (!homepage) return <Error statusCode={404} />;
@@ -84,6 +96,13 @@ const ProjectGrid = ({ homepage }: { homepage: Home }) => {
                     />
                 </g>
             </StyledSVG>
+
+            <StyledImage
+                width={1077}
+                height={1616}
+                src="/images/headshot.png"
+                alt={"Headshot of me, Sebastiaan Benjamins"}
+            />
         </IntroContainer>
     );
 };

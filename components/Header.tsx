@@ -42,6 +42,7 @@ const StyledNav = styled("nav", {
 
 const StyledUl = styled("ul", {
     margin: 0,
+    padding: 0,
     listStyle: "none",
     position: "relative",
     display: "flex",
@@ -183,7 +184,7 @@ const StyledUnderline = styled("hr", {
     all: "unset",
     position: "absolute",
     bottom: 0,
-    left: 98,
+    left: 72,
     width: 16,
     height: 3,
     borderRadius: 1.5,
@@ -199,7 +200,7 @@ const Header = () => {
         <StyledHeader>
             <StyledNav>
                 <StyledUl role="list" side="left">
-                    <StyledLi hasLogo>
+                    <StyledLi role="listitem" hasLogo>
                         <StyledAnchor
                             href={{
                                 pathname: "/[locale]",
@@ -215,7 +216,7 @@ const Header = () => {
                             />
                         </StyledAnchor>
                     </StyledLi>
-                    <StyledLi hasIcon isSelected>
+                    <StyledLi role="listitem" hasIcon isSelected>
                         <StyledAnchor href="#">
                             <UsersFour
                                 className="icon"
@@ -236,13 +237,13 @@ const Header = () => {
                             <div className="popup">Raise</div>
                         </StyledAnchor>
                     </StyledLi>
-                    <StyledLi hasIcon>
+                    <StyledLi role="listitem" hasIcon>
                         <StyledAnchor href="#">
                             <Bank className="icon" size={16} weight="bold" />
                             <div className="popup">Hold</div>
                         </StyledAnchor>
                     </StyledLi>
-                    <StyledLi hasIcon>
+                    <StyledLi role="listitem" hasIcon>
                         <StyledAnchor href="#">
                             <CreditCard
                                 className="icon"
@@ -252,7 +253,7 @@ const Header = () => {
                             <div className="popup">Spend</div>
                         </StyledAnchor>
                     </StyledLi>
-                    <StyledLi hasIcon>
+                    <StyledLi role="listitem" hasIcon>
                         <StyledAnchor href="#">
                             <PaperPlane
                                 className="icon"
@@ -268,12 +269,12 @@ const Header = () => {
                     />
                 </StyledUl>
                 <StyledUl role="list" side="right">
-                    <StyledLi>
+                    <StyledLi role="listitem">
                         <StyledAnchor href="#" className="link">
                             Twitter
                         </StyledAnchor>
                     </StyledLi>
-                    <StyledLi>
+                    <StyledLi role="listitem">
                         <StyledAnchor
                             href={
                                 "mailto:Sebastiaan Benjamins <sebas@benjami.in>"

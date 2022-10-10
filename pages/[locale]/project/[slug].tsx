@@ -123,7 +123,7 @@ const ProjectPage = ({ project }: ProjectProps) => {
     }, []);
 
     return (
-        <Layout seo={seo}>
+        <Layout seo={seo} noTopPadding>
             <Dialog open={true} onOpenChange={(e) => !e && router.push("/")}>
                 <DialogContent>
                     <DialogTitle>{project.title}</DialogTitle>

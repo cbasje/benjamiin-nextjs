@@ -58,6 +58,8 @@ export const homeQuery = groq`
 *[_type == "home" && __i18n_lang == $locale] | order(_updatedAt desc) [0] {
   _id,
   title,
+  description,
+  headshot,
   "locale": __i18n_lang
 }
 `;

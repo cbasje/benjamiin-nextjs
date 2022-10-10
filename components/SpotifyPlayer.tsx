@@ -5,37 +5,60 @@ import useSWR, { Fetcher } from "swr";
 import { SpotifyData } from "@/lib/types";
 import { styled } from "@/stitches.config";
 
-const PlayerContainer = styled("div", {
+const StyledLink = styled(Link, {
+    maxWidth: "100%",
+
     display: "flex",
+    flexDirection: "row",
+    gap: "$2",
+    borderRadius: "$md",
     lineHeight: "24px",
     letterSpacing: "-.01em",
 });
 
-const StyledLink = styled(Link, {
-    display: "flex",
-    flexDirection: "row-reverse",
-    gap: "$2",
-    padding: "$1 $2",
-    transition: "background .6s cubic-bezier(.23,1,.32,1)",
-    borderRadius: "$md",
-
-    "&:hover": {
-        background: "rgb($gray300)",
-    },
-});
-
 const TextContainer = styled("div", {
+    maxWidth: "100%",
+
     display: "flex",
     flexDirection: "column",
+    minWidth: 0,
     height: "3rem",
     alignItems: "flex-end",
+    justifyContent: "center",
     textAlign: "end",
+
+    "& > span": {
+        maxWidth: "100%",
+
+        fontFamily: "$display",
+        textTransform: "uppercase",
+        overflow: "hidden",
+        whiteSpace: "nowrap",
+        textOverflow: "ellipsis",
+
+        "&:first-child": { fontWeight: "$bold" },
+    },
 });
 
 const StyledImage = styled(Image, {
     borderRadius: "$full",
     width: "3rem",
     height: "3rem",
+
+    "&:hover": {
+        background: "red", //FIXME:
+    },
+});
+
+const ImagePlaceholder = styled("div", {
+    borderRadius: "$full",
+    width: "3rem",
+    height: "3rem",
+    background: "rgb($green400)",
+
+    "&:hover": {
+        background: "red", //FIXME:
+    },
 });
 
 const SpotifyPlayer = () => {
@@ -57,32 +80,34 @@ const SpotifyPlayer = () => {
         isPlaying: false,
     };
 
-    return (
-        <PlayerContainer>
-            {isPlaying ? (
-                <StyledLink href={songUrl ?? ""} target="_blank">
-                    {albumImage && (
-                        <StyledImage
-                            src={albumImage.url}
-                            width={albumImage.width}
-                            height={albumImage.height}
-                            alt={`Album cover of ${album ?? "the album"} by ${
-                                artist ?? "the artist"
-                            }`}
-                        />
-                    )}
+    return isPlaying ? (
+        <StyledLink href={songUrl ?? ""} target="_blank">
+            <TextContainer>
+                <span>Now playing</span>
+                <span>
+                    {title} - {artist}
+                </span>
+            </TextContainer>
 
-                    <TextContainer>
-                        <span>Now playing</span>
-                        <span>
-                            {title} - {artist}
-                        </span>
-                    </TextContainer>
-                </StyledLink>
-            ) : (
-                <div>Not playing</div>
+            {albumImage && (
+                <StyledImage
+                    src={albumImage.url}
+                    width={albumImage.width}
+                    height={albumImage.height}
+                    alt={`Album cover of ${album ?? "the album"} by ${
+                        artist ?? "the artist"
+                    }`}
+                />
             )}
-        </PlayerContainer>
+        </StyledLink>
+    ) : (
+        <StyledLink href="#">
+            <TextContainer>
+                <span>Offline</span>
+            </TextContainer>
+
+            <ImagePlaceholder />
+        </StyledLink>
     );
 };
 

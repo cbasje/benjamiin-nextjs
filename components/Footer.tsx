@@ -1,16 +1,11 @@
 import { useRouter } from "next/router";
 
-import { getLocaleLabel } from "@/lib/locale";
-
-import * as Label from "@radix-ui/react-label";
-import * as Select from "@radix-ui/react-select";
-import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
-
 import { Locale } from "@/lib/types";
 
 import { styled } from "@/stitches.config";
-import { CaretDown } from "phosphor-react";
+import LanguageSwitcher from "./LanguageSwitcher";
 import SpotifyPlayer from "./SpotifyPlayer";
+import { Copyright } from "phosphor-react";
 
 const StyledFooter = styled("footer", {
     width: "100vw",
@@ -33,6 +28,7 @@ const StyledAside = styled("aside", {
 
 const StyledUl = styled("ul", {
     margin: 0,
+    padding: 0,
     listStyle: "none",
     display: "flex",
     maxWidth: "30%",
@@ -55,13 +51,20 @@ const StyledUl = styled("ul", {
     },
 });
 
-const StyledLi = styled("li", {});
+const StyledLi = styled("li", {
+    maxWidth: "100%",
 
-const SelectIcon = styled(Select.Icon, {
-    verticalAlign: "text-bottom",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: "$1",
+
+    "& > span": {
+        fontFamily: "$display",
+        fontWeight: "$bold",
+        textTransform: "uppercase",
+    },
 });
-
-// export interface FooterProps {}
 
 const Footer = () => {
     const router = useRouter();
@@ -79,50 +82,23 @@ const Footer = () => {
     return (
         <StyledFooter>
             <StyledAside>
-                <StyledUl side="left">
-                    <StyledLi>
-                        © Sebastiaan Benjamins, {new Date().getFullYear()}
+                <StyledUl role="list" side="left">
+                    <StyledLi role="listitem">
+                        <Copyright weight="bold" />
+                        <span>
+                            Sebastiaan Benjamins, {new Date().getFullYear()}
+                        </span>
                     </StyledLi>
-                    <StyledLi>
-                        <VisuallyHidden.Root>
-                            <Label.Root htmlFor="languageSwitcher">
-                                Switch languages
-                            </Label.Root>
-                        </VisuallyHidden.Root>
-                        <Select.Root
-                            defaultValue={locale}
-                            onValueChange={handleLocaleChange}
-                        >
-                            <Select.Trigger>
-                                <Select.Value />
-                                <SelectIcon asChild>
-                                    <CaretDown size="1rem" weight="bold" />
-                                </SelectIcon>
-                            </Select.Trigger>
-
-                            <Select.Content>
-                                <Select.ScrollUpButton />
-                                <Select.Viewport>
-                                    {Object.values(Locale).map((l) => (
-                                        <Select.Item
-                                            key={`locale-${l}`}
-                                            value={l}
-                                            lang={l}
-                                        >
-                                            <Select.ItemText>
-                                                {getLocaleLabel(l)}
-                                            </Select.ItemText>
-                                            <Select.ItemIndicator />
-                                        </Select.Item>
-                                    ))}
-                                </Select.Viewport>
-                                <Select.ScrollDownButton />
-                            </Select.Content>
-                        </Select.Root>
-                    </StyledLi>
+                    {/* FIXME: Move this
+                    <StyledLi role='listitem'>
+                        <LanguageSwitcher
+                            locale={locale}
+                            onLocaleChange={handleLocaleChange}
+                        />
+                    </StyledLi> */}
                 </StyledUl>
-                <StyledUl side="right">
-                    <StyledLi>
+                <StyledUl role="list" side="right">
+                    <StyledLi role="listitem">
                         <SpotifyPlayer />
                     </StyledLi>
                 </StyledUl>

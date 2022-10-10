@@ -62,6 +62,7 @@ export const { globalCss, styled, getCssText, createTheme } = createStitches({
             6: "3rem",
 
             headerHeight: "5.5rem",
+            footerHeight: "4.5rem",
         },
         radii: {
             sm: "0.5rem",

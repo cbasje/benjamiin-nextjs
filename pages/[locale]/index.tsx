@@ -32,7 +32,7 @@ const StyledSection = styled("section", {
                 height: "calc(100vh - $space$headerHeight - (2*$space$6))",
             },
             callToAction: {
-                height: "calc(100vh - $space$headerHeight - $space$footerHeight",
+                height: "calc(100vh - $space$headerHeight - $space$footerHeight)",
             },
         },
     },
@@ -60,9 +60,9 @@ const HomePage = ({ projects, homepage }: HomeProps) => {
                 <StyledSection for="callToAction">
                     <CallToAction />
                 </StyledSection>
-            </Main>
 
-            <Footer />
+                <Footer />
+            </Main>
         </Layout>
     );
 };
