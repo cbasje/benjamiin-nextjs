@@ -9,7 +9,7 @@ import { Copyright } from "phosphor-react";
 
 const StyledFooter = styled("footer", {
     width: "100vw",
-    padding: "$2",
+    paddingBlock: "$2",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -38,14 +38,12 @@ const StyledUl = styled("ul", {
     variants: {
         side: {
             left: {
-                padding: 0,
                 justifyContent: "flex-start",
                 gap: 16,
             },
             right: {
                 justifyContent: "flex-end",
                 gap: 0,
-                padding: 8,
             },
         },
     },
