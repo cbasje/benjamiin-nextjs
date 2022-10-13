@@ -19,19 +19,19 @@ const Grid = styled(motion.div, {
         gridTemplateAreas: "'main side-up' 'main side-down'",
         gridGap: "$2",
         alignItems: "stretch",
+    },
 
-        "& > :first-child": {
-            gridArea: "main",
-            $$cardBg: "rgb($colors$purple100)",
-        },
-        "& > :nth-child(2)": {
-            gridArea: "side-up",
-            $$cardBg: "rgb($colors$green100)",
-        },
-        "& > :nth-child(3)": {
-            gridArea: "side-down",
-            $$cardBg: "rgb($colors$blue100)",
-        },
+    "& > :first-child": {
+        gridArea: "main",
+        $$cardBg: "rgb($colors$purple100)",
+    },
+    "& > :nth-child(2)": {
+        gridArea: "side-up",
+        $$cardBg: "rgb($colors$green100)",
+    },
+    "& > :nth-child(3)": {
+        gridArea: "side-down",
+        $$cardBg: "rgb($colors$blue100)",
     },
 });
 
@@ -49,7 +49,11 @@ const ProjectGrid = ({ projects }: { projects: Project[] }) => {
             role="grid"
         >
             {projects.map((project: Project, i: number) => (
-                <ProjectCard project={project} key={project.slug} />
+                <ProjectCard
+                    project={project}
+                    useCustomColour={projects.every((p) => !!p.colour)}
+                    key={project.slug}
+                />
             ))}
         </Grid>
     );

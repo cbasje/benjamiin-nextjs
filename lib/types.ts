@@ -46,12 +46,14 @@ export interface Category {
     projects?: Project[];
 }
 
+type Colour = "purple" | "green" | "blue";
 export interface Project {
     _id: string;
     title: string;
     description: string;
     slug: string;
     mainImage: string;
+    colour?: Colour;
     categories: Category[];
     body: string;
     publishedAt: Date;

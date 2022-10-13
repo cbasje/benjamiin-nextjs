@@ -71,7 +71,13 @@ const StyledCard = styled(motion.div, {
     },
 });
 
-const ProjectCard = ({ project }: { project: Project }) => {
+const ProjectCard = ({
+    project,
+    useCustomColour,
+}: {
+    project: Project;
+    useCustomColour: boolean;
+}) => {
     const imgURL = project.mainImage
         ? urlFor(project.mainImage).width(1500).auto("format").fit("max").url()
         : null;
@@ -82,6 +88,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
             variants={cardVariants}
             transition={transition}
             role="gridcell"
+            css={
+                useCustomColour
+                    ? {
+                          $$cardBg: `rgb($colors$${project.colour}100) !important`,
+                      }
+                    : undefined
+            }
         >
             <StyledLink
                 href={{

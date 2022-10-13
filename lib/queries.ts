@@ -4,6 +4,7 @@ const projectFields = groq`
   title,
   description,
   mainImage,
+  colour,
   publishedAt,
   "slug": slug.current,
   "locale": __i18n_lang

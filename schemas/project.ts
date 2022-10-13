@@ -32,6 +32,18 @@ export default {
             },
         },
         {
+            name: "colour",
+            title: "Colour",
+            type: "string",
+            options: {
+                list: [
+                    { title: "Purple", value: "purple" },
+                    { title: "Green", value: "green" },
+                    { title: "Blue", value: "blue" },
+                ],
+            },
+        },
+        {
             name: "categories",
             title: "Categories",
             type: "array",
