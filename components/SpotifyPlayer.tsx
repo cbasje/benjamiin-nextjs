@@ -101,7 +101,7 @@ const SpotifyPlayer = () => {
             )}
         </StyledLink>
     ) : (
-        <StyledLink href="#">
+        <StyledLink as="span">
             <TextContainer>
                 <span>Offline</span>
             </TextContainer>

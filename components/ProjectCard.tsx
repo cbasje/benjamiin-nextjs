@@ -7,6 +7,7 @@ import { Project } from "@/lib/types";
 import { urlFor } from "@/lib/sanity";
 import { cardVariants, imageVariants, transition } from "@/lib/transition";
 import { styled } from "@/stitches.config";
+import ImageNotFound from "./ImageNotFound";
 
 const StyledLink = styled(Link, {
     display: "block",
@@ -114,7 +115,7 @@ const ProjectCard = ({
                             alt="..."
                         />
                     ) : (
-                        <p>Not found</p>
+                        <ImageNotFound />
                     )}
                 </StyledImageContainer>
                 <StyledLabelContainer>

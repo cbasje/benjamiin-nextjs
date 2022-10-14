@@ -11,7 +11,7 @@ import { getClient, sanityClient } from "@/lib/sanity-server";
 import { Locale, Project, Seo } from "@/lib/types";
 
 import MDXComponents from "@/components/MDXComponents";
-import Picture from "@/components/Picture";
+import Image from "@/components/Image";
 import ProjectsLayout, {
     ProjectSubTitle,
     ProjectTitle,
@@ -79,7 +79,7 @@ const ProjectPage = ({ project }: ProjectProps) => {
             </Flex>
 
             <Banner css={{ background: `rgb($colors$${project.colour}100)` }}>
-                <Picture src={project.mainImage} fillContainer />
+                <Image src={project.mainImage} fillContainer />
             </Banner>
 
             {/* <BlockManager blocks={project.attributes.blocks} /> */}

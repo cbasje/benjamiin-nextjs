@@ -1,6 +1,6 @@
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
-export type Picture = string;
+export type Image = string;
 
 export enum Locale {
     EN = "en",
@@ -10,7 +10,7 @@ export enum Locale {
 export interface Seo {
     metaTitle: string;
     metaDescription?: string;
-    shareImage?: Picture;
+    shareImage?: Image;
     isArticle?: boolean;
     locale?: Locale;
 }

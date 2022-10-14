@@ -1,11 +1,12 @@
-import Image from "next/future/image";
+import NextImage from "next/future/image";
 
-import { Picture as PictureSrc } from "lib/types";
+import { Image as ImageSrc } from "lib/types";
 
 import { urlFor } from "@/lib/sanity";
 import { styled } from "@/stitches.config";
+import ImageNotFound from "./ImageNotFound";
 
-const StyledImage = styled(Image, {
+const StyledImage = styled(NextImage, {
     objectFit: "cover",
 
     variants: {
@@ -18,19 +19,18 @@ const StyledImage = styled(Image, {
     },
 });
 
-const Picture = ({
+const Image = ({
     src,
     fillContainer = true,
     width = 2048,
     height = 1080,
 }: {
-    src?: PictureSrc;
+    src?: ImageSrc;
     fillContainer?: boolean;
     width?: number;
     height?: number;
 }) => {
-    // FIXME: If no src is provided, return an error
-    if (!src) return <p>Not found</p>;
+    if (!src) return <ImageNotFound />;
 
     // const { alternativeText, width, height } = src;
     return (
@@ -50,4 +50,4 @@ const Picture = ({
     );
 };
 
-export default Picture;
+export default Image;
