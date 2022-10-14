@@ -12,14 +12,19 @@ import { Locale, Project, Seo } from "@/lib/types";
 
 import MDXComponents from "@/components/MDXComponents";
 import Picture from "@/components/Picture";
-import ProjectsLayout from "@/layouts/Projects";
-import { styled } from "@/stitches.config";
+import ProjectsLayout, {
+    ProjectSubTitle,
+    ProjectTitle,
+} from "@/layouts/Projects";
+import { Flex, Grid, styled } from "@/stitches.config";
 import { MDXRemote } from "next-mdx-remote";
 
-export const Banner = styled("div", {
-    width: "100vw",
-    height: "75vh",
-    position: "relative",
+export const Banner = styled(motion.div, {
+    width: "100%",
+    height: "auto",
+    borderRadius: "$sm",
+    aspectRatio: "3 / 2",
+    overflow: "hidden",
 });
 
 interface ProjectProps {
@@ -29,7 +34,7 @@ interface ProjectProps {
 const ProjectPage = ({ project }: ProjectProps) => {
     const seo: Seo = {
         metaTitle: project.title,
-        metaDescription: project.description,
+        metaDescription: project.subTitle,
         shareImage: project.mainImage,
         isArticle: true,
     };
@@ -42,40 +47,39 @@ const ProjectPage = ({ project }: ProjectProps) => {
 
     return (
         <ProjectsLayout
+            colour={project.colour}
             seo={seo}
-            project={project}
             onClose={() => router.push("/")}
         >
-            <Banner>
-                <motion.div
-                    style={{
-                        width: "100%",
-                        height: "100%",
-                        position: "relative",
-                    }}
+            <Flex css={{ flexDirection: "column", gap: "$1" }}>
+                <ProjectTitle>{project.title}</ProjectTitle>
+                <Grid
+                    css={{ gridTemplateColumns: "repeat(2, 1fr)", gap: "$1" }}
                 >
-                    <Picture src={project.mainImage} fillContainer />
-                </motion.div>
+                    <Flex css={{ flexDirection: "column", gap: "$1" }}>
+                        <ProjectSubTitle>{project.subTitle}</ProjectSubTitle>
 
-                <div
-                    style={{
-                        width: "100%",
-                        height: "100%",
-                        position: "absolute",
-                        top: 0,
-                        display: "grid",
-                        placeContent: "center",
-                    }}
-                >
-                    <motion.h1
-                        style={{
-                            mixBlendMode: "difference",
-                            color: "white",
-                        }}
-                    >
-                        {project.title}
-                    </motion.h1>
-                </div>
+                        <Flex css={{ flexDirection: "row" }}>
+                            <span>
+                                {new Intl.DateTimeFormat(router.query.locale, {
+                                    month: "long",
+                                    year: "numeric",
+                                }).format(new Date(project.publishedAt))}
+                            </span>
+
+                            {project.categories &&
+                                project.categories.map((c) => (
+                                    <span>{c.title}</span>
+                                ))}
+                        </Flex>
+                    </Flex>
+
+                    <p>{project.description}</p>
+                </Grid>
+            </Flex>
+
+            <Banner css={{ background: `rgb($colors$${project.colour}100)` }}>
+                <Picture src={project.mainImage} fillContainer />
             </Banner>
 
             {/* <BlockManager blocks={project.attributes.blocks} /> */}

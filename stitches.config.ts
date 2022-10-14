@@ -13,7 +13,7 @@ export const { globalCss, styled, getCssText, createTheme } = createStitches({
             purple600: "147 51 234",
             purple700: "126 34 206",
             purple800: "107 33 168",
-            purple9: "88 28 135",
+            purple900: "88 28 135",
             green50: "240 253 244",
             green100: "220 252 231",
             green200: "187 247 208",
@@ -102,10 +102,12 @@ export const globalStyles = globalCss({
         lineHeight: 1.5,
     },
     "h1, h2, h3, h4, h5, h6": {
+        margin: "0 0 1.1em",
         fontFamily: "$display",
         fontWeight: "$bold",
         textTransform: "uppercase",
         letterSpacing: "0.05rem",
+        lineHeight: 1.1,
         color: "rgb($displayOnBg)",
 
         overflowWrap: "break-word",
@@ -113,6 +115,7 @@ export const globalStyles = globalCss({
     p: {
         margin: "0 0 1.5em",
         overflowWrap: "break-word",
+        lineHeight: 1.5,
     },
     a: {
         color: "inherit",
@@ -148,34 +151,27 @@ export const Main = styled("main", {
 
     "& > *": {
         width: "100%",
-        maxWidth: "1024px",
+        maxWidth: 1024,
     },
 });
 
-export const Article = styled("article", {
-    width: "100%",
-    marginInline: "auto",
-    paddingInline: "$2",
-    paddingBlock: "$6",
-
+export const Box = styled("div");
+export const Flex = styled("div", {
     display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: "$6",
-
-    "& > p": {
-        width: "100%",
-        maxWidth: "60ch",
-    },
+});
+export const Grid = styled("div", {
+    display: "grid",
 });
 
-export const Flex = styled("div", { display: "flex" });
-export const Box = styled("div", {});
+export const Line = styled("hr", {
+    all: "unset",
+    height: 1.4,
+    background: "rgb($gray900 / 8%)",
+});
 
-export const BlocksContainer = styled("div", {});
+export const BlocksContainer = styled("div");
 
-export const CarouselContainer = styled("div", {});
+export const CarouselContainer = styled("div");
 
 export const Button = styled("button", {
     all: "unset",

@@ -48,17 +48,18 @@ export interface Category {
     projects?: Project[];
 }
 
-type Colour = "purple" | "green" | "blue";
+export type ProjectColour = "purple" | "green" | "blue";
 export interface Project {
     _id: string;
     title: string;
+    subTitle: string;
     description: string;
     slug: string;
     mainImage: string;
-    colour?: Colour;
+    colour?: ProjectColour;
     categories: Category[];
     content: MDXRemoteSerializeResult;
-    publishedAt: Date;
+    publishedAt: string;
     seo?: Seo;
     locale: Locale;
 }

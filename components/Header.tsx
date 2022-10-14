@@ -32,7 +32,7 @@ const StyledHeader = styled("header", {
 
     "& > *": {
         width: "100%",
-        maxWidth: "1024px",
+        maxWidth: 1024,
     },
 });
 

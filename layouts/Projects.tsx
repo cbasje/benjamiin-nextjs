@@ -4,13 +4,12 @@ import { X } from "phosphor-react";
 import { ReactNode } from "react";
 
 import { dialogOverlayVariants, dialogVariants } from "@/lib/transition";
-import { Project, Seo } from "@/lib/types";
+import { ProjectColour, Seo } from "@/lib/types";
 
-import { Article, styled } from "@/stitches.config";
+import { styled } from "@/stitches.config";
 import MainLayout from "./Main";
 
 const StyledOverlay = styled(DialogPrimitive.Overlay, {
-    backgroundColor: "rgb(33 37 41 / 35%)", // TODO: convert everything to space rgba
     position: "fixed",
     inset: 0,
     zIndex: -1,
@@ -18,8 +17,8 @@ const StyledOverlay = styled(DialogPrimitive.Overlay, {
 
 const StyledContent = styled(DialogPrimitive.Content, {
     backgroundColor: "rgb($bg)",
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
+    borderTopLeftRadius: "$md",
+    borderTopRightRadius: "$md",
     marginTop: "4em",
     width: "100vw",
     height: "calc(100vh - 4em)",
@@ -30,16 +29,15 @@ const StyledContent = styled(DialogPrimitive.Content, {
 
 const StyledTitle = styled(DialogPrimitive.Title, {
     margin: 0,
-    fontWeight: 500,
-    color: "rgb($textOnBg)",
-    fontSize: 17,
+    fontSize: "2rem",
 });
 
 const StyledDescription = styled(DialogPrimitive.Description, {
-    margin: "10px 0 20px",
-    color: "rgb($textOnBg)",
-    fontSize: 15,
-    lineHeight: 1.5,
+    margin: 0,
+    fontFamily: "$display",
+    fontWeight: "$normal",
+    color: "rgb($displayOnBg)",
+    fontSize: "1.5rem",
 });
 
 const IconButton = styled("button", {
@@ -58,25 +56,90 @@ const IconButton = styled("button", {
     cursor: "pointer",
     pointerEvents: "all",
     zIndex: 1,
-
-    "&:hover": { backgroundColor: "rgb($purple400)" },
-    "&:focus": { boxShadow: "0 0 0 2px rgb($purple400)" },
 });
 
-const Content = ({ children, ...props }: { children: ReactNode }) => {
+const Article = styled("article", {
+    width: "100%",
+    marginInline: "auto",
+    paddingInline: "$2",
+    paddingBlock: "calc($6 * 2)",
+
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "$6",
+
+    "& p, & img": {
+        width: "100%",
+        maxWidth: "60ch",
+        height: "auto",
+        margin: 0,
+    },
+    "& img": {
+        borderRadius: "$sm",
+        aspectRatio: "3 / 2",
+        overflow: "hidden",
+        objectFit: "cover",
+    },
+    "& :not(p, img)": {
+        width: "100%",
+        maxWidth: 1024,
+    },
+});
+
+const Content = ({
+    colour,
+    children,
+    ...props
+}: {
+    colour?: ProjectColour;
+    children: ReactNode;
+}) => {
     return (
         <>
             <motion.div variants={dialogOverlayVariants}>
-                <StyledOverlay />
+                <StyledOverlay
+                    css={
+                        colour
+                            ? {
+                                  backgroundColor: `rgb($colors$${colour}900 / 25%)`,
+                              }
+                            : {
+                                  backgroundColor: `rgb($gray900 / 25%)`,
+                              }
+                    }
+                />
                 <DialogClose asChild>
-                    <IconButton aria-label="Close">
+                    <IconButton
+                        aria-label="Close"
+                        css={
+                            colour
+                                ? {
+                                      "&:hover": {
+                                          backgroundColor: `rgb($colors$${colour}500)`,
+                                      },
+                                      "&:focus": {
+                                          boxShadow: `0 0 0 2px rgb($colors$${colour}500)`,
+                                      },
+                                  }
+                                : {
+                                      "&:hover": {
+                                          backgroundColor: "rgb($primary)",
+                                      },
+                                      "&:focus": {
+                                          boxShadow: "0 0 0 2px rgb($primary)",
+                                      },
+                                  }
+                        }
+                    >
                         <X size="2em" weight="bold" />
                     </IconButton>
                 </DialogClose>
             </motion.div>
             <motion.div variants={dialogVariants}>
                 <StyledContent {...props}>
-                    <Article css={{ minHeight: "100%" }}>{children}</Article>
+                    <Article>{children}</Article>
                 </StyledContent>
             </motion.div>
         </>
@@ -87,30 +150,26 @@ const Content = ({ children, ...props }: { children: ReactNode }) => {
 export const Dialog = DialogPrimitive.Root;
 export const DialogTrigger = DialogPrimitive.Trigger;
 export const DialogContent = Content;
-export const DialogTitle = StyledTitle;
-export const DialogDescription = StyledDescription;
 export const DialogClose = DialogPrimitive.Close;
 
+export const ProjectTitle = StyledTitle;
+export const ProjectSubTitle = StyledDescription;
+
 const ProjectsLayout = ({
+    colour,
     seo,
-    project,
     onClose,
     children,
 }: {
+    colour?: ProjectColour;
     seo: Seo;
-    project: Project;
     children: ReactNode;
     onClose: () => void;
 }) => {
     return (
         <MainLayout seo={seo} noTopPadding>
             <Dialog open={true} onOpenChange={(e) => !e && onClose()}>
-                <DialogContent>
-                    <DialogTitle>{project.title}</DialogTitle>
-                    <DialogDescription>{project.description}</DialogDescription>
-
-                    {children}
-                </DialogContent>
+                <DialogContent colour={colour}>{children}</DialogContent>
             </Dialog>
         </MainLayout>
     );
