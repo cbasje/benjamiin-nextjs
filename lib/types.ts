@@ -57,7 +57,7 @@ export interface Project {
     slug: string;
     mainImage: string;
     colour?: ProjectColour;
-    categories: Category[];
+    categories: Pick<Category, "_id" | "title">[];
     content: MDXRemoteSerializeResult;
     publishedAt: string;
     seo?: Seo;

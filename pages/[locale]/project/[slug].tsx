@@ -69,7 +69,7 @@ const ProjectPage = ({ project }: ProjectProps) => {
 
                             {project.categories &&
                                 project.categories.map((c) => (
-                                    <span>{c.title}</span>
+                                    <span key={c._id}>{c.title}</span>
                                 ))}
                         </Flex>
                     </Flex>

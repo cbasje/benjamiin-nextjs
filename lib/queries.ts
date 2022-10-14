@@ -23,7 +23,7 @@ export const projectQuery = groq`
     description,
     content,
     seo,
-    categories[] -> { title },
+    categories[] -> { _id, title },
     ${projectFields}
   }
 }`;
