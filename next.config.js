@@ -2,12 +2,7 @@
 module.exports = {
     reactStrictMode: true,
     images: {
-        domains: [
-            "localhost:3000",
-            "res.cloudinary.com",
-            "cdn.sanity.io",
-            "i.scdn.co",
-        ],
+        domains: ["res.cloudinary.com", "cdn.sanity.io", "i.scdn.co"],
         deviceSizes: [320, 420, 768, 1024, 1200],
     },
     experimental: {
