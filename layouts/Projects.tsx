@@ -70,13 +70,13 @@ const Article = styled("article", {
     alignItems: "center",
     gap: "$6",
 
-    "& p, & img": {
+    "& p, & > img": {
         width: "100%",
         maxWidth: "60ch",
         height: "auto",
         margin: 0,
     },
-    "& img": {
+    "& > img": {
         borderRadius: "$sm",
         aspectRatio: "3 / 2",
         overflow: "hidden",
