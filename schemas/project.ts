@@ -55,6 +55,11 @@ export default {
             type: "blockContent",
         },
         {
+            name: "content",
+            title: "Content",
+            type: "markdown",
+        },
+        {
             name: "publishedAt",
             title: "Published at",
             type: "datetime",

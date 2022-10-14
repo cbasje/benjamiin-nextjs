@@ -13,8 +13,5 @@ module.exports = {
     experimental: {
         legacyBrowsers: false,
         newNextLinkBehavior: true,
-        images: {
-            allowFutureImage: true,
-        },
     },
 };

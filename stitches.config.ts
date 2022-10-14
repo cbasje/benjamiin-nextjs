@@ -154,10 +154,20 @@ export const Main = styled("main", {
 
 export const Article = styled("article", {
     width: "100%",
-    maxWidth: "60ch",
     marginInline: "auto",
     paddingInline: "$2",
     paddingBlock: "$6",
+
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "$6",
+
+    "& > p": {
+        width: "100%",
+        maxWidth: "60ch",
+    },
 });
 
 export const Flex = styled("div", { display: "flex" });

@@ -6,6 +6,7 @@ import { getClient } from "@/lib/sanity-server";
 import { Locale, NotFound } from "@/lib/types";
 
 import Seo from "@/components/Meta";
+import MainLayout from "@/layouts/Main";
 import { Box } from "@/stitches.config";
 
 interface NotFoundProps {
@@ -14,10 +15,10 @@ interface NotFoundProps {
 
 const NotFoundPage = ({ notFound }: NotFoundProps) => {
     return (
-        <>
+        <MainLayout>
             <Seo seo={notFound.seo}></Seo>
             <Box>Page not found!</Box>
-        </>
+        </MainLayout>
     );
 };
 
@@ -27,14 +28,13 @@ export const getStaticProps: GetStaticProps<NotFoundProps> = async ({
 }) => {
     const locale = await parseLocale(params?.locale as Locale);
 
-    const notFoundRes = await getClient(preview!).fetch<NotFound>(
-        notFoundQuery,
-        { locale }
-    );
+    const notFound = await getClient(preview!).fetch<NotFound>(notFoundQuery, {
+        locale,
+    });
 
     return {
         props: {
-            notFound: notFoundRes,
+            notFound,
         },
         revalidate: 1,
     };

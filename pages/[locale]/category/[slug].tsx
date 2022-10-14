@@ -2,16 +2,16 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 import type { ParsedUrlQuery } from "querystring";
 
 import { parseLocale } from "@/lib/locale";
-import { categoryQuery, categorySlugsQuery } from "@/lib/queries";
+import { categoryPathsQuery, categoryQuery } from "@/lib/queries";
 import { getClient, sanityClient } from "@/lib/sanity-server";
 import { pageVariants } from "@/lib/transition";
-import { Main } from "@/stitches.config";
-
 import { Category, Locale, Seo } from "@/lib/types";
 
+import { Main } from "@/stitches.config";
+
 import Header from "@/components/Header";
-import Layout from "@/components/Layout";
 import ProjectGrid from "@/components/ProjectGrid";
+import MainLayout from "@/layouts/Main";
 
 interface CategoryProps {
     category: Category;
@@ -24,27 +24,26 @@ const CategoryPage = ({ category }: CategoryProps) => {
     };
 
     return (
-        <Layout variants={pageVariants} seo={seo}>
+        <MainLayout variants={pageVariants} seo={seo}>
             <Header />
 
             <Main>
                 <h1>{category.title}</h1>
                 <ProjectGrid projects={category.projects || []} />
             </Main>
-        </Layout>
+        </MainLayout>
     );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const categoriesRes = await sanityClient.fetch<Category[]>(
-        categorySlugsQuery
-    );
+    type CategoryPath = Pick<Category, "slug" | "locale">;
+    const paths = await sanityClient.fetch<CategoryPath[]>(categoryPathsQuery);
 
     return {
-        paths: categoriesRes.map((category: Category) => ({
+        paths: paths.map((path: CategoryPath) => ({
             params: {
-                slug: category.slug,
-                locale: category.locale,
+                slug: path.slug,
+                locale: path.locale,
             },
         })),
         fallback: "blocking",

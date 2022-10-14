@@ -1,7 +1,7 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 
 import { parseLocale } from "@/lib/locale";
-import { homeQuery, projectsQuery } from "@/lib/queries";
+import { homeQuery, projectListQuery } from "@/lib/queries";
 import { getClient } from "@/lib/sanity-server";
 import { pageVariants } from "@/lib/transition";
 import { Home, Locale, Project } from "@/lib/types";
@@ -11,8 +11,8 @@ import CallToAction from "@/components/CallToAction";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Intro from "@/components/Intro";
-import Layout from "@/components/Layout";
 import ProjectGrid from "@/components/ProjectGrid";
+import MainLayout from "@/layouts/Main";
 
 const StyledSection = styled("section", {
     width: "100%",
@@ -45,7 +45,7 @@ interface HomeProps {
 
 const HomePage = ({ projects, homepage }: HomeProps) => {
     return (
-        <Layout variants={pageVariants} seo={homepage.seo}>
+        <MainLayout variants={pageVariants} seo={homepage.seo}>
             <Header />
 
             <Main>
@@ -63,7 +63,7 @@ const HomePage = ({ projects, homepage }: HomeProps) => {
 
                 <Footer />
             </Main>
-        </Layout>
+        </MainLayout>
     );
 };
 
@@ -80,8 +80,8 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({
 }) => {
     const locale = await parseLocale(params?.locale as Locale);
 
-    const [projectsRes, homepageRes] = await Promise.all([
-        getClient(preview!).fetch<Project[]>(projectsQuery, {
+    const [projects, homepage] = await Promise.all([
+        getClient(preview!).fetch<Project[]>(projectListQuery, {
             locale,
         }),
         getClient(preview!).fetch<Home>(homeQuery, {
@@ -91,8 +91,8 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({
 
     return {
         props: {
-            projects: projectsRes,
-            homepage: homepageRes,
+            projects,
+            homepage,
         },
         revalidate: 1,
     };

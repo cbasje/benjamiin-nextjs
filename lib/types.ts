@@ -1,3 +1,5 @@
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
+
 export type Picture = string;
 
 export enum Locale {
@@ -55,7 +57,7 @@ export interface Project {
     mainImage: string;
     colour?: Colour;
     categories: Category[];
-    body: string;
+    content: MDXRemoteSerializeResult;
     publishedAt: Date;
     seo?: Seo;
     locale: Locale;

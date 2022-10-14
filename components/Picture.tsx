@@ -20,7 +20,7 @@ const StyledImage = styled(Image, {
 
 const Picture = ({
     src,
-    fillContainer,
+    fillContainer = true,
     width = 2048,
     height = 1080,
 }: {
@@ -35,8 +35,8 @@ const Picture = ({
     // const { alternativeText, width, height } = src;
     return (
         <StyledImage
-            width={1000}
-            height={562.5}
+            width={width}
+            height={height}
             src={urlFor(src)
                 .width(width)
                 .height(height)

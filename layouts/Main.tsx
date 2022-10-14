@@ -2,7 +2,7 @@ import { motion, Variants } from "framer-motion";
 import { ReactNode } from "react";
 
 import { styled } from "@/stitches.config";
-import Meta from "./Meta";
+import Meta from "@/components/Meta";
 
 import { Seo } from "lib/types";
 
@@ -26,7 +26,7 @@ const AnimateContainer = styled(motion.div, {
     },
 });
 
-const Layout = ({ seo, children, variants, noTopPadding }: LayoutProps) => {
+const MainLayout = ({ seo, children, variants, noTopPadding }: LayoutProps) => {
     return (
         <>
             <Meta seo={seo} />
@@ -44,4 +44,4 @@ const Layout = ({ seo, children, variants, noTopPadding }: LayoutProps) => {
     );
 };
 
-export default Layout;
+export default MainLayout;
