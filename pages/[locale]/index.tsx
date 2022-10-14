@@ -18,6 +18,16 @@ const StyledSection = styled("section", {
     width: "100%",
     height: "100vh",
 
+    filter: "grayscale(100%)",
+    opacity: 0.7,
+    transition:
+        "filter .8s cubic-bezier(.33,1,.68,1), opacity .8s cubic-bezier(.33,1,.68,1)",
+
+    "&:hover": {
+        opacity: 1,
+        filter: "grayscale(0%)",
+    },
+
     "& > *": {
         width: "100%",
         height: "100%",

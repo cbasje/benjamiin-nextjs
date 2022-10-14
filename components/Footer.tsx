@@ -14,6 +14,13 @@ const StyledFooter = styled("footer", {
     justifyContent: "center",
     alignItems: "center",
 
+    filter: "grayscale(100%)",
+    transition: "filter .8s cubic-bezier(.33,1,.68,1)",
+
+    "&:hover": {
+        filter: "grayscale(0%)",
+    },
+
     "& > *": {
         width: "100%",
         maxWidth: "1024px",
