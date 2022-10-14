@@ -176,11 +176,10 @@ export const CarouselContainer = styled("div");
 export const Button = styled("button", {
     all: "unset",
 
-    paddingBlock: "$1",
-    paddingInline: "$2",
     cursor: "pointer",
     userSelect: "none",
     outline: "currentColor",
+    borderRadius: "$sm",
 
     $$gradient:
         "linear-gradient(135deg, rgb($colors$purple400), rgb($colors$blue400), rgb($colors$green400))",
@@ -190,10 +189,29 @@ export const Button = styled("button", {
     },
 
     variants: {
+        size: {
+            normal: {
+                paddingBlock: "$1",
+                paddingInline: "$2",
+            },
+            lg: {
+                paddingBlock: "$2",
+                paddingInline: "$3",
+
+                fontSize: "x-large",
+                fontFamily: "$display",
+                fontWeight: "$bold",
+                textTransform: "uppercase",
+            },
+        },
         variant: {
             primary: {
                 background: "$$gradient",
                 color: "rgb($textOnPrimary)",
+            },
+            black: {
+                background: "rgb($gray900)",
+                color: "rgb($gray100)",
             },
         },
         outlined: {

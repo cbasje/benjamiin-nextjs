@@ -29,7 +29,7 @@ const StyledImage = styled(Image, {
 const StyledLabelContainer = styled("div", {
     display: "flex",
     flexDirection: "row",
-    alignItems: "flex-end",
+    alignItems: "baseline",
     gap: "$1",
     position: "absolute",
     bottom: "$space$1",

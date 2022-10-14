@@ -16,7 +16,8 @@ import MainLayout from "@/layouts/Main";
 
 const StyledSection = styled("section", {
     width: "100%",
-    height: "100vh",
+    // height: "100vh",
+    height: "auto",
 
     filter: "grayscale(100%)",
     opacity: 0.7,
@@ -36,13 +37,16 @@ const StyledSection = styled("section", {
     variants: {
         for: {
             intro: {
-                height: "calc(100vh - $space$headerHeight - (2*$space$6))",
+                // height: "calc(100vh - $space$headerHeight - (2*$space$6))",
+                aspectRatio: 1.88,
             },
             projects: {
-                height: "calc(100vh - $space$headerHeight - (2*$space$6))",
+                // height: "calc(100vh - $space$headerHeight - (2*$space$6))",
+                aspectRatio: 1.85,
             },
             callToAction: {
-                height: "calc(100vh - $space$headerHeight - $space$footerHeight)",
+                // height: "calc(100vh - $space$headerHeight - $space$footerHeight)",
+                aspectRatio: 2.11,
             },
         },
     },

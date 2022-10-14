@@ -23,13 +23,6 @@ const StyledHeader = styled("header", {
     alignItems: "center",
     zIndex: 9,
 
-    filter: "grayscale(100%)",
-    transition: "filter .8s cubic-bezier(.33,1,.68,1)",
-
-    "&:hover": {
-        filter: "grayscale(0%)",
-    },
-
     "& > *": {
         width: "100%",
         maxWidth: 1024,
@@ -42,8 +35,8 @@ const StyledNav = styled("nav", {
     alignItems: "center",
     background: "rgb($bg / 75%)",
     // boxShadow: "0 6px 20px rgb(0 0 0 / 8%)",
-    WebkitBackdropFilter: "blur(25px)",
-    backdropFilter: "blur(25px)",
+    WebkitBackdropFilter: "blur(15px)",
+    backdropFilter: "blur(15px)",
     borderRadius: "$md",
 });
 

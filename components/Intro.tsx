@@ -2,19 +2,14 @@ import Error from "next/error";
 
 import { Home } from "@/lib/types";
 import { styled } from "@/stitches.config";
-import Image from "next/future/image";
 
-const IntroContainer = styled("div", {
-    border: "8px solid rgb($gray900 / 10%)",
-    borderRadius: "$md",
-    position: "relative",
-});
+const IntroContainer = styled("div");
 
 const TextContainer = styled("div", {
     position: "absolute",
-    bottom: "$2",
-    left: "$2",
-    maxWidth: "50%",
+    bottom: "$3",
+    left: "$3",
+    maxWidth: "60%",
     display: "flex",
     flexDirection: "column",
     gap: "$2",
@@ -31,29 +26,15 @@ const StyledParagraph = styled("p", {
 });
 
 const StyledSVG = styled("svg", {
-    opacity: "45%",
-    filter: "blur(7vw)",
-    width: "140%",
-    height: "auto",
-    aspectRatio: "16/9",
     position: "absolute",
-    bottom: "-35%",
-    right: "-40%",
+    insetInline: 0,
+    insetBlockStart: "-6.75%", // It is slightly taller to accommodate the hair
+    insetBlockEnd: 0,
     zIndex: "-1",
 });
 
 const StyledPath = styled("path");
-
-const StyledImage = styled(Image, {
-    position: "absolute",
-    top: "-45px",
-    right: "-130px",
-    width: "650px",
-    height: "auto",
-    mask: "linear-gradient(black, black) top left / 528px 685px no-repeat",
-    WebkitMask:
-        "linear-gradient(black, black) top left / 528px 685px no-repeat",
-});
+const StyledRect = styled("rect");
 
 const ProjectGrid = ({ homepage }: { homepage: Home }) => {
     if (!homepage) return <Error statusCode={404} />;
@@ -70,38 +51,130 @@ const ProjectGrid = ({ homepage }: { homepage: Home }) => {
             </TextContainer>
 
             <StyledSVG
-                width="2087"
-                height="1451"
-                viewBox="0 0 2087 1451"
+                viewBox="0 0 1384 786"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
             >
-                <g>
-                    <StyledPath
-                        d="M1575.41 489.305C1649.87 567.411 1748.74 646.17 1735.8 746.769C1721.15 860.735 1626.71 954.321 1511.48 986.515C1400.42 1017.54 1286.73 959.84 1182.9 901.237C1074.32 839.951 946.008 773.863 928.575 657.507C911.275 542.037 1006.7 446.057 1105.28 383.173C1182.71 333.785 1283.09 349.712 1377.65 371.059C1456.32 388.818 1520.29 431.476 1575.41 489.305Z"
-                        css={{ fill: "rgb($green400)" }}
-                    />
+                <g clipPath="url(#clipBlobs)">
+                    <g opacity="0.45" filter="url(#filter0_f_545_107)">
+                        <StyledPath
+                            d="M1606.41 315.305C1680.87 393.411 1779.74 472.17 1766.8 572.769C1752.15 686.735 1657.71 780.321 1542.48 812.515C1431.42 843.542 1317.73 785.84 1213.9 727.237C1105.32 665.951 977.008 599.863 959.575 483.507C942.275 368.037 1037.7 272.057 1136.28 209.173C1213.71 159.785 1314.09 175.712 1408.65 197.059C1487.32 214.818 1551.29 257.476 1606.41 315.305Z"
+                            css={{ fill: "rgb($green400)" }}
+                        />
+                    </g>
+                    <g opacity="0.45" filter="url(#filter1_f_545_107)">
+                        <StyledPath
+                            d="M803.241 254.881C870.251 250.457 935.428 260.001 989.123 286.457C1043.73 313.363 1084.58 354.87 1107.53 404.808C1130.7 455.232 1132.66 512.246 1119.15 569.409C1105.17 628.541 1080.16 688.676 1029.23 735.987C977.788 783.768 908.558 822.348 836.497 831.969C768.216 841.086 712.369 807.909 653.994 786.085C604.409 767.549 563.284 742.297 521.699 714.286C470.306 679.668 388.798 660.198 381.579 602.593C374.408 545.365 445.664 493.832 487.499 441.373C525.136 394.178 558.251 344.119 613.938 311.227C671.159 277.43 737.571 259.217 803.241 254.881Z"
+                            css={{ fill: "rgb($purple400)" }}
+                        />
+                    </g>
+                    <g opacity="0.45" filter="url(#filter2_f_545_107)">
+                        <StyledPath
+                            d="M1251.31 428.262C1299.52 439.836 1348.29 456.302 1381.38 489.778C1414.37 523.157 1424.78 568.898 1433.84 612.929C1442.74 656.135 1447.39 700.417 1433.45 742.695C1419.3 785.57 1390.31 822.971 1354.33 853.955C1317.71 885.492 1274.76 911.999 1225.39 921.873C1175.94 931.763 1125.04 923.345 1077.02 909.417C1029.11 895.522 981.457 876.467 949.226 841.775C917.479 807.603 908.109 762.107 899.334 718.161C890.766 675.249 884.604 631.261 898.837 589.418C913.197 547.203 942.903 510.464 979.894 481.335C1016.53 452.489 1061.09 433.556 1108.55 424.276C1155.97 415.003 1204.6 417.046 1251.31 428.262Z"
+                            css={{ fill: "rgb($blue400)" }}
+                        />
+                    </g>
                 </g>
-                <g>
-                    <StyledPath
-                        d="M772.241 428.881C839.251 424.457 904.428 434.001 958.123 460.457C1012.73 487.363 1053.58 528.87 1076.53 578.808C1099.7 629.232 1101.66 686.246 1088.15 743.409C1074.17 802.541 1049.16 862.676 998.225 909.987C946.788 957.768 877.558 996.348 805.497 1005.97C737.216 1015.09 681.369 981.909 622.994 960.085C573.409 941.549 532.284 916.297 490.699 888.286C439.306 853.668 357.798 834.198 350.579 776.593C343.408 719.365 414.664 667.832 456.499 615.373C494.136 568.178 527.251 518.119 582.938 485.228C640.159 451.43 706.571 433.217 772.241 428.881Z"
-                        css={{ fill: "rgb($purple400)" }}
-                    />
-                </g>
-                <g>
-                    <StyledPath
-                        d="M1220.31 602.262C1268.52 613.836 1317.29 630.302 1350.38 663.778C1383.37 697.157 1393.78 742.898 1402.84 786.929C1411.74 830.135 1416.39 874.417 1402.45 916.695C1388.3 959.57 1359.31 996.971 1323.33 1027.95C1286.71 1059.49 1243.76 1086 1194.39 1095.87C1144.94 1105.76 1094.04 1097.34 1046.02 1083.42C998.109 1069.52 950.457 1050.47 918.226 1015.78C886.479 981.603 877.109 936.107 868.334 892.161C859.766 849.249 853.604 805.261 867.837 763.418C882.197 721.203 911.903 684.464 948.894 655.335C985.525 626.489 1030.09 607.556 1077.55 598.276C1124.97 589.003 1173.6 591.046 1220.31 602.262Z"
-                        css={{ fill: "rgb($blue400)" }}
-                    />
-                </g>
+                <image
+                    href="/images/headshot.png"
+                    x="769"
+                    y="0"
+                    width={756}
+                    height={1133}
+                    clipPath="url(#clipHeadshot)"
+                />
+                <StyledRect
+                    x="4"
+                    y="54"
+                    width="1376"
+                    height="728"
+                    strokeOpacity="0.1"
+                    strokeWidth="8"
+                    css={{ stroke: "rgb($gray900)", rx: "$radii$md" }}
+                />
+                <defs>
+                    <filter
+                        id="filter0_f_545_107"
+                        x="607.531"
+                        y="-173.429"
+                        width="1510.42"
+                        height="1344.62"
+                        filterUnits="userSpaceOnUse"
+                        colorInterpolationFilters="sRGB"
+                    >
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                        <feBlend
+                            mode="normal"
+                            in="SourceGraphic"
+                            in2="BackgroundImageFix"
+                            result="shape"
+                        />
+                        <feGaussianBlur
+                            stdDeviation="175"
+                            result="effect1_foregroundBlur_545_107"
+                        />
+                    </filter>
+                    <filter
+                        id="filter1_f_545_107"
+                        x="31.0762"
+                        y="-96.1583"
+                        width="1446.5"
+                        height="1279.68"
+                        filterUnits="userSpaceOnUse"
+                        colorInterpolationFilters="sRGB"
+                    >
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                        <feBlend
+                            mode="normal"
+                            in="SourceGraphic"
+                            in2="BackgroundImageFix"
+                            result="shape"
+                        />
+                        <feGaussianBlur
+                            stdDeviation="175"
+                            result="effect1_foregroundBlur_545_107"
+                        />
+                    </filter>
+                    <filter
+                        id="filter2_f_545_107"
+                        x="540.359"
+                        y="68.4203"
+                        width="1251.92"
+                        height="1207.76"
+                        filterUnits="userSpaceOnUse"
+                        colorInterpolationFilters="sRGB"
+                    >
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                        <feBlend
+                            mode="normal"
+                            in="SourceGraphic"
+                            in2="BackgroundImageFix"
+                            result="shape"
+                        />
+                        <feGaussianBlur
+                            stdDeviation="175"
+                            result="effect1_foregroundBlur_545_107"
+                        />
+                    </filter>
+                    <clipPath id="clipBlobs">
+                        <StyledRect
+                            y="50"
+                            width="1384"
+                            height="736"
+                            fill="white"
+                            css={{ rx: "$radii$md" }}
+                        />
+                    </clipPath>
+                    <clipPath id="clipHeadshot">
+                        <StyledRect
+                            width="1384"
+                            height="786"
+                            fill="white"
+                            css={{ rx: "$radii$md" }}
+                        />
+                    </clipPath>
+                </defs>
             </StyledSVG>
-
-            <StyledImage
-                width={1077}
-                height={1616}
-                src="/images/headshot.png"
-                alt={"Headshot of me, Sebastiaan Benjamins"}
-            />
         </IntroContainer>
     );
 };
