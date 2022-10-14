@@ -70,11 +70,13 @@ const Article = styled("article", {
     alignItems: "center",
     gap: "$6",
 
-    "& p, & > img": {
+    "& p": {
+        margin: 0,
+    },
+    "& > p, & > img": {
         width: "100%",
         maxWidth: "60ch",
         height: "auto",
-        margin: 0,
     },
     "& > img": {
         borderRadius: "$sm",
@@ -82,7 +84,7 @@ const Article = styled("article", {
         overflow: "hidden",
         objectFit: "cover",
     },
-    "& :not(p, img)": {
+    "& > :not(p, img)": {
         width: "100%",
         maxWidth: 1024,
     },
