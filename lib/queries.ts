@@ -62,7 +62,6 @@ export const homeQuery = groq`
   _id,
   title,
   description,
-  headshot,
   "locale": __i18n_lang
 }
 `;

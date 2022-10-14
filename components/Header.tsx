@@ -3,13 +3,7 @@ import { useRouter } from "next/router";
 
 import { Locale } from "@/lib/types";
 import { styled } from "@/stitches.config";
-import {
-    AppleLogo,
-    Bank,
-    CreditCard,
-    PaperPlane,
-    UsersFour,
-} from "phosphor-react";
+import { ArrowUpRight } from "phosphor-react";
 
 const StyledHeader = styled("header", {
     position: "fixed",
@@ -42,143 +36,58 @@ const StyledNav = styled("nav", {
 
 const StyledUl = styled("ul", {
     margin: 0,
-    padding: 0,
+    padding: "$1",
     listStyle: "none",
     position: "relative",
     display: "flex",
     alignItems: "center",
 
+    fontFamily: "$display",
+    fontWeight: "$bold",
+    textTransform: "uppercase",
+    letterSpacing: ".05em",
+
     variants: {
         side: {
             left: {
-                padding: 0,
                 justifyContent: "flex-start",
                 gap: 16,
             },
             right: {
                 justifyContent: "flex-end",
                 gap: 0,
-                padding: 8,
             },
         },
     },
 });
 
 const StyledAnchor = styled(Link, {
-    position: "relative",
+    paddingBlock: "$1",
+    paddingInline: "$2",
     display: "flex",
+    flexDirection: "row",
+    gap: "$1",
     flexGrow: 0,
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: "$sm",
+    transition: "background-color .2s cubic-bezier(.33,1,.68,1)",
+
+    "&:hover": {
+        backgroundColor: "rgb($gray200)",
+    },
+
+    "&:active": {
+        color: "rgb($gray50) !important",
+        backgroundColor: "rgb($gray900) !important",
+
+        "&:hover": {
+            backgroundColor: "rgb($gray900) !important",
+        },
+    },
 });
 
-const StyledLi = styled("li", {
-    variants: {
-        hasLogo: {
-            true: {
-                padding: "12px 8px 12px 12px",
-                marginLeft: 8,
-
-                "& .logo": {
-                    position: "relative",
-                    width: 20,
-                    height: 20,
-                    transition: "opacity .2s cubic-bezier(.33,1,.68,1)",
-                    color: "rgb($gray900)",
-                },
-            },
-        },
-        hasIcon: {
-            true: {
-                [`& ${StyledAnchor}`]: {
-                    width: 32,
-                    height: 32,
-                    backgroundColor: "rgb($gray100)",
-                    border: "1px solid rgb($gray200)",
-                    boxShadow: "0 6px 20px rgb($gray100 / 8%)",
-                    borderRadius: 8,
-                    // boxShadow: "0 6px 20px 0 rgb(0 0 0 / 8%)",
-                    transition:
-                        "background-color .2s cubic-bezier(.33,1,.68,1)",
-
-                    "&:hover": {
-                        backgroundColor: "rgb($gray200)",
-                    },
-                },
-            },
-        },
-        isSelected: {
-            true: {
-                [`& ${StyledAnchor}`]: {
-                    backgroundColor: "rgb($gray900) !important",
-
-                    "&:hover": {
-                        backgroundColor: "rgb($gray900) !important",
-                    },
-                },
-
-                "& .icon": {
-                    color: "rgb($gray50) !important",
-                },
-            },
-        },
-    },
-
-    "& .icon": {
-        position: "absolute",
-        width: 16,
-        height: 16,
-        transition: "opacity .2s cubic-bezier(.33,1,.68,1)",
-        color: "rgb($gray900)",
-    },
-
-    "&:hover .popup": {
-        opacity: 1,
-        visibility: "visible",
-    },
-    "& .popup": {
-        bottom: 40,
-        left: "50%",
-        transform: "translate(-50%)",
-        padding: "2px 8px",
-        flexDirection: "column",
-        justifyContent: "center",
-        fontWeight: 500,
-        fontSize: 14,
-        lineHeight: "20px",
-        textAlign: "center",
-        letterSpacing: "-.035em",
-        whiteSpace: "nowrap",
-        background: "rgb($gray100)",
-        border: "1px solid rgb($gray200)",
-        borderRadius: "$sm",
-        transition:
-            "opacity .2s cubic-bezier(.33,1,.68,1),visibility .2s cubic-bezier(.33,1,.68,1)",
-
-        position: "absolute",
-        display: "flex",
-        alignItems: "center",
-        color: "rgb($gray900)",
-        // boxShadow: "0 6px 20px rgb(255 255 255 / 8%)",
-        WebkitBackdropFilter: "blur(25px)",
-        backdropFilter: "blur(25px)",
-        opacity: 0,
-        visibility: "hidden",
-    },
-
-    "& .link": {
-        display: "flex",
-        padding: "8px 16px",
-        fontWeight: 500,
-        fontSize: 16,
-        lineHeight: "24px",
-        zIndex: 1,
-        textAlign: "center",
-        letterSpacing: "-.01em",
-        color: "rgb($gray900)",
-        transition: "color .6s cubic-bezier(.23,1,.32,1)",
-    },
-});
+const StyledLi = styled("li", {});
 
 const StyledUnderline = styled("hr", {
     all: "unset",
@@ -200,7 +109,7 @@ const Header = () => {
         <StyledHeader>
             <StyledNav>
                 <StyledUl role="list" side="left">
-                    <StyledLi role="listitem" hasLogo>
+                    <StyledLi role="listitem">
                         <StyledAnchor
                             href={{
                                 pathname: "/[locale]",
@@ -209,79 +118,29 @@ const Header = () => {
                                 },
                             }}
                         >
-                            <AppleLogo
-                                className="logo"
-                                size={20}
-                                weight="fill"
-                            />
+                            Sebastiaan Benjamins
                         </StyledAnchor>
                     </StyledLi>
-                    <StyledLi role="listitem" hasIcon isSelected>
-                        <StyledAnchor href="#">
-                            <UsersFour
-                                className="icon"
-                                size={16}
-                                weight="bold"
-                                style={{
-                                    opacity: 0,
-                                }}
-                            />
-                            <UsersFour
-                                className="icon"
-                                size={16}
-                                weight="fill"
-                                style={{
-                                    opacity: 1,
-                                }}
-                            />
-                            <div className="popup">Raise</div>
-                        </StyledAnchor>
-                    </StyledLi>
-                    <StyledLi role="listitem" hasIcon>
-                        <StyledAnchor href="#">
-                            <Bank className="icon" size={16} weight="bold" />
-                            <div className="popup">Hold</div>
-                        </StyledAnchor>
-                    </StyledLi>
-                    <StyledLi role="listitem" hasIcon>
-                        <StyledAnchor href="#">
-                            <CreditCard
-                                className="icon"
-                                size={16}
-                                weight="bold"
-                            />
-                            <div className="popup">Spend</div>
-                        </StyledAnchor>
-                    </StyledLi>
-                    <StyledLi role="listitem" hasIcon>
-                        <StyledAnchor href="#">
-                            <PaperPlane
-                                className="icon"
-                                size={16}
-                                weight="bold"
-                            />
-                            <div className="popup">Send</div>
-                        </StyledAnchor>
-                    </StyledLi>
-
-                    <StyledUnderline
-                        style={{ transform: "translateX(0px) scale(1)" }}
-                    />
                 </StyledUl>
                 <StyledUl role="list" side="right">
-                    <StyledLi role="listitem">
-                        <StyledAnchor href="#" className="link">
-                            Twitter
-                        </StyledAnchor>
-                    </StyledLi>
+                    {/* TODO:
                     <StyledLi role="listitem">
                         <StyledAnchor
-                            href={
-                                "mailto:Sebastiaan Benjamins <sebas@benjami.in>"
-                            }
+                            href={{
+                                pathname: "/[locale]/about",
+                                query: {
+                                    locale,
+                                },
+                            }}
                             className="link"
                         >
-                            Contact
+                            About
+                        </StyledAnchor>
+                    </StyledLi> */}
+                    <StyledLi role="listitem">
+                        <StyledAnchor href="mailto:Sebastiaan Benjamins <sebas@benjami.in>">
+                            <span>Contact</span>
+                            <ArrowUpRight size={24} weight="bold" />
                         </StyledAnchor>
                     </StyledLi>
                 </StyledUl>

@@ -43,11 +43,7 @@ const ProjectGrid = ({ homepage }: { homepage: Home }) => {
         <IntroContainer>
             <TextContainer>
                 <StyledHeading role="heading">{homepage.title}</StyledHeading>
-                <StyledParagraph>
-                    Lorem mollit Lorem sit est duis Lorem dolor sint. Aliqua est
-                    velit in do veniam quis amet et deserunt et esse eiusmod.
-                    {homepage.description}
-                </StyledParagraph>
+                <StyledParagraph>{homepage.description}</StyledParagraph>
             </TextContainer>
 
             <StyledSVG

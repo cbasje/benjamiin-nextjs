@@ -127,7 +127,7 @@ const CallToAction = () => {
 
             <Button
                 as="a"
-                href="mailto:sebastiaan@benjami.in"
+                href="mailto:Sebastiaan Benjamins <sebas@benjami.in>"
                 variant="black"
                 size="lg"
                 css={{

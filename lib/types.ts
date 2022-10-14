@@ -34,7 +34,6 @@ export interface Home {
     _id: number;
     title: string;
     description: string;
-    headshot: string;
     seo?: Seo;
     locale: Locale;
 }
