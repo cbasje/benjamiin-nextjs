@@ -1,7 +1,7 @@
+import App from "next/app";
+import type { AppContext, AppProps as NextAppProps } from "next/app";
 import * as Toast from "@radix-ui/react-toast";
 import { AnimatePresence } from "framer-motion";
-import type { AppContext, AppProps as NextAppProps } from "next/app";
-import App from "next/app";
 
 import { globalQuery } from "@/lib/queries";
 import { sanityClient } from "@/lib/sanity-server";
