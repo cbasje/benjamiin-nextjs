@@ -1,109 +1,30 @@
-import { ReactNode, useEffect } from "react";
+import { motion } from "framer-motion";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import type { ParsedUrlQuery } from "querystring";
-import { motion } from "framer-motion";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { X } from "phosphor-react";
+import { useEffect } from "react";
 
-import Layout from "@/components/Layout";
-import Picture from "@/components/Picture";
-import { Container, styled } from "@/stitches.config";
-
-import { dialogOverlayVariants, dialogVariants } from "@/lib/transition";
-import { sanityClient, getClient } from "@/lib/sanity-server";
-import { projectQuery, projectSlugsQuery } from "@/lib/queries";
-import { Project, Seo, Locale } from "@/lib/types";
 import { parseLocale } from "@/lib/locale";
+import { mdxToHtml } from "@/lib/mdx";
+import { projectPathsQuery, projectQuery } from "@/lib/queries";
+import { getClient, sanityClient } from "@/lib/sanity-server";
+import { Locale, Project, Seo } from "@/lib/types";
 
-const StyledOverlay = styled(DialogPrimitive.Overlay, {
-    backgroundColor: "rgb(33 37 41 / 35%)", // TODO: convert everything to space rgba
-    position: "fixed",
-    inset: 0,
-    zIndex: -1,
-});
+import MDXComponents from "@/components/MDXComponents";
+import Image from "@/components/Image";
+import ProjectsLayout, {
+    ProjectSubTitle,
+    ProjectTitle,
+} from "@/layouts/Projects";
+import { Flex, Grid, styled } from "@/stitches.config";
+import { MDXRemote } from "next-mdx-remote";
 
-const StyledContent = styled(DialogPrimitive.Content, {
-    backgroundColor: "$bg",
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
-    marginTop: "4em",
-    width: "100vw",
-    height: "calc(100vh - 4em)",
-    overflowY: "scroll",
-
-    "&:focus": { outline: "none" },
-});
-
-const StyledTitle = styled(DialogPrimitive.Title, {
-    margin: 0,
-    fontWeight: 500,
-    color: "$textOnBg",
-    fontSize: 17,
-});
-
-const StyledDescription = styled(DialogPrimitive.Description, {
-    margin: "10px 0 20px",
-    color: "$textOnBg",
-    fontSize: 15,
-    lineHeight: 1.5,
-});
-
-const IconButton = styled("button", {
-    all: "unset",
-    fontFamily: "inherit",
-    borderRadius: "100%",
-    height: "3em",
-    width: "3em",
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "$gray0",
-    position: "fixed",
-    top: ".5em",
-    right: ".5em",
-    cursor: "pointer",
-    pointerEvents: "all",
-    zIndex: 1,
-
-    "&:hover": { backgroundColor: "$purple4" },
-    "&:focus": { boxShadow: "0 0 0 2px $purple4" },
-});
-
-const Content = ({ children, ...props }: { children: ReactNode }) => {
-    return (
-        <>
-            <motion.div variants={dialogOverlayVariants}>
-                <StyledOverlay />
-                <DialogClose asChild>
-                    <IconButton aria-label="Close">
-                        <X size="2em" weight="bold" />
-                    </IconButton>
-                </DialogClose>
-            </motion.div>
-            <motion.div variants={dialogVariants}>
-                <StyledContent {...props}>
-                    <Container paddingY css={{ minHeight: "100%" }}>
-                        {children}
-                    </Container>
-                </StyledContent>
-            </motion.div>
-        </>
-    );
-};
-
-// Exports
-export const Dialog = DialogPrimitive.Root;
-export const DialogTrigger = DialogPrimitive.Trigger;
-export const DialogContent = Content;
-export const DialogTitle = StyledTitle;
-export const DialogDescription = StyledDescription;
-export const DialogClose = DialogPrimitive.Close;
-
-export const Banner = styled("div", {
-    width: "100vw",
-    height: "75vh",
-    position: "relative",
+export const Banner = styled(motion.div, {
+    width: "100%",
+    height: "auto",
+    borderRadius: "$sm",
+    aspectRatio: "3 / 2",
+    overflow: "hidden",
 });
 
 interface ProjectProps {
@@ -113,7 +34,7 @@ interface ProjectProps {
 const ProjectPage = ({ project }: ProjectProps) => {
     const seo: Seo = {
         metaTitle: project.title,
-        metaDescription: project.description,
+        metaDescription: project.subTitle,
         shareImage: project.mainImage,
         isArticle: true,
     };
@@ -125,60 +46,58 @@ const ProjectPage = ({ project }: ProjectProps) => {
     }, []);
 
     return (
-        <Layout seo={seo}>
-            <Dialog open={true} onOpenChange={(e) => !e && router.push("/")}>
-                <DialogContent>
-                    <DialogTitle>{project.title}</DialogTitle>
-                    <DialogDescription>{project.description}</DialogDescription>
+        <ProjectsLayout
+            colour={project.colour}
+            seo={seo}
+            onClose={() => router.push("/")}
+        >
+            <Flex css={{ flexDirection: "column", gap: "$1" }}>
+                <ProjectTitle>{project.title}</ProjectTitle>
+                <Grid
+                    css={{ gridTemplateColumns: "repeat(2, 1fr)", gap: "$1" }}
+                >
+                    <Flex css={{ flexDirection: "column", gap: "$1" }}>
+                        <ProjectSubTitle>{project.subTitle}</ProjectSubTitle>
 
-                    <Banner>
-                        <motion.div
-                            style={{
-                                width: "100%",
-                                height: "100%",
-                                position: "relative",
-                            }}
-                        >
-                            <Picture src={project.mainImage} fillContainer />
-                        </motion.div>
+                        <Flex css={{ flexDirection: "row" }}>
+                            <span>
+                                {new Intl.DateTimeFormat(router.query.locale, {
+                                    month: "long",
+                                    year: "numeric",
+                                }).format(new Date(project.publishedAt))}
+                            </span>
 
-                        <div
-                            style={{
-                                width: "100%",
-                                height: "100%",
-                                position: "absolute",
-                                top: 0,
-                                display: "grid",
-                                placeContent: "center",
-                            }}
-                        >
-                            <motion.h1
-                                style={{
-                                    mixBlendMode: "difference",
-                                    color: "white",
-                                }}
-                            >
-                                {project.title}
-                            </motion.h1>
-                        </div>
-                    </Banner>
+                            {project.categories &&
+                                project.categories.map((c) => (
+                                    <span key={c._id}>{c.title}</span>
+                                ))}
+                        </Flex>
+                    </Flex>
 
-                    {/* <BlockManager blocks={project.attributes.blocks} /> */}
-                    <div>{project.body}</div>
-                </DialogContent>
-            </Dialog>
-        </Layout>
+                    <p>{project.description}</p>
+                </Grid>
+            </Flex>
+
+            <Banner css={{ background: `rgb($colors$${project.colour}100)` }}>
+                <Image src={project.mainImage} fillContainer />
+            </Banner>
+
+            {/* <BlockManager blocks={project.attributes.blocks} /> */}
+            {/* <p>{project.body}</p> */}
+            <MDXRemote {...project.content} components={MDXComponents} />
+        </ProjectsLayout>
     );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const projectsRes = await sanityClient.fetch<Project[]>(projectSlugsQuery);
+    type ProjectPath = Pick<Project, "slug" | "locale">;
+    const paths = await sanityClient.fetch<ProjectPath[]>(projectPathsQuery);
 
     return {
-        paths: projectsRes.map((project: Project) => ({
+        paths: paths.map((path: ProjectPath) => ({
             params: {
-                slug: project.slug,
-                locale: project.locale,
+                slug: path.slug,
+                locale: path.locale,
             },
         })),
         fallback: "blocking",
@@ -192,17 +111,22 @@ export const getStaticProps: GetStaticProps<
     const slug = params?.slug;
     const locale = await parseLocale(params?.locale as Locale);
 
-    const { project } = await getClient(preview).fetch<{ project: Project }>(
-        projectQuery,
-        {
-            slug,
-            locale,
-        }
-    );
+    type ProjectFromSanity = Omit<Project, "content"> & { content: string };
+    const { project } = await getClient(preview).fetch<{
+        project: ProjectFromSanity;
+    }>(projectQuery, {
+        slug,
+        locale,
+    });
+
+    const { html } = await mdxToHtml(project.content);
 
     return {
         props: {
-            project,
+            project: {
+                ...project,
+                content: html,
+            },
         },
         revalidate: 1,
     };

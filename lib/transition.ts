@@ -1,4 +1,4 @@
-import { Variants, Transition } from "framer-motion";
+import { Transition, Variants } from "framer-motion";
 
 // const easing = [0.175, 0.85, 0.42, 0.96];
 export const transition: Transition = {
@@ -31,20 +31,15 @@ export const dialogOverlayVariants: Variants = {
     },
 };
 
-export const thumbnailVariants: Variants = {
+export const cardVariants: Variants = {
     initial: { scale: 0.9, opacity: 0 },
     enter: { scale: 1, opacity: 1, transition },
     exit: {
-        scale: 0.5,
+        scale: 0.9,
         opacity: 0,
-        transition: { duration: 1.5, ...transition },
     },
 };
 
-export const frameVariants: Variants = {
-    hover: { scale: 0.95 },
-};
-
 export const imageVariants: Variants = {
-    hover: { scale: 1.1 },
+    hover: { scale: 1.05 },
 };

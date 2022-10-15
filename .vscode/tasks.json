@@ -4,53 +4,50 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "🟥  - yarn add",
-            "type": "shell",
-            "command": "yarn add ${input:dependency}",
-            "problemMatcher": []
-        },
-        {
-            "label": "🟥  - yarn add-dev",
-            "type": "shell",
-            "command": "yarn add -D ${input:dependency}",
-            "problemMatcher": []
-        },
-        {
-            "label": "🟥  - yarn remove",
-            "type": "shell",
-            "command": "yarn remove ${input:dependency}",
-            "problemMatcher": []
-        },
-        {
-            "label": "🟥  - yarn dev",
+            "label": "🧶  Start dev server",
             "type": "shell",
             "command": "yarn dev",
-            "problemMatcher": []
+            "problemMatcher": ["$eslint-compact"],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "group": "develop"
+            }
+            // "runOptions": {
+            //     "runOn": "folderOpen"
+            // }
         },
         {
-            "label": "🟥  - yarn build",
+            "label": "🟥  Start Sanity Studio",
+            "type": "shell",
+            "command": "yarn sanity-start",
+            "problemMatcher": ["$eslint-compact"],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "group": "develop"
+            }
+            // "runOptions": {
+            //     "runOn": "folderOpen"
+            // }
+        },
+        {
+            "label": "🧶  Build",
             "type": "shell",
             "command": "yarn build",
-            "problemMatcher": []
+            "problemMatcher": ["$eslint-compact"]
         },
         {
-            "label": "🟥  - yarn start",
+            "label": "🧶  Start build",
             "type": "shell",
             "command": "yarn start",
-            "problemMatcher": []
+            "problemMatcher": ["$eslint-compact"]
         },
         {
-            "label": "🟥  - yarn lint",
+            "label": "🧶  Lint",
             "type": "shell",
             "command": "yarn lint",
-            "problemMatcher": []
-        }
-    ],
-    "inputs": [
-        {
-            "id": "dependency",
-            "type": "promptString",
-            "description": "The dependency to add"
+            "problemMatcher": ["$eslint-compact"]
         }
     ]
 }

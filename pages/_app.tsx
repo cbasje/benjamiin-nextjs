@@ -3,9 +3,9 @@ import type { AppContext, AppProps as NextAppProps } from "next/app";
 import * as Toast from "@radix-ui/react-toast";
 import { AnimatePresence } from "framer-motion";
 
-import { Global } from "@/lib/types";
-import { sanityClient } from "@/lib/sanity-server";
 import { globalQuery } from "@/lib/queries";
+import { sanityClient } from "@/lib/sanity-server";
+import { Global } from "@/lib/types";
 
 import { GlobalProvider } from "@/contexts/GlobalContext";
 import { globalStyles } from "@/stitches.config";

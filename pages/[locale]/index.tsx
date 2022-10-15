@@ -1,16 +1,56 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 
-import { getClient } from "@/lib/sanity-server";
 import { parseLocale } from "@/lib/locale";
+import { homeQuery, projectListQuery } from "@/lib/queries";
+import { getClient } from "@/lib/sanity-server";
 import { pageVariants } from "@/lib/transition";
-import { Project, Home, Locale } from "@/lib/types";
-import { homeQuery, projectsQuery } from "@/lib/queries";
+import { Home, Locale, Project } from "@/lib/types";
+import { Main, styled } from "@/stitches.config";
 
+import CallToAction from "@/components/CallToAction";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import Intro from "@/components/Intro";
 import ProjectGrid from "@/components/ProjectGrid";
-import Layout from "@/components/Layout";
-import Nav from "@/components/Nav";
-import Contact from "@/components/Contact";
-import { Container } from "@/stitches.config";
+import MainLayout from "@/layouts/Main";
+
+const StyledSection = styled("section", {
+    width: "100%",
+    // height: "100vh",
+    height: "auto",
+
+    filter: "grayscale(100%)",
+    opacity: 0.7,
+    transition:
+        "filter .8s cubic-bezier(.33,1,.68,1), opacity .8s cubic-bezier(.33,1,.68,1)",
+
+    "&:hover": {
+        opacity: 1,
+        filter: "grayscale(0%)",
+    },
+
+    "& > *": {
+        width: "100%",
+        height: "100%",
+    },
+
+    variants: {
+        for: {
+            intro: {
+                // height: "calc(100vh - $space$headerHeight - (2*$space$6))",
+                aspectRatio: 1.88,
+            },
+            projects: {
+                // height: "calc(100vh - $space$headerHeight - (2*$space$6))",
+                aspectRatio: 1.85,
+            },
+            callToAction: {
+                // height: "calc(100vh - $space$headerHeight - $space$footerHeight)",
+                aspectRatio: 2.11,
+            },
+        },
+    },
+});
 
 interface HomeProps {
     projects: Project[];
@@ -19,17 +59,25 @@ interface HomeProps {
 
 const HomePage = ({ projects, homepage }: HomeProps) => {
     return (
-        <Layout variants={pageVariants} seo={homepage.seo}>
-            <Nav />
-            <Container paddingY>
-                <h1>{homepage.title}</h1>
-                <p>{homepage.description}</p>
+        <MainLayout variants={pageVariants} seo={homepage.seo}>
+            <Header />
 
-                <ProjectGrid projects={projects} />
+            <Main>
+                <StyledSection for="intro">
+                    <Intro homepage={homepage} />
+                </StyledSection>
 
-                <Contact />
-            </Container>
-        </Layout>
+                <StyledSection for="projects">
+                    <ProjectGrid projects={projects} />
+                </StyledSection>
+
+                <StyledSection for="callToAction">
+                    <CallToAction />
+                </StyledSection>
+
+                <Footer />
+            </Main>
+        </MainLayout>
     );
 };
 
@@ -46,8 +94,8 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({
 }) => {
     const locale = await parseLocale(params?.locale as Locale);
 
-    const [projectsRes, homepageRes] = await Promise.all([
-        getClient(preview!).fetch<Project[]>(projectsQuery, {
+    const [projects, homepage] = await Promise.all([
+        getClient(preview!).fetch<Project[]>(projectListQuery, {
             locale,
         }),
         getClient(preview!).fetch<Home>(homeQuery, {
@@ -57,8 +105,8 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({
 
     return {
         props: {
-            projects: projectsRes,
-            homepage: homepageRes,
+            projects,
+            homepage,
         },
         revalidate: 1,
     };

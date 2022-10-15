@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 import { Global, Locale } from "@/lib/types";
 
-type GlobalWithoutId = Omit<Global, "_id">;
+export type GlobalWithoutId = Omit<Global, "_id">;
 interface GlobalProps {
     global: GlobalWithoutId[];
 }

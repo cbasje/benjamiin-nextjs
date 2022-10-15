@@ -10,6 +10,11 @@ export default {
             type: "string",
         },
         {
+            name: "subTitle",
+            title: "Subtitle",
+            type: "string",
+        },
+        {
             name: "description",
             title: "Description",
             type: "string",
@@ -32,15 +37,27 @@ export default {
             },
         },
         {
+            name: "colour",
+            title: "Colour",
+            type: "string",
+            options: {
+                list: [
+                    { title: "Purple", value: "purple" },
+                    { title: "Green", value: "green" },
+                    { title: "Blue", value: "blue" },
+                ],
+            },
+        },
+        {
             name: "categories",
             title: "Categories",
             type: "array",
             of: [{ type: "reference", to: { type: "category" } }],
         },
         {
-            name: "body",
-            title: "Body",
-            type: "blockContent",
+            name: "content",
+            title: "Content",
+            type: "markdown",
         },
         {
             name: "publishedAt",

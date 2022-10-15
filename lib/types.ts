@@ -1,4 +1,6 @@
-export type Picture = string;
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
+
+export type Image = string;
 
 export enum Locale {
     EN = "en",
@@ -8,7 +10,7 @@ export enum Locale {
 export interface Seo {
     metaTitle: string;
     metaDescription?: string;
-    shareImage?: Picture;
+    shareImage?: Image;
     isArticle?: boolean;
     locale?: Locale;
 }
@@ -45,15 +47,18 @@ export interface Category {
     projects?: Project[];
 }
 
+export type ProjectColour = "purple" | "green" | "blue";
 export interface Project {
     _id: string;
     title: string;
+    subTitle: string;
     description: string;
     slug: string;
     mainImage: string;
-    categories: Category[];
-    body: string;
-    publishedAt: Date;
+    colour?: ProjectColour;
+    categories: Pick<Category, "_id" | "title">[];
+    content: MDXRemoteSerializeResult;
+    publishedAt: string;
     seo?: Seo;
     locale: Locale;
 }
