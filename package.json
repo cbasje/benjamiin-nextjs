@@ -27,7 +27,7 @@
         "@sanity/document-internationalization": "^1.0.0-v3-studio.7",
         "@sanity/image-url": "^1.0.1",
         "@stitches/react": "^1.2.8",
-        "framer-motion": "^7.2.1",
+        "framer-motion": "^7.5.3",
         "isomorphic-fetch": "^3.0.0",
         "moment": "^2.29.4",
         "next": "12.3.0",
