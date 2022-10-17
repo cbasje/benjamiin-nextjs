@@ -1,7 +1,11 @@
 import Link from "next/link";
-import NextImage from "next/future/image";
+import NextImage, { ImageProps } from "next/future/image";
 
-import { ClassAttributes, AnchorHTMLAttributes } from "react";
+import {
+    ClassAttributes,
+    AnchorHTMLAttributes,
+    IframeHTMLAttributes,
+} from "react";
 
 const CustomLink = (props: AnchorHTMLAttributes<HTMLAnchorElement>) => {
     const href = props.href;
@@ -19,21 +23,26 @@ const CustomLink = (props: AnchorHTMLAttributes<HTMLAnchorElement>) => {
     return <a target="_blank" rel="noopener noreferrer" {...props} />;
 };
 
-function Image(props: any) {
+function Image(props: ImageProps) {
     return <NextImage alt={props.alt} width={500} height={375} {...props} />;
 }
 
-function Callout(props: any) {
+function FramerPrototype(props: IframeHTMLAttributes<HTMLIFrameElement>) {
     return (
-        <div className="flex bg-gray-200 dark:bg-gray-800 rounded-lg p-4 my-8">
-            <div className="flex items-center w-4 mr-4">{props.emoji}</div>
-            <div className="w-full callout">{props.children}</div>
-        </div>
+        <iframe
+            style={{ border: "1px solid rgba(0, 0, 0, 0.1)" }}
+            width="640"
+            height="480"
+            src={props.src}
+            allowFullScreen
+        />
     );
 }
 
 const MDXComponents = {
+    CustomLink,
     Image,
+    FramerPrototype,
 };
 
 export default MDXComponents;
