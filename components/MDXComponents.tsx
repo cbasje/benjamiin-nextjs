@@ -24,7 +24,7 @@ const CustomLink = (props: AnchorHTMLAttributes<HTMLAnchorElement>) => {
 };
 
 function Image(props: ImageProps) {
-    return <NextImage alt={props.alt} width={500} height={375} {...props} />;
+    return <NextImage width={500} height={375} {...props} />;
 }
 
 function FramerPrototype(props: IframeHTMLAttributes<HTMLIFrameElement>) {
