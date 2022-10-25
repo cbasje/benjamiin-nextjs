@@ -29,15 +29,7 @@ function Prototype(
         provider: PrototypeProvider;
     }
 ) {
-    return (
-        <iframe
-            style={{ border: "1px solid rgba(0, 0, 0, 0.1)" }}
-            width="640"
-            height="480"
-            src={props.src}
-            allowFullScreen
-        />
-    );
+    return <iframe width="640" height="480" src={props.src} allowFullScreen />;
 }
 
 const MDXComponents = {
