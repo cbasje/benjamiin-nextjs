@@ -1,11 +1,7 @@
 import Link from "next/link";
 import NextImage, { ImageProps } from "next/future/image";
 
-import {
-    ClassAttributes,
-    AnchorHTMLAttributes,
-    IframeHTMLAttributes,
-} from "react";
+import { AnchorHTMLAttributes, IframeHTMLAttributes } from "react";
 
 const CustomLink = (props: AnchorHTMLAttributes<HTMLAnchorElement>) => {
     const href = props.href;
@@ -27,7 +23,12 @@ function Image(props: ImageProps) {
     return <NextImage width={500} height={375} {...props} />;
 }
 
-function FramerPrototype(props: IframeHTMLAttributes<HTMLIFrameElement>) {
+type PrototypeProvider = "Figma" | "Framer";
+function Prototype(
+    props: IframeHTMLAttributes<HTMLIFrameElement> & {
+        provider: PrototypeProvider;
+    }
+) {
     return (
         <iframe
             style={{ border: "1px solid rgba(0, 0, 0, 0.1)" }}
@@ -42,7 +43,7 @@ function FramerPrototype(props: IframeHTMLAttributes<HTMLIFrameElement>) {
 const MDXComponents = {
     CustomLink,
     Image,
-    FramerPrototype,
+    Prototype,
 };
 
 export default MDXComponents;
