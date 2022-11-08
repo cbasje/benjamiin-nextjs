@@ -1044,6 +1044,25 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@floating-ui/core@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.0.1.tgz#00e64d74e911602c8533957af0cce5af6b2e93c8"
+  integrity sha512-bO37brCPfteXQfFY0DyNDGB3+IMe4j150KFQcgJ5aBP295p9nBGeHEs/p0czrRbtlHq4Px/yoPXO/+dOCcF4uA==
+
+"@floating-ui/dom@^1.0.0":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.0.4.tgz#cc0f2a03db7193b1b932b90d09c5c81235682a60"
+  integrity sha512-maYJRv+sAXTy4K9mzdv0JPyNW5YPVHrqtY90tEdI6XNpuLOP26Ci2pfwPsKBA/Wh4Z3FX5sUrtUFTdMYj9v+ug==
+  dependencies:
+    "@floating-ui/core" "^1.0.1"
+
+"@floating-ui/react-dom@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react-dom/-/react-dom-1.0.0.tgz#e0975966694433f1f0abffeee5d8e6bb69b7d16e"
+  integrity sha512-uiOalFKPG937UCLm42RxjESTWUVpbbatvlphQAU6bsv+ence6IoVG8JOUZcy8eW81NkU+Idiwvx10WFLmR4MIg==
+  dependencies:
+    "@floating-ui/dom" "^1.0.0"
+
 "@humanwhocodes/config-array@^0.10.4":
   version "0.10.4"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.10.4.tgz#01e7366e57d2ad104feea63e72248f22015c520c"
@@ -1684,6 +1703,11 @@
     object-assign "^4.1.1"
     rxjs "^6.0.0"
 
+"@sanity/color@2.1.19-beta.3":
+  version "2.1.19-beta.3"
+  resolved "https://registry.yarnpkg.com/@sanity/color/-/color-2.1.19-beta.3.tgz#f4f9a377825f332a9908e3ffb4945dccccc3f73b"
+  integrity sha512-421F+o3BbumkPzj93wsM9VXeX4wuhrXp/B/AHVuB0uXWLEGYnrY2mBzRU44fsZGQWW4fgy139B5eV5orFzYJkA==
+
 "@sanity/color@^2.1.10", "@sanity/color@^2.1.11", "@sanity/color@^2.1.14":
   version "2.1.14"
   resolved "https://registry.yarnpkg.com/@sanity/color/-/color-2.1.14.tgz#96b486c24eecf9b657c358953a12cd5988810429"
@@ -1782,6 +1806,11 @@
     split2 "^4.1.0"
     throttle-debounce "^5.0.0"
 
+"@sanity/icons@1.3.9-beta.3":
+  version "1.3.9-beta.3"
+  resolved "https://registry.yarnpkg.com/@sanity/icons/-/icons-1.3.9-beta.3.tgz#3ea91b07ad62ff23a601a320dedcfd17349e78a5"
+  integrity sha512-IHacaR96czI6402cBlkiKqmi7AASj3jLVYZ8dTD9caRGi0Dp7eJzI9RFp0ptJNxQYdYbZCZu0D/oEdhJfHEMGA==
+
 "@sanity/icons@^1.3":
   version "1.3.6"
   resolved "https://registry.yarnpkg.com/@sanity/icons/-/icons-1.3.6.tgz#4de4848304bf8487e1c08188decbb0ba5e86a158"
@@ -1830,7 +1859,7 @@
     "@sanity/ui" "^0.37.0"
     react-copy-to-clipboard "^5.0.0"
 
-"@sanity/incompatible-plugin@^1.0.0":
+"@sanity/incompatible-plugin@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@sanity/incompatible-plugin/-/incompatible-plugin-1.0.4.tgz#c369af3b629de6c01e5843373fb3ede9972a53f4"
   integrity sha512-2z39G9PTM8MXOF4fJNx3TG4tH0RrTjtH6dVLW93DSjCPbIS7FgCY5yWjZfQ+HVkwhLsF7ATDAGLA/jp65pFjAg==
@@ -1938,26 +1967,21 @@
     "@types/react" "^17.0.42"
     rxjs "^6.5.3"
 
+"@sanity/ui@1.0.0-beta.32":
+  version "1.0.0-beta.32"
+  resolved "https://registry.yarnpkg.com/@sanity/ui/-/ui-1.0.0-beta.32.tgz#5b057e7579c0769c9ae86cdc2442d2d6f12525ef"
+  integrity sha512-mzJXwdevJr/LAPnXHFnkhs4fXEuS7uDQqnvPRdX9t76GG9diyW5TOBemsujuFk4qFRKRUzgFDM3CyqllWbL2zw==
+  dependencies:
+    "@floating-ui/react-dom" "^1.0.0"
+    "@sanity/color" "2.1.19-beta.3"
+    "@sanity/icons" "1.3.9-beta.3"
+    framer-motion "^7.5.3"
+    react-refractor "^2.1.7"
+
 "@sanity/ui@^0.37.0", "@sanity/ui@^0.37.11":
   version "0.37.21"
   resolved "https://registry.yarnpkg.com/@sanity/ui/-/ui-0.37.21.tgz#a07d08f5cfc080d14e64f5ed23352fbdbbfdb2c2"
   integrity sha512-OVnAZnOqBn7FpoOQVChTISedpQvwTlU+fEDG9c49rob1DaAxkSNnsT2IM6OG6nV0an1Z6izDFC47VcrC+twFnw==
-  dependencies:
-    "@juggle/resize-observer" "^3.3.1"
-    "@popperjs/core" "^2.11.5"
-    "@reach/auto-id" "^0.16.0"
-    "@sanity/color" "^2.1.11"
-    "@sanity/icons" "^1.3.1"
-    framer-motion "6.3.0"
-    popper-max-size-modifier "^0.2.0"
-    react-is "^17.0.2"
-    react-popper "^2.2.5"
-    react-refractor "^2.1.7"
-
-"@sanity/ui@^0.37.9":
-  version "0.37.22"
-  resolved "https://registry.yarnpkg.com/@sanity/ui/-/ui-0.37.22.tgz#36bc54d689bc01f55103b01f6c8a571d6720df1a"
-  integrity sha512-NoPfK92aXGW0miFpwYjN7ksZqO1HcXEvamPLzWWkmGjvEARr9B3Im+ooAKBkDuC9Bmufs4Jy++d5ITbPqDupJA==
   dependencies:
     "@juggle/resize-observer" "^3.3.1"
     "@popperjs/core" "^2.11.5"
@@ -3975,6 +3999,20 @@ framer-motion@^7.2.1:
   version "7.2.1"
   resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-7.2.1.tgz#0db5992ece791cb58357787ef9c29dd76281720d"
   integrity sha512-bt2ZqqGpPsW6UojYUa5poWQJu3sDr4Dp3IZsdVBYdKUJ8p+9PxOk1fYRAT8lTGGmaC5HFoKrbDXQeKWGAKZz9g==
+  dependencies:
+    "@motionone/dom" "10.13.1"
+    framesync "6.1.2"
+    hey-listen "^1.0.8"
+    popmotion "11.0.5"
+    style-value-types "5.1.2"
+    tslib "2.4.0"
+  optionalDependencies:
+    "@emotion/is-prop-valid" "^0.8.2"
+
+framer-motion@^7.5.3:
+  version "7.6.5"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-7.6.5.tgz#6bbd85f2b2ad8efea754aad8deb3014abc0b2ce8"
+  integrity sha512-PhS5z9r1OuG6d9xy2B5paYvbWWsOhuPPCawcBwMN3AVzmiXKXZ2Ucizf8SqSE4On5xyCR+A2gmQZhBlYr/Gzjg==
   dependencies:
     "@motionone/dom" "10.13.1"
     framesync "6.1.2"
@@ -7193,14 +7231,14 @@ sanity-diff-patch@^1.0.9:
   dependencies:
     diff-match-patch "^1.0.5"
 
-sanity-plugin-markdown@3.0.0-v3-studio.1:
-  version "3.0.0-v3-studio.1"
-  resolved "https://registry.yarnpkg.com/sanity-plugin-markdown/-/sanity-plugin-markdown-3.0.0-v3-studio.1.tgz#c536dd4b13d3a05dd631653d19535bcdaa66b6f8"
-  integrity sha512-jvEWxR2FDt3LYcL71JaF12ARKDvDhWncZ0NuxkOcYNbaNRsITIJpBMR61cZeqnqnQgMuuIbSL+TlcITg9KNcAw==
+sanity-plugin-markdown@3.0.0-v3-studio.7:
+  version "3.0.0-v3-studio.7"
+  resolved "https://registry.yarnpkg.com/sanity-plugin-markdown/-/sanity-plugin-markdown-3.0.0-v3-studio.7.tgz#df07e7fbb0ebfe7c499aea579bfcd6abc628afc1"
+  integrity sha512-iAn/52ywxm79AYz8WDJapqmrYiOPqMLLIj53w2SN32Zs3nDtUDQVHZam3RrOCdZ7zAlK4HXIAyiNApWP139Kjw==
   dependencies:
     "@reach/auto-id" "^0.17.0"
-    "@sanity/incompatible-plugin" "^1.0.0"
-    "@sanity/ui" "^0.37.9"
+    "@sanity/incompatible-plugin" "^1.0.4"
+    "@sanity/ui" "1.0.0-beta.32"
     "@uiw/react-md-editor" "^3.18.1"
     rehype-sanitize "^5.0.1"
 
