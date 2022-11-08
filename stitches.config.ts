@@ -1,5 +1,51 @@
 import { createStitches } from "@stitches/react";
 import type * as Stitches from "@stitches/react";
+import { Inter, Space_Mono } from "@next/font/google";
+import localFont from "@next/font/local";
+
+export const inter = Inter({
+    variable: "--fonts-text",
+    fallback: [
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Helvetica Neue",
+        "sans-serif",
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+    ],
+});
+export const spaceMono = Space_Mono({
+    variable: "--fonts-display",
+    weight: ["400", "700"],
+    fallback: [
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Helvetica Neue",
+        "sans-serif",
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+    ],
+});
+export const cascadiaCode = localFont({
+    variable: "--fonts-mono",
+    src: [
+        { path: "./public/fonts/CascadiaCode.woff2", style: "normal" },
+        { path: "./public/fonts/CascadiaCodeItalic.woff2", style: "italic" },
+    ],
+    fallback: ["monospace"],
+});
+export const inconstant = localFont({
+    variable: "--fonts-dyslexic",
+    src: "./public/fonts/Inconstant.woff2",
+    fallback: [
+        "-apple-system",
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+    ],
+});
 
 export const { globalCss, styled, getCssText, createTheme } = createStitches({
     theme: {
@@ -69,12 +115,6 @@ export const { globalCss, styled, getCssText, createTheme } = createStitches({
             md: "1rem",
             lg: "1.5rem",
             full: "99999px",
-        },
-        fonts: {
-            display:
-                "Space Mono, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
-            text: "Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
-            mono: "Space Mono, monospace",
         },
         fontSizes: {},
         fontWeights: {

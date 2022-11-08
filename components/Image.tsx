@@ -1,4 +1,4 @@
-import NextImage from "next/future/image";
+import NextImage from "next/image";
 
 import { Image as ImageSrc } from "lib/types";
 

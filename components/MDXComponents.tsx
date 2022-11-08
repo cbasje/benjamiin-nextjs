@@ -1,5 +1,5 @@
 import Link from "next/link";
-import NextImage, { ImageProps } from "next/future/image";
+import NextImage, { ImageProps } from "next/image";
 
 import { AnchorHTMLAttributes, IframeHTMLAttributes } from "react";
 
