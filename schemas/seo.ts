@@ -1,4 +1,6 @@
-export default {
+import { defineType } from "sanity";
+
+export default defineType({
     name: "seo",
     title: "SEO",
     type: "object",
@@ -7,6 +9,7 @@ export default {
             name: "metaTitle",
             title: "Meta title",
             type: "string",
+            validation: (Rule) => Rule.required(),
         },
         {
             name: "metaDescription",
@@ -27,4 +30,4 @@ export default {
             type: "boolean",
         },
     ],
-};
+});

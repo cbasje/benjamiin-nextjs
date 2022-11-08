@@ -1,13 +1,16 @@
-export default {
+import { defineType } from "sanity";
+
+export default defineType({
     name: "project",
     title: "Project",
     type: "document",
-    i18n: true,
+    // i18n: true,
     fields: [
         {
             name: "title",
             title: "Title",
             type: "string",
+            validation: (Rule) => Rule.required(),
         },
         {
             name: "subTitle",
@@ -27,6 +30,7 @@ export default {
                 source: "title",
                 maxLength: 96,
             },
+            validation: (Rule) => Rule.required(),
         },
         {
             name: "mainImage",
@@ -57,7 +61,7 @@ export default {
         {
             name: "content",
             title: "Content",
-            type: "markdown",
+            type: "text", //TODO: portable text
         },
         {
             name: "publishedAt",
@@ -77,4 +81,4 @@ export default {
             media: "mainImage",
         },
     },
-};
+});
