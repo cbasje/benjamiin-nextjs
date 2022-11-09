@@ -1,12 +1,6 @@
-import {
-    cascadiaCode,
-    getCssText,
-    inconstant,
-    inter,
-    spaceMono,
-} from "@/stitches.config";
 import { Head, Html, Main, NextScript } from "next/document";
 import { ServerStyleSheetDocument } from "next-sanity/studio";
+import { getCssText } from "@/stitches.config";
 
 export default class Document extends ServerStyleSheetDocument {
     render() {
@@ -20,14 +14,7 @@ export default class Document extends ServerStyleSheetDocument {
                     />
                     <link rel="shortcut icon" href="/favicon.ico" />
                 </Head>
-                <body
-                    className={[
-                        spaceMono.variable,
-                        inter.variable,
-                        cascadiaCode.variable,
-                        inconstant.variable,
-                    ].join(" ")}
-                >
+                <body>
                     <Main />
                     <NextScript />
                 </body>
