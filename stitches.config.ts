@@ -4,6 +4,7 @@ import { Inter, Space_Mono } from "@next/font/google";
 import localFont from "@next/font/local";
 
 export const inter = Inter({
+    subsets: ["latin"],
     variable: "--fonts-text",
     fallback: [
         "-apple-system",
@@ -16,6 +17,7 @@ export const inter = Inter({
     ],
 });
 export const spaceMono = Space_Mono({
+    subsets: ["latin"],
     variable: "--fonts-display",
     weight: ["400", "700"],
     fallback: [
