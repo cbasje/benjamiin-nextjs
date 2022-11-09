@@ -46,7 +46,6 @@ const Image = ({
             alt={""}
             fill={fillContainer}
         />
-        // <div>{urlFor(src).auto("format").fit("max").url()}</div>
     );
 };
 

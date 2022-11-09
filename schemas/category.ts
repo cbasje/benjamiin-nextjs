@@ -1,4 +1,4 @@
-import { defineType } from "sanity";
+import { defineField, defineType } from "sanity";
 
 export default defineType({
     name: "category",
@@ -6,18 +6,18 @@ export default defineType({
     type: "document",
     i18n: true,
     fields: [
-        {
+        defineField({
             name: "title",
             title: "Title",
             type: "string",
             validation: (Rule) => Rule.required(),
-        },
-        {
+        }),
+        defineField({
             name: "description",
             title: "Description",
             type: "string",
-        },
-        {
+        }),
+        defineField({
             name: "slug",
             title: "Slug",
             type: "slug",
@@ -26,6 +26,6 @@ export default defineType({
                 maxLength: 96,
             },
             validation: (Rule) => Rule.required(),
-        },
+        }),
     ],
 });

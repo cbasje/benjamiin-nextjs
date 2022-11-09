@@ -5,19 +5,17 @@ import type { ParsedUrlQuery } from "querystring";
 import { useEffect } from "react";
 
 import { parseLocale } from "@/lib/locale";
-import { mdxToHtml } from "@/lib/mdx";
 import { projectPathsQuery, projectQuery } from "@/lib/queries";
 import { getClient, sanityClient } from "@/lib/sanity-server";
 import { Locale, Project, Seo } from "@/lib/types";
 
-import MDXComponents from "@/components/MDXComponents";
+import BlockManager from "@/components/BlockManager";
 import Image from "@/components/Image";
 import ProjectsLayout, {
     ProjectSubTitle,
     ProjectTitle,
 } from "@/layouts/Projects";
 import { Flex, Grid, styled } from "@/stitches.config";
-import { MDXRemote } from "next-mdx-remote";
 
 export const Banner = styled(motion.div, {
     width: "100%",
@@ -82,9 +80,7 @@ const ProjectPage = ({ project }: ProjectProps) => {
                 <Image src={project.mainImage} fillContainer />
             </Banner>
 
-            {/* <BlockManager blocks={project.attributes.blocks} /> */}
-            {/* <p>{project.body}</p> */}
-            <MDXRemote {...project.content} components={MDXComponents} />
+            <BlockManager content={project.content} />
         </ProjectsLayout>
     );
 };
@@ -111,22 +107,16 @@ export const getStaticProps: GetStaticProps<
     const slug = params?.slug;
     const locale = await parseLocale(params?.locale as Locale);
 
-    type ProjectFromSanity = Omit<Project, "content"> & { content: string };
     const { project } = await getClient(preview).fetch<{
-        project: ProjectFromSanity;
+        project: Project;
     }>(projectQuery, {
         slug,
         locale,
     });
 
-    const { html } = await mdxToHtml(project.content);
-
     return {
         props: {
-            project: {
-                ...project,
-                content: html,
-            },
+            project,
         },
         revalidate: 1,
     };

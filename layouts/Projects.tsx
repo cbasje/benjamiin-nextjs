@@ -80,27 +80,35 @@ const Article = styled("article", {
     alignItems: "center",
     gap: "$6",
 
-    "& p": {
-        margin: 0,
-    },
-    "& iframe": {
-        border: "1px solid rgba(0, 0, 0, 0.1)",
-    },
-    "& > p, & > img": {
-        width: "100%",
-        maxWidth: "60ch",
-        height: "auto",
-    },
-    "& > img, & > iframe": {
-        borderRadius: "$sm",
-        aspectRatio: "3 / 2",
-        overflow: "hidden",
-        objectFit: "cover",
-    },
-    "& > :not(p, img)": {
+    "> :not(section)": {
         width: "100%",
         maxWidth: 1024,
         height: "auto",
+    },
+    "> section": {
+        width: "100%",
+        maxWidth: "60ch",
+        height: "auto",
+
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "$3",
+
+        "> *": {
+            width: "100%",
+            margin: 0,
+        },
+        iframe: {
+            border: "1px solid rgba(0, 0, 0, 0.1)",
+        },
+        ":is(img, iframe)": {
+            borderRadius: "$sm",
+            aspectRatio: "3 / 2",
+            overflow: "hidden",
+            objectFit: "cover",
+        },
     },
 });
 
