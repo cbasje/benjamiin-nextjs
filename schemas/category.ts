@@ -1,8 +1,10 @@
+import { StarIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
     name: "category",
     title: "Category",
+    icon: StarIcon,
     type: "document",
     i18n: true,
     fields: [

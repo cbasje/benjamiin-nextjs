@@ -1,3 +1,4 @@
+import { ImageIcon } from "@sanity/icons";
 import { defineType } from "sanity";
 
 export default defineType({
@@ -58,6 +59,7 @@ export default defineType({
         {
             type: "image",
             options: { hotspot: true },
+            icon: ImageIcon,
         },
         {
             type: "code",

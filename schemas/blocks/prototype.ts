@@ -1,8 +1,10 @@
-import { defineField, defineType, PreviewConfig } from "sanity";
+import { PresentationIcon } from "@sanity/icons";
+import { defineField, defineType } from "sanity";
 
 export default defineType({
     name: "prototype",
     title: "Prototype",
+    icon: PresentationIcon,
     type: "object",
     fields: [
         defineField({

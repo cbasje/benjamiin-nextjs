@@ -1,8 +1,10 @@
+import { HomeIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
     name: "home",
     title: "Home page",
+    icon: HomeIcon,
     type: "document",
     i18n: true,
     fields: [

@@ -1,8 +1,10 @@
+import { EarthAmericasIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
     name: "global",
     title: "Global SEO",
+    icon: EarthAmericasIcon,
     type: "document",
     i18n: true,
     fields: [

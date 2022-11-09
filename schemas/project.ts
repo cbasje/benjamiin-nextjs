@@ -1,8 +1,10 @@
+import { FolderIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
     name: "project",
     title: "Project",
+    icon: FolderIcon,
     type: "document",
     i18n: true,
     fields: [

@@ -1,8 +1,10 @@
+import { ErrorOutlineIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
     name: "not-found",
     title: "404 page",
+    icon: ErrorOutlineIcon,
     type: "document",
     i18n: true,
     fields: [

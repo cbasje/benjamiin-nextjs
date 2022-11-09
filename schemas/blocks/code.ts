@@ -1,8 +1,10 @@
-import { defineField, defineType, PreviewConfig } from "sanity";
+import { CodeBlockIcon } from "@sanity/icons";
+import { defineField, defineType } from "sanity";
 
 export default defineType({
     name: "code",
     title: "Code",
+    icon: CodeBlockIcon,
     type: "object",
     fields: [
         defineField({
