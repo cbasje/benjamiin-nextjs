@@ -1,17 +1,18 @@
-import { createConfig } from "sanity";
-import { deskTool } from "sanity/desk";
+import { defineConfig } from "sanity";
 import { schemaTypes } from "./schemas";
 import { withDocumentI18nPlugin } from "@sanity/document-internationalization";
-import { markdownSchema } from "sanity-plugin-markdown";
 
-export default createConfig({
+const basePath = "/studio";
+
+export default defineConfig({
+    basePath,
+
     name: "default",
-    title: "api-benjamiin",
+    title: process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "benjami.in",
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
 
-    projectId: "jt1bq8i3",
-    dataset: "production",
-
-    plugins: withDocumentI18nPlugin([markdownSchema()], {
+    plugins: withDocumentI18nPlugin([], {
         base: "en",
         languages: [
             { id: "en", title: "English" },

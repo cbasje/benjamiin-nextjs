@@ -70,12 +70,6 @@ export const { globalCss, styled, getCssText, createTheme } = createStitches({
             lg: "1.5rem",
             full: "99999px",
         },
-        fonts: {
-            display:
-                "Space Mono, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
-            text: "Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
-            mono: "Space Mono, monospace",
-        },
         fontSizes: {},
         fontWeights: {
             regular: 400,
@@ -93,7 +87,6 @@ export const globalStyles = globalCss({
     body: {
         padding: 0,
         margin: 0,
-        fontFamily: "$text",
         backgroundColor: "rgb($bg)",
         color: "rgb($textOnBg)",
         accentColor: "rgb($colors$primary)",
@@ -181,6 +174,8 @@ export const Button = styled("button", {
     outline: "currentColor",
     borderRadius: "$sm",
 
+    transition: "background .2s cubic-bezier(.33,1,.68,1)",
+
     $$gradient:
         "linear-gradient(135deg, rgb($colors$purple400), rgb($colors$blue400), rgb($colors$green400))",
     "&:hover": {
@@ -210,8 +205,12 @@ export const Button = styled("button", {
                 color: "rgb($textOnPrimary)",
             },
             black: {
-                background: "rgb($gray900)",
                 color: "rgb($gray100)",
+                background: "rgb($gray900)",
+
+                "&:hover": {
+                    background: "rgb($gray700)",
+                },
             },
         },
         outlined: {

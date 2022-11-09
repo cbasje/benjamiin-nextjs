@@ -5,7 +5,7 @@ import { styled } from "@/stitches.config";
 
 /* PrismJS 1.28.0
 https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript+arduino+c+cpp+jsx+tsx+scss+swift+typescript */
-const CodeWrapper = styled("div", {
+const Pre = styled("pre", {
     $$codeBg: "$colors$gray900",
     $$codeText1: "$colors$gray50",
     $$codeText2: "$colors$gray200",
@@ -43,11 +43,11 @@ const CodeWrapper = styled("div", {
     padding: "$2",
     borderRadius: "$sm",
 
-    "pre.language-css .token.string, pre.style .token.string": {
+    "&.language-css .token.string, pre.style .token.string": {
         color: "rgb($$codeText2)",
     },
 
-    "pre .token": {
+    ".token": {
         "&.cdata, &.comment, &.doctype, &.prolog": {
             color: "rgb($$codeText5)",
         },
@@ -97,12 +97,16 @@ const CodeWrapper = styled("div", {
     },
 });
 
-const CodeBlock = ({ body }: { body: string }) => {
+const Code = ({ body, lang }: { body: string; lang: string }) => {
     useEffect(() => {
         Prism.highlightAll();
     }, []);
 
-    return <CodeWrapper>{body}</CodeWrapper>;
+    return (
+        <Pre tabIndex={0} className={`language-${lang}`}>
+            <code className={`language-${lang}`}>{body}</code>
+        </Pre>
+    );
 };
 
-export default CodeBlock;
+export default Code;

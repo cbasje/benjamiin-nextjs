@@ -1,4 +1,4 @@
-import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { TypedObject } from "sanity";
 
 export type Image = string;
 
@@ -57,7 +57,7 @@ export interface Project {
     mainImage: string;
     colour?: ProjectColour;
     categories: Pick<Category, "_id" | "title">[];
-    content: MDXRemoteSerializeResult;
+    content: TypedObject[];
     publishedAt: string;
     seo?: Seo;
     locale: Locale;

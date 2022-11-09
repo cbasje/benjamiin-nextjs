@@ -1,4 +1,4 @@
-import NextImage from "next/future/image";
+import NextImage from "next/image";
 
 import { Image as ImageSrc } from "lib/types";
 
@@ -46,7 +46,6 @@ const Image = ({
             alt={""}
             fill={fillContainer}
         />
-        // <div>{urlFor(src).auto("format").fit("max").url()}</div>
     );
 };
 

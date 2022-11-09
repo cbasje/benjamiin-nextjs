@@ -1,10 +1,18 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-    reactStrictMode: true,
     images: {
-        domains: ["res.cloudinary.com", "cdn.sanity.io", "i.scdn.co"],
-        deviceSizes: [320, 420, 768, 1024, 1200],
+        remotePatterns: [
+            { hostname: "cdn.sanity.io" },
+            { hostname: "res.cloudinary.com" },
+            { hostname: "i.scdn.co" },
+        ],
     },
+    // typescript: {
+    //     ignoreBuildErrors: process.env.VERCEL_ENV === "production",
+    // },
+    // eslint: {
+    //     ignoreDuringBuilds: process.env.VERCEL_ENV === "production",
+    // },
     experimental: {
         legacyBrowsers: false,
         newNextLinkBehavior: true,

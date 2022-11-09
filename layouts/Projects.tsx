@@ -25,6 +25,16 @@ const StyledContent = styled(DialogPrimitive.Content, {
     overflowY: "scroll",
 
     "&:focus": { outline: "none" },
+
+    // "&:before": {
+    //     content: "",
+    //     display: "block",
+    //     position: "absolute",
+    //     insetInline: 0,
+    //     height: "100px",
+    //     zIndex: 999,
+    //     background: "linear-gradient(to bottom,#fff 0%,transparent 100%)",
+    // },
 });
 
 const StyledTitle = styled(DialogPrimitive.Title, {
@@ -70,23 +80,35 @@ const Article = styled("article", {
     alignItems: "center",
     gap: "$6",
 
-    "& p": {
-        margin: 0,
+    "> :not(section)": {
+        width: "100%",
+        maxWidth: 1024,
+        height: "auto",
     },
-    "& > p, & > img": {
+    "> section": {
         width: "100%",
         maxWidth: "60ch",
         height: "auto",
-    },
-    "& > img": {
-        borderRadius: "$sm",
-        aspectRatio: "3 / 2",
-        overflow: "hidden",
-        objectFit: "cover",
-    },
-    "& > :not(p, img)": {
-        width: "100%",
-        maxWidth: 1024,
+
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "$3",
+
+        "> *": {
+            width: "100%",
+            margin: 0,
+        },
+        iframe: {
+            border: "1px solid rgba(0, 0, 0, 0.1)",
+        },
+        ":is(img, iframe)": {
+            borderRadius: "$sm",
+            aspectRatio: "3 / 2",
+            overflow: "hidden",
+            objectFit: "cover",
+        },
     },
 });
 
