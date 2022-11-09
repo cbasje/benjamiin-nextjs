@@ -4,7 +4,7 @@ export default defineType({
     name: "category",
     title: "Category",
     type: "document",
-    // i18n: true,
+    i18n: true,
     fields: [
         {
             name: "title",

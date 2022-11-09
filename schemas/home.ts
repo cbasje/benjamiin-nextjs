@@ -4,7 +4,7 @@ export default defineType({
     name: "home",
     title: "Home page",
     type: "document",
-    // i18n: true,
+    i18n: true,
     fields: [
         {
             name: "title",

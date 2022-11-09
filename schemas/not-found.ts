@@ -4,7 +4,7 @@ export default defineType({
     name: "not-found",
     title: "404 page",
     type: "document",
-    // i18n: true,
+    i18n: true,
     fields: [
         {
             name: "title",

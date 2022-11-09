@@ -1,8 +1,6 @@
 import { defineConfig } from "sanity";
-import { deskTool } from "sanity/desk";
 import { schemaTypes } from "./schemas";
 import { withDocumentI18nPlugin } from "@sanity/document-internationalization";
-import { markdownSchema } from "sanity-plugin-markdown";
 
 const basePath = "/studio";
 

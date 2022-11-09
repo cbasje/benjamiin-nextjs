@@ -4,7 +4,7 @@ export default defineType({
     name: "global",
     title: "Global SEO",
     type: "document",
-    // i18n: true,
+    i18n: true,
     fields: [
         {
             name: "siteName",
