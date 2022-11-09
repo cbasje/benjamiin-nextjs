@@ -1,17 +1,15 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 import type { ParsedUrlQuery } from "querystring";
 
+import Header from "@/components/Header";
+import ProjectGrid from "@/components/ProjectGrid";
+import MainLayout from "@/layouts/Main";
 import { parseLocale } from "@/lib/locale";
 import { categoryPathsQuery, categoryQuery } from "@/lib/queries";
 import { getClient, sanityClient } from "@/lib/sanity-server";
 import { pageVariants } from "@/lib/transition";
 import { Category, Locale, Seo } from "@/lib/types";
-
 import { Main } from "@/stitches.config";
-
-import Header from "@/components/Header";
-import ProjectGrid from "@/components/ProjectGrid";
-import MainLayout from "@/layouts/Main";
 
 interface CategoryProps {
     category: Category;

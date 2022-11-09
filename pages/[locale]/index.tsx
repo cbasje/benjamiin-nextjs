@@ -1,18 +1,17 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 
-import { parseLocale } from "@/lib/locale";
-import { homeQuery, projectListQuery } from "@/lib/queries";
-import { getClient } from "@/lib/sanity-server";
-import { pageVariants } from "@/lib/transition";
-import { Home, Locale, Project } from "@/lib/types";
-import { Main, styled } from "@/stitches.config";
-
 import CallToAction from "@/components/CallToAction";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Intro from "@/components/Intro";
 import ProjectGrid from "@/components/ProjectGrid";
 import MainLayout from "@/layouts/Main";
+import { parseLocale } from "@/lib/locale";
+import { homeQuery, projectListQuery } from "@/lib/queries";
+import { getClient } from "@/lib/sanity-server";
+import { pageVariants } from "@/lib/transition";
+import { Home, Locale, Project } from "@/lib/types";
+import { Main, styled } from "@/stitches.config";
 
 const StyledSection = styled("section", {
     width: "100%",

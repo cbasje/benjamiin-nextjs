@@ -4,17 +4,16 @@ import { useRouter } from "next/router";
 import type { ParsedUrlQuery } from "querystring";
 import { useEffect } from "react";
 
-import { parseLocale } from "@/lib/locale";
-import { projectPathsQuery, projectQuery } from "@/lib/queries";
-import { getClient, sanityClient } from "@/lib/sanity-server";
-import { Locale, Project, Seo } from "@/lib/types";
-
 import BlockManager from "@/components/BlockManager";
 import Image from "@/components/Image";
 import ProjectsLayout, {
     ProjectSubTitle,
     ProjectTitle,
 } from "@/layouts/Projects";
+import { parseLocale } from "@/lib/locale";
+import { projectPathsQuery, projectQuery } from "@/lib/queries";
+import { getClient, sanityClient } from "@/lib/sanity-server";
+import { Locale, Project, Seo } from "@/lib/types";
 import { Flex, Grid, styled } from "@/stitches.config";
 
 export const Banner = styled(motion.div, {

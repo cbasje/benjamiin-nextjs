@@ -1,12 +1,11 @@
 import { GetStaticProps } from "next";
 
+import Seo from "@/components/Meta";
+import MainLayout from "@/layouts/Main";
 import { parseLocale } from "@/lib/locale";
 import { notFoundQuery } from "@/lib/queries";
 import { getClient } from "@/lib/sanity-server";
 import { Locale, NotFound } from "@/lib/types";
-
-import Seo from "@/components/Meta";
-import MainLayout from "@/layouts/Main";
 import { Box } from "@/stitches.config";
 
 interface NotFoundProps {

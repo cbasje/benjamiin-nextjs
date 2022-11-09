@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { ArrowUpRight } from "phosphor-react";
 
 import { Locale } from "@/lib/types";
 import { styled } from "@/stitches.config";
-import { ArrowUpRight } from "phosphor-react";
 
 const StyledHeader = styled("header", {
     position: "fixed",

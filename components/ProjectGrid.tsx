@@ -1,8 +1,8 @@
-import { styled } from "@/stitches.config";
 import { motion } from "framer-motion";
 import Error from "next/error";
 
 import { Project } from "@/lib/types";
+import { styled } from "@/stitches.config";
 
 import ProjectCard from "./ProjectCard";
 

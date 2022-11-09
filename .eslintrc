@@ -5,5 +5,11 @@
         "next",
         "prettier"
     ],
-    "ignorePatterns": ["prism.js"]
+    "ignorePatterns": ["prism.js"],
+    "plugins": ["simple-import-sort"],
+    "rules": {
+        "simple-import-sort/imports": "warn",
+        "simple-import-sort/exports": "warn",
+        "react-hooks/exhaustive-deps": "error"
+    }
 }

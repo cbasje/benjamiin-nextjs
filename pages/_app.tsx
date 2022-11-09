@@ -5,15 +5,16 @@ import { AnimatePresence } from "framer-motion";
 import type { AppContext, AppProps as NextAppProps } from "next/app";
 import App from "next/app";
 
+import { GlobalProvider } from "@/contexts/GlobalContext";
 import { globalQuery } from "@/lib/queries";
 import { sanityClient } from "@/lib/sanity-server";
 import { Global } from "@/lib/types";
-
-import { GlobalProvider } from "@/contexts/GlobalContext";
 import { globalStyles, styled } from "@/stitches.config";
 
 const AppWrapper = styled("div", {
     fontFamily: "$text",
+    minWidth: "100vw",
+    minHeight: "100vh",
 });
 
 export const inter = Inter({

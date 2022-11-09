@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Project } from "@/lib/types";
-
 import { urlFor } from "@/lib/sanity";
 import { cardVariants, imageVariants, transition } from "@/lib/transition";
+import { Project } from "@/lib/types";
 import { styled } from "@/stitches.config";
+
 import ImageNotFound from "./ImageNotFound";
 
 const StyledLink = styled(Link, {

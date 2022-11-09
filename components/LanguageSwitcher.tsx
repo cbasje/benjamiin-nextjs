@@ -1,12 +1,11 @@
-import { CaretDown } from "phosphor-react";
-
-import { getLocaleLabel } from "@/lib/locale";
-
-import { Locale } from "@/lib/types";
-import { styled } from "@/stitches.config";
 import * as Label from "@radix-ui/react-label";
 import * as Select from "@radix-ui/react-select";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import { CaretDown } from "phosphor-react";
+
+import { getLocaleLabel } from "@/lib/locale";
+import { Locale } from "@/lib/types";
+import { styled } from "@/stitches.config";
 
 const SelectIcon = styled(Select.Icon, {
     verticalAlign: "text-bottom",

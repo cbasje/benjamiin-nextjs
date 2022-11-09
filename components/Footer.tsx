@@ -2,10 +2,12 @@
 
 // import { Locale } from "@/lib/types";
 
+import { Copyright } from "phosphor-react";
+
 import { styled } from "@/stitches.config";
+
 // import LanguageSwitcher from "./LanguageSwitcher";
 import SpotifyPlayer from "./SpotifyPlayer";
-import { Copyright } from "phosphor-react";
 
 const StyledFooter = styled("footer", {
     width: "100vw",

@@ -1,5 +1,6 @@
-import { styled } from "@/stitches.config";
 import { Image } from "phosphor-react";
+
+import { styled } from "@/stitches.config";
 
 const StyledContainer = styled("div", {
     width: "100%",

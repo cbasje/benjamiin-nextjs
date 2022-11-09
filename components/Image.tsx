@@ -1,9 +1,9 @@
-import NextImage from "next/image";
-
 import { Image as ImageSrc } from "lib/types";
+import NextImage from "next/image";
 
 import { urlFor } from "@/lib/sanity";
 import { styled } from "@/stitches.config";
+
 import ImageNotFound from "./ImageNotFound";
 
 const StyledImage = styled(NextImage, {

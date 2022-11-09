@@ -1,6 +1,7 @@
-import { Box } from "@/stitches.config";
 import { useForm } from "@mantine/form";
 import { Label } from "@radix-ui/react-label";
+
+import { Box } from "@/stitches.config";
 
 const Contact = () => {
     interface FormValues {

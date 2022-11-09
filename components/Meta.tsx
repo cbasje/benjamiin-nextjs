@@ -2,7 +2,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 import { useGlobal } from "@/contexts/GlobalContext";
-
 import { Locale, Seo } from "@/lib/types";
 
 const Meta = ({ seo }: { seo?: Seo }) => {

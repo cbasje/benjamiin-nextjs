@@ -1,5 +1,6 @@
-import { Button, Flex, styled } from "@/stitches.config";
 import { ArrowUpRight } from "phosphor-react";
+
+import { Button, Flex, styled } from "@/stitches.config";
 
 const CTAContainer = styled("div", {
     display: "flex",

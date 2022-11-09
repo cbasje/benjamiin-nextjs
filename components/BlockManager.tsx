@@ -1,10 +1,9 @@
 import { PortableText } from "@portabletext/react";
 import { getImageDimensions } from "@sanity/asset-utils";
+import { Image as ImageSrc } from "lib/types";
+import Link from "next/link";
 import { TypedObject } from "sanity";
 
-import { Image as ImageSrc } from "lib/types";
-
-import Link from "next/link";
 import Code from "./Code";
 import Image from "./Image";
 
@@ -54,7 +53,15 @@ const PrototypeBlock = ({
 }: {
     value: { src: string; provider: PrototypeProvider };
 }) => {
-    return <iframe width="640" height="480" src={value.src} allowFullScreen />;
+    return (
+        <iframe
+            width="640"
+            height="480"
+            src={value.src}
+            title={`A ${value.provider} prototype`}
+            allowFullScreen
+        />
+    );
 };
 
 const components = {
