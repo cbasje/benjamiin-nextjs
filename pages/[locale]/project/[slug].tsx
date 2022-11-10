@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import BlockManager from "@/components/BlockManager";
 import Image from "@/components/Image";
 import ProjectsLayout, {
-    ProjectSubTitle,
+    ProjectDescription,
     ProjectTitle,
 } from "@/layouts/Projects";
 import { parseLocale } from "@/lib/locale";
@@ -31,7 +31,7 @@ interface ProjectProps {
 const ProjectPage = ({ project }: ProjectProps) => {
     const seo: Seo = {
         metaTitle: project.title,
-        metaDescription: project.subTitle,
+        metaDescription: project.description,
         shareImage: project.mainImage,
         isArticle: true,
     };
@@ -54,9 +54,11 @@ const ProjectPage = ({ project }: ProjectProps) => {
                     css={{ gridTemplateColumns: "repeat(2, 1fr)", gap: "$1" }}
                 >
                     <Flex css={{ flexDirection: "column", gap: "$1" }}>
-                        <ProjectSubTitle>{project.subTitle}</ProjectSubTitle>
+                        <ProjectDescription as="h3">
+                            {project.description}
+                        </ProjectDescription>
 
-                        <Flex css={{ flexDirection: "row" }}>
+                        <Flex css={{ flexDirection: "row", gap: "$1" }}>
                             <span>
                                 {new Intl.DateTimeFormat(router.query.locale, {
                                     month: "long",
@@ -64,6 +66,15 @@ const ProjectPage = ({ project }: ProjectProps) => {
                                 }).format(new Date(project.publishedAt))}
                             </span>
 
+                            {project.company && (
+                                <>
+                                    <span>-</span>
+                                    <span>{project.company?.title}</span>
+                                </>
+                            )}
+                        </Flex>
+
+                        <Flex css={{ flexDirection: "row", gap: "$1" }}>
                             {project.categories &&
                                 project.categories.map((c) => (
                                     <span key={c._id}>{c.title}</span>
@@ -71,7 +82,7 @@ const ProjectPage = ({ project }: ProjectProps) => {
                         </Flex>
                     </Flex>
 
-                    <p>{project.description}</p>
+                    <p>{project.excerpt}</p>
                 </Grid>
             </Flex>
 

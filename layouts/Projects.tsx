@@ -44,9 +44,6 @@ const StyledTitle = styled(DialogPrimitive.Title, {
 
 const StyledDescription = styled(DialogPrimitive.Description, {
     margin: 0,
-    fontFamily: "$display",
-    fontWeight: "$normal",
-    color: "rgb($displayOnBg)",
     fontSize: "1.5rem",
 });
 
@@ -177,7 +174,7 @@ export const DialogContent = Content;
 export const DialogClose = DialogPrimitive.Close;
 
 export const ProjectTitle = StyledTitle;
-export const ProjectSubTitle = StyledDescription;
+export const ProjectDescription = StyledDescription;
 
 const ProjectsLayout = ({
     colour,

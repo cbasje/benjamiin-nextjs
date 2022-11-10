@@ -47,17 +47,24 @@ export interface Category {
     projects?: Project[];
 }
 
+export interface Company {
+    _id: number;
+    title: string;
+    logo: string;
+}
+
 export type ProjectColour = "purple" | "green" | "blue";
 export interface Project {
     _id: string;
     title: string;
-    subTitle: string;
     description: string;
+    excerpt: string;
     slug: string;
     mainImage: string;
     colour?: ProjectColour;
     categories: Pick<Category, "_id" | "title">[];
     content: TypedObject[];
+    company?: Company;
     publishedAt: string;
     seo?: Seo;
     locale: Locale;

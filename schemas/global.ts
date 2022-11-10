@@ -23,6 +23,7 @@ export default defineType({
             name: "defaultSeo",
             title: "Default SEO",
             type: "seo",
+            validation: (Rule) => Rule.required(),
         }),
     ],
 });

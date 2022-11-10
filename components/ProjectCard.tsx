@@ -120,7 +120,7 @@ const ProjectCard = ({
                 </StyledImageContainer>
                 <StyledLabelContainer>
                     <h2>{project.title}</h2>
-                    <p>{project.subTitle}</p>
+                    <p>{project.description}</p>
                 </StyledLabelContainer>
             </StyledLink>
         </StyledCard>

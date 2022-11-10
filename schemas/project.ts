@@ -15,14 +15,14 @@ export default defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
-            name: "subTitle",
-            title: "Subtitle",
-            type: "string",
-        }),
-        defineField({
             name: "description",
             title: "Description",
             type: "string",
+        }),
+        defineField({
+            name: "excerpt",
+            title: "Excerpt",
+            type: "text",
         }),
         defineField({
             name: "slug",
@@ -66,6 +66,11 @@ export default defineType({
             type: "blockContent",
         }),
         defineField({
+            name: "company",
+            title: "Company",
+            type: "company",
+        }),
+        defineField({
             name: "publishedAt",
             title: "Published at",
             type: "datetime",
@@ -74,6 +79,7 @@ export default defineType({
             name: "seo",
             title: "SEO",
             type: "seo",
+            validation: (Rule) => Rule.required(),
         }),
     ],
 

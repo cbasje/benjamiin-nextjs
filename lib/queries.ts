@@ -2,9 +2,10 @@ import { groq } from "next-sanity";
 
 const projectFields = groq`
   title,
-  subTitle,
+  description,
   mainImage,
   colour,
+  company,
   publishedAt,
   "slug": slug.current,
   "locale": __i18n_lang
@@ -20,7 +21,7 @@ const categoryFields = groq`
 export const projectQuery = groq`
 {
   "project": *[_type == "project" && slug.current == $slug && __i18n_lang == $locale] | order(_updatedAt desc) [0] {
-    description,
+    excerpt,
     content,
     seo,
     categories[] -> { _id, title },
@@ -30,8 +31,8 @@ export const projectQuery = groq`
 
 export const projectListQuery = groq`
 *[_type == "project" && defined(slug.current) && __i18n_lang == $locale] | order(publishedAt desc) [0...3] {
-    ${projectFields}
-  }
+  ${projectFields}
+}
 `;
 
 export const projectPathsQuery = groq`

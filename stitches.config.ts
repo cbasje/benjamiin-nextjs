@@ -94,12 +94,21 @@ export const globalStyles = globalCss({
         fontSize: "1rem",
         lineHeight: 1.5,
     },
-    "h1, h2, h3, h4, h5, h6": {
+    "h1, h2": {
         margin: "0 0 1.1em",
         fontFamily: "$display",
         fontWeight: "$bold",
         textTransform: "uppercase",
         letterSpacing: "0.05rem",
+        lineHeight: 1.1,
+        color: "rgb($displayOnBg)",
+
+        overflowWrap: "break-word",
+    },
+    "h3, h4, h5, h6": {
+        fontFamily: "$display",
+        fontWeight: "$regular",
+        letterSpacing: "0.01rem",
         lineHeight: 1.1,
         color: "rgb($displayOnBg)",
 
