@@ -31,6 +31,9 @@ const TextContainer = styled("div", {
         maxWidth: "100%",
 
         fontFamily: "$display",
+        fontWeight: "$regular",
+        fontSize: "smaller",
+        lineHeight: 1.5,
         textTransform: "uppercase",
         overflow: "hidden",
         whiteSpace: "nowrap",
@@ -44,10 +47,6 @@ const StyledImage = styled(Image, {
     borderRadius: "$full",
     width: "3rem",
     height: "3rem",
-
-    "&:hover": {
-        background: "red", //FIXME:
-    },
 });
 
 const ImagePlaceholder = styled("div", {
@@ -55,10 +54,10 @@ const ImagePlaceholder = styled("div", {
     width: "3rem",
     height: "3rem",
     background: "rgb($green400)",
-
-    "&:hover": {
-        background: "red", //FIXME:
-    },
+});
+const Svg = styled("svg", {
+    width: "100%",
+    height: "100%",
 });
 
 const SpotifyPlayer = () => {
@@ -104,9 +103,41 @@ const SpotifyPlayer = () => {
         <StyledLink as="span">
             <TextContainer>
                 <span>Offline</span>
+                <span>Spotify</span>
             </TextContainer>
 
-            <ImagePlaceholder />
+            <ImagePlaceholder>
+                <Svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 256 256"
+                >
+                    <path
+                        d="M179.1,108.3a112.1,112.1,0,0,0-102.3.1"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="16"
+                    ></path>
+                    <path
+                        d="M164.3,136.7a79.9,79.9,0,0,0-72.7.1"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="16"
+                    ></path>
+                    <path
+                        d="M149.5,165.1A47.3,47.3,0,0,0,128,160a48.7,48.7,0,0,0-21.6,5.1"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="16"
+                    ></path>
+                </Svg>
+            </ImagePlaceholder>
         </StyledLink>
     );
 };
