@@ -38,9 +38,9 @@ const ProjectPage = ({ project }: ProjectProps) => {
 
     const router = useRouter();
 
-    useEffect(() => {
-        router.prefetch("/");
-    }, []);
+    // useEffect(() => {
+    //     router.prefetch("/");
+    // }, []);
 
     return (
         <ProjectsLayout
