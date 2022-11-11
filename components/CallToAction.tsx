@@ -146,7 +146,7 @@ const CallToAction = ({ homepage }: { homepage: Home }) => {
                         gap: "$1",
                     }}
                 >
-                    <span>{homepage.callToAction ?? "Let&apos;s talk"}</span>
+                    <span>{homepage.callToAction ?? "Let's talk"}</span>
                     <ArrowUpRight size={32} weight="bold" />
                 </Flex>
             </Button>
