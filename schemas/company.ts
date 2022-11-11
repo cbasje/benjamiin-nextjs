@@ -1,11 +1,9 @@
-import { CaseIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
     name: "company",
     title: "Company",
-    icon: CaseIcon,
-    type: "document",
+    type: "object",
     fields: [
         defineField({
             name: "title",
@@ -27,10 +25,4 @@ export default defineType({
             },
         }),
     ],
-
-    preview: {
-        select: {
-            title: "title",
-        },
-    },
 });
