@@ -69,7 +69,13 @@ const ProjectPage = ({ project }: ProjectProps) => {
                             {project.company && (
                                 <>
                                     <span>-</span>
-                                    <span>{project.company?.title}</span>
+                                    {project.company.url ? (
+                                        <a href={project.company.url}>
+                                            {project.company.url}
+                                        </a>
+                                    ) : (
+                                        <span>{project.company?.title}</span>
+                                    )}
                                 </>
                             )}
                         </Flex>

@@ -51,6 +51,7 @@ export interface Category {
 export interface Company {
     _id: number;
     title: string;
+    url?: string;
     logo: string;
 }
 

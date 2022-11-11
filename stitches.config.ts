@@ -73,6 +73,7 @@ export const { globalCss, styled, getCssText, createTheme } = createStitches({
         fontSizes: {},
         fontWeights: {
             regular: 400,
+            medium: 500,
             bold: 700,
         },
     },
@@ -108,6 +109,7 @@ export const globalStyles = globalCss({
     "h3, h4, h5, h6": {
         fontFamily: "$display",
         fontWeight: "$regular",
+        textTransform: "uppercase",
         letterSpacing: "0.01rem",
         lineHeight: 1.1,
         color: "rgb($displayOnBg)",

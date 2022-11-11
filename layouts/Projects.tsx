@@ -107,6 +107,11 @@ const Article = styled("article", {
             objectFit: "cover",
         },
     },
+    a: {
+        color: "rgb($purple400)",
+        fontWeight: "$medium",
+        textDecoration: "underline wavy",
+    },
 });
 
 const Content = ({
