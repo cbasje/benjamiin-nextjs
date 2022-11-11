@@ -47,7 +47,7 @@ const CodeBlock = ({ value }: { value: { content: string; lang: string } }) => {
     return <Code body={value.content} lang={value.lang} />;
 };
 
-type PrototypeProvider = "figma" | "framer";
+type PrototypeProvider = "figma" | "framer" | "website";
 const PrototypeBlock = ({
     value,
 }: {

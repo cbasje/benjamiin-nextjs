@@ -20,7 +20,8 @@ export default defineType({
             options: {
                 list: [
                     { title: "Figma", value: "figma" },
-                    { title: "Framer", value: "Framer" },
+                    { title: "Framer", value: "framer" },
+                    { title: "Website", value: "website" },
                 ],
             },
             validation: (Rule) => Rule.required(),

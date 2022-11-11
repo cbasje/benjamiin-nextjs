@@ -78,13 +78,15 @@ const ProjectPage = ({ project }: ProjectProps) => {
                                     )}
                                 </>
                             )}
-                        </Flex>
 
-                        <Flex css={{ flexDirection: "row", gap: "$1" }}>
-                            {project.categories &&
-                                project.categories.map((c) => (
-                                    <span key={c._id}>{c.title}</span>
-                                ))}
+                            {project.categories && (
+                                <>
+                                    <span>-</span>
+                                    {project.categories
+                                        .map((c) => c.title)
+                                        .join(", ")}
+                                </>
+                            )}
                         </Flex>
                     </Flex>
 
