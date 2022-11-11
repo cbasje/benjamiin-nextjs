@@ -71,10 +71,10 @@ const ProjectPage = ({ project }: ProjectProps) => {
                                     <span>-</span>
                                     {project.company.url ? (
                                         <a href={project.company.url}>
-                                            {project.company.url}
+                                            {project.company.title}
                                         </a>
                                     ) : (
-                                        <span>{project.company?.title}</span>
+                                        <span>{project.company.title}</span>
                                     )}
                                 </>
                             )}
