@@ -89,18 +89,6 @@ const StyledAnchor = styled(Link, {
 
 const StyledLi = styled("li", {});
 
-const StyledUnderline = styled("hr", {
-    all: "unset",
-    position: "absolute",
-    bottom: 0,
-    left: 72,
-    width: 16,
-    height: 3,
-    borderRadius: 1.5,
-    background: "rgb($gray900)",
-    transition: "transform .2s cubic-bezier(.33,1,.68,1)",
-});
-
 const Header = () => {
     const router = useRouter();
     const locale = router.query.locale as Locale;
