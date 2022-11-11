@@ -68,7 +68,8 @@ export default defineType({
         defineField({
             name: "company",
             title: "Company",
-            type: "company",
+            type: "reference",
+            to: { type: "company" },
         }),
         defineField({
             name: "publishedAt",
