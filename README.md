@@ -1,11 +1,9 @@
-# Sanity Blogging Content Studio
+# My Portfolio website: [benjami.in](https://www.benjami.in/)
 
-Congratulations, you have now installed the Sanity Content Studio, an open source real-time content editing environment connected to the Sanity backend.
+## Stack
 
-Now you can do the following things:
-
--   [Read “getting started” in the docs](https://www.sanity.io/docs/introduction/getting-started?utm_source=readme)
--   Check out the example frontend: [React/Next.js](https://github.com/sanity-io/tutorial-sanity-blog-react-next)
--   [Read the blog post about this template](https://www.sanity.io/blog/build-your-own-blog-with-sanity-and-next-js?utm_source=readme)
--   [Join the community Slack](https://slack.sanity.io/?utm_source=readme)
--   [Extend and build plugins](https://www.sanity.io/docs/content-studio/extending?utm_source=readme)
+-   [Next.js + Typescript](https://beta.nextjs.org/docs)
+-   [Sanity](https://beta.sanity.io/docs)
+-   [Framer Motion](https://www.framer.com/motion/)
+-   [Radix UI](https://www.radix-ui.com/) + [Stitches](https://stitches.dev/)
+-   [Phosphor Icons](https://phosphoricons.com/)
