@@ -1,5 +1,7 @@
+import Error from "next/error";
 import { ArrowUpRight } from "phosphor-react";
 
+import { Home } from "@/lib/types";
 import { Button, Flex, styled } from "@/stitches.config";
 
 const CTAContainer = styled("div", {
@@ -19,7 +21,9 @@ const StyledSVG = styled("svg", {
 const StyledPath = styled("path");
 const StyledRect = styled("rect");
 
-const CallToAction = () => {
+const CallToAction = ({ homepage }: { homepage: Home }) => {
+    if (!homepage) return <Error statusCode={404} />;
+
     return (
         <CTAContainer>
             <StyledSVG
@@ -142,7 +146,7 @@ const CallToAction = () => {
                         gap: "$1",
                     }}
                 >
-                    <span>Let&apos;s talk</span>
+                    <span>{homepage.callToAction ?? "Let&apos;s talk"}</span>
                     <ArrowUpRight size={32} weight="bold" />
                 </Flex>
             </Button>

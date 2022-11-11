@@ -33,7 +33,8 @@ export interface NotFound {
 export interface Home {
     _id: number;
     title: string;
-    description: string;
+    description?: string;
+    callToAction?: string;
     seo?: Seo;
     locale: Locale;
 }

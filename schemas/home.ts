@@ -20,6 +20,11 @@ export default defineType({
             type: "text",
         }),
         defineField({
+            name: "callToAction",
+            title: "Call-To-Action",
+            type: "string",
+        }),
+        defineField({
             name: "seo",
             title: "SEO",
             type: "seo",

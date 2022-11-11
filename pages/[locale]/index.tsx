@@ -72,7 +72,7 @@ const HomePage = ({ projects, homepage }: HomeProps) => {
                 </StyledSection>
 
                 <StyledSection for="callToAction">
-                    <CallToAction />
+                    <CallToAction homepage={homepage} />
                 </StyledSection>
 
                 <Footer />
