@@ -1,5 +1,5 @@
 import Error from "next/error";
-import { ArrowUpRight } from "phosphor-react";
+import { EnvelopeSimple } from "phosphor-react";
 
 import { Home } from "@/lib/types";
 import { Button, Flex, styled } from "@/stitches.config";
@@ -143,11 +143,11 @@ const CallToAction = ({ homepage }: { homepage: Home }) => {
                     css={{
                         flexDirection: "row",
                         alignItems: "center",
-                        gap: "$1",
+                        gap: "$2",
                     }}
                 >
                     <span>{homepage.callToAction ?? "Let's talk"}</span>
-                    <ArrowUpRight size={32} weight="bold" />
+                    <EnvelopeSimple size={32} weight="bold" aria-hidden />
                 </Flex>
             </Button>
         </CTAContainer>

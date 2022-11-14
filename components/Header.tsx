@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { ArrowUpRight } from "phosphor-react";
+import { EnvelopeSimple, GithubLogo, InstagramLogo } from "phosphor-react";
 
 import { Locale } from "@/lib/types";
 import { styled } from "@/stitches.config";
@@ -41,6 +41,7 @@ const StyledUl = styled("ul", {
     position: "relative",
     display: "flex",
     alignItems: "center",
+    gap: "$1",
 
     fontFamily: "$display",
     fontWeight: "$bold",
@@ -51,11 +52,9 @@ const StyledUl = styled("ul", {
         side: {
             left: {
                 justifyContent: "flex-start",
-                gap: 16,
             },
             right: {
                 justifyContent: "flex-end",
-                gap: 0,
             },
         },
     },
@@ -111,6 +110,38 @@ const Header = () => {
                     </StyledLi>
                 </StyledUl>
                 <StyledUl role="list" side="right">
+                    <StyledLi role="listitem">
+                        <StyledAnchor
+                            title="My email address"
+                            href="mailto:Sebastiaan Benjamins <sebas@benjami.in>"
+                        >
+                            <EnvelopeSimple
+                                size={24}
+                                weight="bold"
+                                aria-hidden
+                            />
+                        </StyledAnchor>
+                    </StyledLi>
+                    <StyledLi role="listitem">
+                        <StyledAnchor
+                            title="My Github account"
+                            href="https://github.com/cbasje"
+                        >
+                            <GithubLogo size={24} weight="bold" aria-hidden />
+                        </StyledAnchor>
+                    </StyledLi>
+                    <StyledLi role="listitem">
+                        <StyledAnchor
+                            title="My Instagram account"
+                            href="https://instagram.com/cbasje"
+                        >
+                            <InstagramLogo
+                                size={24}
+                                weight="bold"
+                                aria-hidden
+                            />
+                        </StyledAnchor>
+                    </StyledLi>
                     {/* TODO:
                     <StyledLi role="listitem">
                         <StyledAnchor
@@ -125,12 +156,6 @@ const Header = () => {
                             About
                         </StyledAnchor>
                     </StyledLi> */}
-                    <StyledLi role="listitem">
-                        <StyledAnchor href="mailto:Sebastiaan Benjamins <sebas@benjami.in>">
-                            <span>Contact</span>
-                            <ArrowUpRight size={24} weight="bold" />
-                        </StyledAnchor>
-                    </StyledLi>
                 </StyledUl>
             </StyledNav>
         </StyledHeader>
