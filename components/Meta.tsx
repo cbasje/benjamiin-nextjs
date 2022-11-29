@@ -61,6 +61,12 @@ const Meta = ({ seo }: { seo?: Seo }) => {
             )}
             {fullSeo.isArticle && <meta property="og:type" content="article" />}
             <meta name="twitter:card" content="summary_large_image" />
+
+            <script
+                defer
+                data-domain="benjami.in"
+                src="https://plausible.io/js/script.js"
+            ></script>
         </Head>
     );
 };
