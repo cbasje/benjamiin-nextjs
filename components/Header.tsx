@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { EnvelopeSimple, GithubLogo, InstagramLogo } from "phosphor-react";
+import {
+    EnvelopeSimple,
+    GithubLogo,
+    InstagramLogo,
+    LinkedinLogo,
+} from "phosphor-react";
 
 import { Locale } from "@/lib/types";
 import { styled } from "@/stitches.config";
@@ -128,6 +133,14 @@ const Header = () => {
                             href="https://github.com/cbasje"
                         >
                             <GithubLogo size={24} weight="bold" aria-hidden />
+                        </StyledAnchor>
+                    </StyledLi>
+                    <StyledLi role="listitem">
+                        <StyledAnchor
+                            title="My LinkedIn account"
+                            href="https://www.linkedin.com/in/sebastiaanbenjamins/"
+                        >
+                            <LinkedinLogo size={24} weight="bold" aria-hidden />
                         </StyledAnchor>
                     </StyledLi>
                     <StyledLi role="listitem">
