@@ -18,7 +18,7 @@ export interface Seo {
 export interface Global {
     _id: number;
     siteName: string;
-    siteDescription: string;
+    siteKeywords: string;
     defaultSeo: Seo;
     locale?: Locale;
 }

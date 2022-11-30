@@ -79,7 +79,7 @@ export const globalQuery = groq`
 *[_type == "global" && defined(__i18n_lang)] {
   _id,
   siteName,
-  siteDescription,
+  siteKeywords,
   defaultSeo,
   "locale": __i18n_lang
 }

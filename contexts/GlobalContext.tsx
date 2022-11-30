@@ -11,7 +11,7 @@ const GlobalContext = createContext<GlobalProps>({
     global: [
         {
             siteName: "",
-            siteDescription: "",
+            siteKeywords: "",
             defaultSeo: {
                 metaTitle: "",
                 metaDescription: "",

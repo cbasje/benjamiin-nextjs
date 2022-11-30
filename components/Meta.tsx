@@ -9,7 +9,7 @@ const Meta = ({ seo }: { seo?: Seo }) => {
     const locale = router.query.locale as Locale;
 
     const { global } = useGlobal();
-    const { defaultSeo, siteName } = global.find(
+    const { siteName, siteKeywords, defaultSeo } = global.find(
         (g) => g.locale === locale
     ) ?? { defaultSeo: { metaTitle: "" } };
 
@@ -25,6 +25,7 @@ const Meta = ({ seo }: { seo?: Seo }) => {
                 ? siteName
                 : `${seoWithDefaults.metaTitle} | ${siteName}`,
         shareImage: seoWithDefaults.shareImage,
+        siteKeywords: siteKeywords ?? "",
     };
 
     return (
@@ -61,6 +62,9 @@ const Meta = ({ seo }: { seo?: Seo }) => {
             )}
             {fullSeo.isArticle && <meta property="og:type" content="article" />}
             <meta name="twitter:card" content="summary_large_image" />
+
+            <meta name="author" content="Sebastiaan Benjamins" />
+            <meta name="keywords" content={fullSeo.siteKeywords} />
 
             <script
                 defer

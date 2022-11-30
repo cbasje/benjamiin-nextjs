@@ -15,8 +15,8 @@ export default defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
-            name: "siteDescription",
-            title: "Site description",
+            name: "siteKeywords",
+            title: "Keywords",
             type: "text",
         }),
         defineField({
