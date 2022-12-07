@@ -1843,10 +1843,10 @@
   resolved "https://registry.yarnpkg.com/@sanity/color/-/color-2.1.19-beta.3.tgz#f4f9a377825f332a9908e3ffb4945dccccc3f73b"
   integrity sha512-421F+o3BbumkPzj93wsM9VXeX4wuhrXp/B/AHVuB0uXWLEGYnrY2mBzRU44fsZGQWW4fgy139B5eV5orFzYJkA==
 
-"@sanity/color@^2.1.11", "@sanity/color@^2.1.14":
-  version "2.1.14"
-  resolved "https://registry.yarnpkg.com/@sanity/color/-/color-2.1.14.tgz#96b486c24eecf9b657c358953a12cd5988810429"
-  integrity sha512-ntCT72qUNck9XrCrMEpMrTGsNPK7edt3arou7YUBgb6IRjba6MtByTAz/LNXbRK5meMQFqYFpNKDErM351X+Ug==
+"@sanity/color@^2.1.11", "@sanity/color@^2.1.14", "@sanity/color@^2.1.20":
+  version "2.1.20"
+  resolved "https://registry.yarnpkg.com/@sanity/color/-/color-2.1.20.tgz#48c6ad3e6333d1da2989acbead1a46b4a8c5347a"
+  integrity sha512-dHPgiCMf+lwvQls5uPzorfiq9YuU41AzvifA+ugVHmXvq7JBoofoOPUOmdHUQF0l0shSy0nD3zn52j2I+T2ekg==
 
 "@sanity/diff@3.0.0-rc.0":
   version "3.0.0-rc.0"
@@ -1946,15 +1946,15 @@
   resolved "https://registry.yarnpkg.com/@sanity/icons/-/icons-1.3.9-beta.3.tgz#3ea91b07ad62ff23a601a320dedcfd17349e78a5"
   integrity sha512-IHacaR96czI6402cBlkiKqmi7AASj3jLVYZ8dTD9caRGi0Dp7eJzI9RFp0ptJNxQYdYbZCZu0D/oEdhJfHEMGA==
 
-"@sanity/icons@^1.3":
+"@sanity/icons@^1.3", "@sanity/icons@^1.3.0":
   version "1.3.6"
   resolved "https://registry.yarnpkg.com/@sanity/icons/-/icons-1.3.6.tgz#4de4848304bf8487e1c08188decbb0ba5e86a158"
   integrity sha512-/GeFmwHMQVTCBvo4qAQgZJHKB1UzU8u42gnjs6696PWh626G4xbElb3/YJ9sM1PwTc0OaYrvIDes8qUTvrlhrA==
 
-"@sanity/icons@^1.3.0":
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/@sanity/icons/-/icons-1.3.4.tgz#145327737af84251be4a410f536f3267169a3b9a"
-  integrity sha512-aRnqGrp30liSqV/etF4uSuQfCMxbrEztUNTgH1755MsrzQSowadK/d6yRiEHmamcqxiE0ovJK+SFNw1qltWXaQ==
+"@sanity/icons@^2.0.0", "@sanity/icons@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@sanity/icons/-/icons-2.1.0.tgz#07f6cec348ac519e7ee9e4224f08659d5533daa5"
+  integrity sha512-Q2IgQJ6f6/mV1ztv+EnYGhBwWcmB8uQLYCNcxI6hirWb5nj7KmCXWasOoptTiO+ecrKmRFmAi1f7nDvXD+Aywg==
 
 "@sanity/image-url@^1.0.1":
   version "1.0.1"
@@ -2104,6 +2104,18 @@
     framer-motion "^7.5.3"
     react-refractor "^2.1.7"
 
+"@sanity/ui@^1.0.0":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@sanity/ui/-/ui-1.0.1.tgz#288a341f84e635806534af8900c1266e3d18f816"
+  integrity sha512-deIdbJVq/3WP1Y0xKUvePyBN2cgPXgMQrLY2hPyrGPaBw2RdV58womUdN+9pGTyMg1Gf2zOzzyqYJkZ1s5nkIw==
+  dependencies:
+    "@floating-ui/react-dom" "^1.0.0"
+    "@sanity/color" "^2.1.20"
+    "@sanity/icons" "^2.0.0"
+    csstype "^3.1.1"
+    framer-motion "^7.5.3"
+    react-refractor "^2.1.7"
+
 "@sanity/util@3.0.0-rc.0":
   version "3.0.0-rc.0"
   resolved "https://registry.yarnpkg.com/@sanity/util/-/util-3.0.0-rc.0.tgz#a46b3d54c2608b8b83e1e2e54e0e3e275b91f338"
@@ -2131,10 +2143,10 @@
     lodash "^4.17.21"
     rxjs "^6.5.3"
 
-"@sanity/vision@3.0.0-rc.0":
-  version "3.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@sanity/vision/-/vision-3.0.0-rc.0.tgz#650df0f14e2fbf1dfc038d5d69d5804902f6dc2a"
-  integrity sha512-DfL+tycxZ5AlXkBv5tHfFxRLrMBf/Yr2JLqq7uJrtq5eRdYr4UTAbIsPpcSWuYEzA2ACdgQpgnghrg0rOBYkyA==
+"@sanity/vision@3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@sanity/vision/-/vision-3.0.1.tgz#87827d99c03d3a58f3196a70c00e9f5576750d3e"
+  integrity sha512-LdpEHUio4cSq3AW+6XK/FyUhbEWgVLWJC5FeJ4lActxkLn2ftnVwrXhF8uDjgGLOEPjJ3Oq4O7uWfEhPgyjhqA==
   dependencies:
     "@codemirror/autocomplete" "^6.1.0"
     "@codemirror/commands" "^6.0.1"
@@ -2145,9 +2157,9 @@
     "@juggle/resize-observer" "^3.3.1"
     "@lezer/highlight" "^1.0.0"
     "@rexxars/react-json-inspector" "^8.0.1"
-    "@sanity/color" "2.1.19-beta.3"
-    "@sanity/icons" "1.3.9-beta.3"
-    "@sanity/ui" "1.0.0-beta.32"
+    "@sanity/color" "^2.1.20"
+    "@sanity/icons" "^2.1.0"
+    "@sanity/ui" "^1.0.0"
     "@uiw/react-codemirror" "^4.11.4"
     hashlru "^2.3.0"
     is-hotkey "^0.1.6"
@@ -3115,6 +3127,11 @@ csstype@^3.0.2:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.0.tgz#4ddcac3718d787cf9df0d1b7d15033925c8f29f2"
   integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
+
+csstype@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.1.tgz#841b532c45c758ee546a11d5bd7b7b473c8c30b9"
+  integrity sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==
 
 cyclist@^1.0.1:
   version "1.0.1"
