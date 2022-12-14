@@ -32,7 +32,7 @@
         "@sanity/vision": "3.0.0-rc.0",
         "@sanity/webhook": "^2.0.0",
         "@stitches/react": "^1.2.8",
-        "framer-motion": "^7.2.1",
+        "framer-motion": "^7.8.0",
         "isomorphic-fetch": "^3.0.0",
         "moment": "^2.29.4",
         "next": "^13.0.2",
