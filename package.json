@@ -29,7 +29,7 @@
         "@radix-ui/react-visually-hidden": "^1.0.0",
         "@sanity/document-internationalization": "^1.0.0-v3-studio.14",
         "@sanity/image-url": "^1.0.1",
-        "@sanity/vision": "3.0.0-rc.0",
+        "@sanity/vision": "3.2.4",
         "@sanity/webhook": "^2.0.0",
         "@stitches/react": "^1.2.8",
         "framer-motion": "^7.2.1",
