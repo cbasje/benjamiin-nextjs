@@ -22,7 +22,7 @@
         "@mantine/form": "^5.2.7",
         "@next/font": "^13.0.2",
         "@portabletext/react": "^2.0.0",
-        "@radix-ui/react-dialog": "^1.0.0",
+        "@radix-ui/react-dialog": "^1.0.2",
         "@radix-ui/react-label": "^1.0.0",
         "@radix-ui/react-select": "^1.0.0",
         "@radix-ui/react-toast": "^1.0.0",
